@@ -750,7 +750,7 @@ namespace dotBunny.Unity
         /// <remarks>
         /// Contains all 3 toggles: Enable/Disable; Debug On/Off; Writing Launch File On/Off
         /// </remarks>
-        [PreferenceItem("VSCode")]
+        [SettingsProvider]
         static void VSCodePreferencesItem()
         {
             if (EditorApplication.isCompiling)
@@ -923,6 +923,7 @@ namespace dotBunny.Unity
         /// Detect when scripts are reloaded and relink playmode detection
         /// </summary>
         [UnityEditor.Callbacks.DidReloadScripts()]
+        [Obsolete]
         static void OnScriptReload()
         {
             EditorApplication.playmodeStateChanged -= OnPlaymodeStateChanged;
