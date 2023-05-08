@@ -25,12 +25,12 @@ public class InformationLogger : MonoBehaviour
     
     void OnEnable()
     {
-        PointOfInterest.OnCollect += LogPointOfInterest;
+        PointOfInterest.OnCollect_Data += LogPointOfInterest;
     }
 
     void OnDisable()
     {
-        PointOfInterest.OnCollect -= LogPointOfInterest;
+        PointOfInterest.OnCollect_Data -= LogPointOfInterest;
     }
 
 

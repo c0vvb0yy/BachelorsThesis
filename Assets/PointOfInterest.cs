@@ -8,7 +8,8 @@ public class PointOfInterest : MonoBehaviour
     new public string name;
     public string description;
 
-    public static event Action<string> OnCollect;
+    public static event Action<string> OnCollect_Data;
+public static event Action<string, string> OnCollect_Display;
 
     Collider coll;
 
@@ -16,6 +17,7 @@ public class PointOfInterest : MonoBehaviour
     void Start()
     {
         coll = GetComponent<Collider>();
+        LeanTween.rotateAround(this.gameObject, Vector3.left, 180f, 1f).setLoopPingPong();
     }
 
     // Update is called once per frame
@@ -29,7 +31,9 @@ public class PointOfInterest : MonoBehaviour
         Debug.Log("entered");
         if(other.tag == "Player")
         {
-            OnCollect.Invoke(name);
+            OnCollect_Data.Invoke(name);
+            OnCollect_Display.Invoke(name, description);
+            Destroy(this.gameObject);
         }
     }
 }
