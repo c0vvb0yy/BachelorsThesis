@@ -17,7 +17,7 @@ public static event Action<string, string> OnCollect_Display;
     void Start()
     {
         coll = GetComponent<Collider>();
-        LeanTween.rotateAround(this.gameObject, Vector3.left, 180f, 1f).setLoopPingPong();
+        LeanTween.rotateAround(this.gameObject, Vector3.back, 90f, 0.21f).setLoopPingPong();
     }
 
     // Update is called once per frame
