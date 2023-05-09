@@ -62,3 +62,16 @@ POI hills collected at 1.6. Time since last collect 1.6
 POI hills collected at 3.62. Time since last collect 3.62
 POI box collected at 33.9. Time since last collect 30.28
 POI hills collected at 2.78. Time since last collect 2.78
+POI hills collected at 3.98. Time since last collect 3.98
+POI box collected at 9.04. Time since last collect 5.06
+POI hills collected at 2.6. Time since last collect 2.6
+POI hills collected at 2.72. Time since last collect 2.72
+POI hills collected at 5.64. Time since last collect 2.92
+POI hills collected at 2.32. Time since last collect 2.32
+POI box collected at 9.36. Time since last collect 7.04
+POI hills collected at 3.48. Time since last collect 3.48
+POI hills collected at 3.5. Time since last collect 3.5
+POI box collected at 9.28. Time since last collect 5.78
+POI hills collected at 3.04. Time since last collect 3.04
+POI box collected at 9.139999. Time since last collect 6.099999
+POI box collected at 10.12. Time since last collect 0.9800005
