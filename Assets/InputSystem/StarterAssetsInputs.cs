@@ -15,6 +15,9 @@ namespace StarterAssets
 
 		public bool attack;
 
+		public bool drawWeapon;
+		public bool sheathWeapon;
+
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -46,6 +49,15 @@ namespace StarterAssets
 			AttackInput(value.isPressed);
 		}
 
+		public void OnDrawWeapon(InputValue value)
+		{
+			DrawWeaponInput(value.isPressed);
+		}
+
+		public void OnSheathWeapon(InputValue value)
+		{
+			SheathWeaponInput(value.isPressed);
+		}
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
@@ -71,6 +83,14 @@ namespace StarterAssets
 		public void AttackInput(bool newAttackState)
 		{
 			attack = newAttackState;
+		}
+		public void DrawWeaponInput(bool newDrawWeaponState)
+		{
+			drawWeapon = newDrawWeaponState;
+		}
+		public void SheathWeaponInput(bool newSheathWeaponState)
+		{
+			sheathWeapon = newSheathWeaponState;
 		}
 
 		public void SprintInput(bool newSprintState)
