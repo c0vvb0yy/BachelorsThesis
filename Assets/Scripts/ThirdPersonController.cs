@@ -20,6 +20,8 @@ namespace StarterAssets
 
         [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
+        [Tooltip("How long the attack can do damage")]
+        public float AttackLength = 0.5f;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -158,6 +160,7 @@ namespace StarterAssets
 
             JumpAndGravity();
             GroundedCheck();
+            Attack();
             Move();
         }
 
@@ -209,6 +212,13 @@ namespace StarterAssets
             // Cinemachine will follow this target
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
+        }
+
+        private void Attack(){
+            if(_input.attack){
+                Debug.Log("attacking");
+                _input.attack = false;
+            }
         }
 
         private void Move()
