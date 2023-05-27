@@ -89,7 +89,6 @@ namespace StarterAssets
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
 
-        private bool _inCombat = false;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -101,9 +100,7 @@ namespace StarterAssets
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
-        private int _animIDAttack;
-        private int _animIDDrawWeapon;
-        private int _animIDSheathWeapon;
+
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
@@ -165,9 +162,6 @@ namespace StarterAssets
 
             JumpAndGravity();
             GroundedCheck();
-            Attack();
-            SheathWeapon();
-            DrawWeapon();
             Move();
         }
 
@@ -183,9 +177,6 @@ namespace StarterAssets
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
-            _animIDAttack = Animator.StringToHash("Attack");
-            _animIDDrawWeapon = Animator.StringToHash("DrawWeapon");
-            _animIDSheathWeapon = Animator.StringToHash("SheathWeapon");
         }
 
         private void GroundedCheck()
@@ -222,29 +213,6 @@ namespace StarterAssets
             // Cinemachine will follow this target
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
-        }
-
-        private void Attack(){
-            if(_input.attack && _inCombat){
-                Debug.Log("attacking");
-                _animator.SetBool(_animIDAttack, true);
-                _input.attack = false;
-            }
-        }
-
-        private void DrawWeapon(){
-            if(_input.drawWeapon && !_inCombat){
-                _animator.SetTrigger(_animIDDrawWeapon);
-                _inCombat = true;
-                _input.drawWeapon = false;
-            }
-        }
-        private void SheathWeapon(){
-            if(_input.sheathWeapon && _inCombat){
-                _animator.SetTrigger(_animIDSheathWeapon);
-                _inCombat = false;
-                _input.sheathWeapon = false;
-            }
         }
 
         private void Move()
