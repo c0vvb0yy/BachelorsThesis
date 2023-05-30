@@ -63,7 +63,6 @@ public class PlayerCombat : MonoBehaviour
 
     private void Attack(){
         if(_input.attack){
-            Debug.Log("attacking");
             _animator.SetTrigger(_animIDAttack);
             _timePassed = 0f;
             _attack = true;
