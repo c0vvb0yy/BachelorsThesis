@@ -10,7 +10,6 @@ public class PlayerCombat : MonoBehaviour
     private StarterAssetsInputs _input;
     private bool _inCombat = false;
     private bool _attack = false;
-    private bool _hasJustAttacked = false;
     private float _timePassed;
     private float _clipLength;
     private float _clipSpeed;
@@ -66,7 +65,6 @@ public class PlayerCombat : MonoBehaviour
             _animator.SetTrigger(_animIDAttack);
             _timePassed = 0f;
             _attack = true;
-            _hasJustAttacked = false;
             _input.attack = false;
         }
     }
