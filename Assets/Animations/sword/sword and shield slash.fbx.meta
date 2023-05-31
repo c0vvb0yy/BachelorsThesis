@@ -57,15 +57,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.024045346
-        functionName: StartWeaponEffect
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.070374906
-        functionName: EndWeaponEffect
+      - time: 0.1699505
+        functionName: StartVisualEffect
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -85,8 +78,8 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.19061166
-        functionName: StartVisualEffect
+      - time: 0.5801527
+        functionName: EndVisualEffect
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

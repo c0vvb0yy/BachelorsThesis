@@ -8,10 +8,13 @@ public class EquipmentSystem : MonoBehaviour
     [SerializeField] GameObject weaponHolder;
     [SerializeField] GameObject weaponSheath;
     [SerializeField] GameObject weapon;
+
+    [SerializeField] GameObject VFXHolder;
+    [SerializeField] List<GameObject> slashVFX;
     
     GameObject currentWeaponInHand;
     GameObject currentWeaponInSheath;
-    
+    GameObject currentVisualEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -41,9 +44,12 @@ public class EquipmentSystem : MonoBehaviour
         currentWeaponInHand?.GetComponentInChildren<ParticleSystem>()?.Play(true);
     }
 
-    public void StartVisualEffect(){
-        GetComponentInChildren<VisualEffect>()?.Play();
-
+    public void StartVisualEffect(int index){
+        currentVisualEffect = Instantiate(slashVFX[index], VFXHolder.transform);
+        currentVisualEffect.GetComponentInChildren<VisualEffect>().Play();
+    }
+    public void EndVisualEffect(){
+        Destroy(currentVisualEffect);
     }
 
     public void EndWeaponEffect(){
