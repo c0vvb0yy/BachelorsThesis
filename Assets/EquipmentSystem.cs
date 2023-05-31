@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class EquipmentSystem : MonoBehaviour
 {
@@ -34,5 +35,18 @@ public class EquipmentSystem : MonoBehaviour
 
     public void EndDealDamage(){
        currentWeaponInHand.GetComponentInChildren<DamageDealer>().EndDealDamage();
+    }
+
+    public void StartWeaponEffect(){
+        currentWeaponInHand?.GetComponentInChildren<ParticleSystem>()?.Play(true);
+    }
+
+    public void StartVisualEffect(){
+        GetComponentInChildren<VisualEffect>()?.Play();
+
+    }
+
+    public void EndWeaponEffect(){
+        currentWeaponInHand.GetComponentInChildren<ParticleSystem>().Stop(true);
     }
 }

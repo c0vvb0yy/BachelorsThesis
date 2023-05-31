@@ -100,11 +100,9 @@ public class Enemy : MonoBehaviour
 
     Vector3 RandomWanderPosition(Vector3 origin, float maxDist, int layerMask){
         Vector3 randomDirection = Random.insideUnitSphere * maxDist;
-        print(randomDirection);
         randomDirection += origin;
         NavMeshHit hit;
         NavMesh.SamplePosition(randomDirection, out hit, maxDist, layerMask);
-        print(hit.position);
         return hit.position;
     }
 
