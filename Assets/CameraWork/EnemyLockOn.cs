@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using StarterAssets;
+using UnityEngine.UI;
 
 public class EnemyLockOn : MonoBehaviour
 {
     Transform _currentTarget;
+    Transform _closestEnemy;
     Animator _animator;
 
     CameraInput _input;
@@ -26,6 +28,9 @@ public class EnemyLockOn : MonoBehaviour
     float _currentYOffset;
     Vector3 _pos;
 
+    Collider[] _nearbyTargets;
+    int _enemyIndex;
+
    // [SerializeField] CameraFollow cameraFollow;
     [SerializeField] Transform lockOnCanvas;
     DefMovement _defMovement;
@@ -42,61 +47,97 @@ public class EnemyLockOn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ScanNearBy();
+        if(_nearbyTargets.Length <= 0){
+            ResetTarget();
+        }
         //cameraFollow.lockedTarget = _enemyLocked;
         if(_input.lockOn){
-            print("lock on pressed");
-            if(_currentTarget){
+            _input.lockOn = false;
+            if(_enemyLocked){
                 ResetTarget();
                 return;
             }
-            if(_currentTarget = ScanNearBy()) FoundTarget();
-            else ResetTarget();
+            if(_currentTarget = _closestEnemy) FoundTarget();
+            else{
+                print("this one?");
+                ResetTarget();
+            } 
 
-            _input.lockOn = false;
         }
 
         if(_enemyLocked){
-            if(!TargetOnRange())
+            if(!TargetOnRange()){
                 ResetTarget();
+            }
+            if(_input.changeEnemy != 0){
+                ChangeTarget();
+            }
             LookAtTarget();
+        }
+        else if(_closestEnemy !=null) {
+            if(!TargetOnRange()){
+                ResetTarget();
+            }
+            ShowPotentialTarget();
         }
     }
 
     void ResetTarget(){
         lockOnCanvas.gameObject.SetActive(false);
         _currentTarget = null;
+        _closestEnemy = null;
         _enemyLocked = false;
-        //_animator.SetLayerWeight(1,0);
         _animator.Play("FollowState");
     }
 
-    Transform ScanNearBy(){
-        Collider[] nearbyTargets = Physics.OverlapSphere(transform.position, noticeZone, targetLayers);
+    void ChangeTarget(){
+        //we cannot change targets if there'S only 1 or less target available
+        if(_nearbyTargets.Length <= 1) return;
+        if(_input.changeEnemy > 0){
+            _enemyIndex += 1;
+            if(_enemyIndex >= _nearbyTargets.Length) _enemyIndex = 0;
+            _currentTarget = _nearbyTargets[_enemyIndex].transform;
+        }
+        else{
+            _enemyIndex -=1;
+            if(_enemyIndex <= 0) _enemyIndex = _nearbyTargets.Length-1;
+            _currentTarget = _nearbyTargets[_enemyIndex].transform;
+        }
+    }
+
+    void ScanNearBy(){
+        _nearbyTargets = Physics.OverlapSphere(transform.position, noticeZone, targetLayers);
         float closestAngle = maxNoticeAngle;
         Transform closestTarget = null;
-        if(nearbyTargets.Length <= 0) return null;
+        if(_nearbyTargets.Length <= 0) return;
 
-        for(int i = 0; i < nearbyTargets.Length; i++){
-            Vector3 dir = nearbyTargets[i].transform.position - _camera.position;
+        for(int i = 0; i < _nearbyTargets.Length; i++){
+            Vector3 dir = _nearbyTargets[i].transform.position - _camera.position;
             dir.y = 0;
             float angle = Vector3.Angle(_camera.forward, dir);
 
             if(angle < closestAngle){
-                closestTarget = nearbyTargets[i].transform;
+                closestTarget = _nearbyTargets[i].transform;
                 closestAngle = angle;
+                _enemyIndex = i;
             } 
         }
 
-        if(!closestTarget) return null;
+        if(!closestTarget) return;
+        Vector3 tarPos = GetTargetPos(closestTarget);
+        if(Blocked(tarPos)) return;
+        _closestEnemy = closestTarget;
+    }
+
+    Vector3 GetTargetPos(Transform closestTarget){
         float h1 = closestTarget.GetComponent<NavMeshAgent>().height;
         float h2 = closestTarget.localScale.y;
         float h = h1 * h2;
         float quarter_h = h / 4;
         _currentYOffset = h - quarter_h;
         if(zeroVertLook && _currentYOffset > 1.6f && _currentYOffset < 1.6f * 3)_currentYOffset = 1.6f;
-        Vector3 tarPos = closestTarget.position + new Vector3(0,_currentYOffset, 0);
-        if(Blocked(tarPos)) return null;
-        return closestTarget;
+        return closestTarget.position + new Vector3(0,_currentYOffset, 0);
     }
 
     bool Blocked(Vector3 target){
@@ -108,10 +149,16 @@ public class EnemyLockOn : MonoBehaviour
     }
 
     void FoundTarget(){
-        lockOnCanvas.gameObject.SetActive(true);
-        _animator.SetLayerWeight(1, 1);
+        //lockOnCanvas.gameObject.SetActive(true);
+        lockOnCanvas.GetComponentInChildren<Image>().color = Color.white;
         _animator.Play("TargetState");
         _enemyLocked = true;
+    }
+
+    void ShowPotentialTarget(){
+        lockOnCanvas.gameObject.SetActive(true);
+        PrepareCanvas();
+        lockOnCanvas.GetComponentInChildren<Image>().color = Color.black;
     }
 
     bool TargetOnRange(){
@@ -125,15 +172,20 @@ public class EnemyLockOn : MonoBehaviour
             ResetTarget();
             return;
         }
-        _pos = _currentTarget.position + new Vector3(0, _currentYOffset, 0);
-        lockOnCanvas.position = _pos;
-        lockOnCanvas.localScale = Vector3.one * ((_camera.position - _pos).magnitude * crossHairScale);
+        
+        PrepareCanvas();
 
         enemyTargetLocator.position = _pos;
         Vector3 dir = _currentTarget.position - transform.position;
         dir.y = 0;
         Quaternion rot = Quaternion.LookRotation(dir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lookAtSmoothing);
+    }
+
+    void PrepareCanvas(){
+        _pos = _closestEnemy.position + new Vector3(0, _currentYOffset, 0);
+        lockOnCanvas.position = _pos;
+        lockOnCanvas.localScale = Vector3.one * ((_camera.position - _pos).magnitude * crossHairScale);
     }
 
     private void OnDrawGizmos()

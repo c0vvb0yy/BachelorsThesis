@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeLockOn",
+                    "type": "Value",
+                    "id": "e8998e07-abb9-44a3-9007-bf19fb9bd2ad",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -35,6 +44,17 @@
                     "processors": "",
                     "groups": "Camera",
                     "action": "LockOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "24f05d51-d6dd-4a20-b28b-febf37687045",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Camera",
+                    "action": "ChangeLockOn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
