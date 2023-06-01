@@ -302,6 +302,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Camera",
+            "id": "9ad52106-d8f0-4730-9edc-9cae3e511d95",
+            "actions": [
+                {
+                    "name": "LockOn",
+                    "type": "Button",
+                    "id": "f1bd3061-c1eb-4dd3-a139-8fa83da41893",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "61a25616-f971-4352-8d5f-04188d59c519",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LockOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

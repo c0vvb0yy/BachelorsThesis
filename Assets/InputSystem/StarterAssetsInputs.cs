@@ -62,6 +62,7 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+
 #endif
 
 
