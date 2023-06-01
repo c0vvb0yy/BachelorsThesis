@@ -18,9 +18,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] float attackCoolDown = 3f;
     [SerializeField] float attackRange = 1f;
     [SerializeField] float aggroRange = 4f;
-    
     [SerializeField] float combatSpeed;
-    
+    [SerializeField] GameObject onHitEffect;
 
     GameObject _player;
     Animator _animator;
@@ -107,13 +106,15 @@ public class Enemy : MonoBehaviour
     }
 
     public void TakeDamage(float damageAmount){
+        if(_isDead) return;
         health -= damageAmount;
         _animator.SetTrigger("TakeDamage");
-
+         
         if(health <= 0){
             Die();
         }
     }
+
 
     public void StartDealDamage(){
         GetComponentInChildren<EnemyDamageDealer>().StartDealDamage();
@@ -134,5 +135,11 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, aggroRange);
         
+    }
+
+    internal void SpawnHitEffect(Vector3 point){
+        GameObject hitVFX = Instantiate(onHitEffect, this.transform);
+        hitVFX.transform.position = point;
+        Destroy(hitVFX, 5f);
     }
 }

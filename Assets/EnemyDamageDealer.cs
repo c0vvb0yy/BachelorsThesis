@@ -22,9 +22,9 @@ public class EnemyDamageDealer : MonoBehaviour
 
             int layerMask = 1 << 8;
             if(Physics.Raycast(transform.position, transform.forward, out hit, attackLength, layerMask)){
-                    print("hit");
                 if(hit.transform.TryGetComponent(out PlayerHealthSystem playerHealth)){
                     playerHealth.TakeDamage(attackDamage);
+                    playerHealth.SpawnHitEffect(hit.point);
                     hasDealtDamage = true;
                 }
             }

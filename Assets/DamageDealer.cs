@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class DamageDealer : MonoBehaviour
 {
     public bool canDealDamage;
+    [SerializeField] GameObject onHitEffect;
     List<GameObject> hasDealtDamage;
+
 
     [SerializeField] float weaponLength, weaponDamage;
     // Start is called before the first frame update
@@ -25,6 +28,7 @@ public class DamageDealer : MonoBehaviour
             if(Physics.Raycast(transform.position, -transform.up, out hit, weaponLength, layerMask)){
                 if(hit.transform.TryGetComponent(out Enemy enemy) && !hasDealtDamage.Contains(hit.transform.gameObject)){
                     enemy.TakeDamage(weaponDamage);
+                    enemy.SpawnHitEffect(hit.point);
                     hasDealtDamage.Add(hit.transform.gameObject);
                 }
             }

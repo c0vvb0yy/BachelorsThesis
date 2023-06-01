@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445408434852834428}
-  m_LocalRotation: {x: -0.5172777, y: -0.2850916, z: -0.7969909, w: 0.126302}
+  m_LocalRotation: {x: -0.17366844, y: -0.21524054, z: -0.934136, w: 0.22561228}
   m_LocalPosition: {x: -0.026, y: 0.769, z: 0.943}
   m_LocalScale: {x: 1.3546498, y: 1.3546498, z: 1.3546498}
   m_ConstrainProportionsScale: 0
@@ -82,7 +82,13 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 40
+        m_Name: Size
+        m_Overridden: 1
+      - m_Value: 5
+        m_Name: RotationVelocity
+        m_Overridden: 0
     m_Vector2f:
       m_Array: []
     m_Vector3f:

@@ -38,6 +38,7 @@ public class PlayerCombat : MonoBehaviour
     void Update()
     {
         SheathWeapon();
+        DrawWeapon();
         if(_inCombat){
             Attack();
             if(!_animator.GetCurrentAnimatorStateInfo(_animLayerIndex).IsTag("Attack")){
@@ -48,7 +49,6 @@ public class PlayerCombat : MonoBehaviour
             
             _clipSpeed = _animator.GetCurrentAnimatorStateInfo(_animLayerIndex).speed;
             _clipLength = _animator.GetCurrentAnimatorClipInfo(_animLayerIndex)[0].clip.length;
-            print(_clipLength+", "+ _clipSpeed);
 
             if(_timePassed >= _clipLength / _clipSpeed){
                 if(_attack){
@@ -60,12 +60,13 @@ public class PlayerCombat : MonoBehaviour
                 }
             }
         }
-        DrawWeapon();
     }
 
     private void Attack(){
         if(_input.attack){
             _animator.SetTrigger(_animIDAttack);
+            //We look at the current value of Speed to determine in which animationLayer we are
+            //If it's true it means we are moving which means we are in the arms layer, rather than the base combat layer
             _animLayerIndex = _animator.GetFloat("Speed") > 0.1 ? 2 : 1;
             _timePassed = 0f;
             _attack = true;
