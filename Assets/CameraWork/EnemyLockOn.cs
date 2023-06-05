@@ -19,6 +19,8 @@ public class EnemyLockOn : MonoBehaviour
     [Header("Settings")]
     [SerializeField] bool zeroVertLook;
     [SerializeField] float noticeZone = 10f;
+    [SerializeField] float leaveZone = 13f;
+    float _activeZone;
     [SerializeField] float lookAtSmoothing = 2f;
     [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 60f;
     [SerializeField]float crossHairScale = 0.1f;
@@ -42,6 +44,7 @@ public class EnemyLockOn : MonoBehaviour
         _camera = Camera.main.transform;
         _input = GetComponent<CameraInput>();
         lockOnCanvas.gameObject.SetActive(false);
+        _activeZone = noticeZone;
     }
 
     // Update is called once per frame
@@ -107,10 +110,14 @@ public class EnemyLockOn : MonoBehaviour
     }
 
     void ScanNearBy(){
-        _nearbyTargets = Physics.OverlapSphere(transform.position, noticeZone, targetLayers);
+        _nearbyTargets = Physics.OverlapSphere(transform.position, _activeZone, targetLayers);
         float closestAngle = maxNoticeAngle;
         Transform closestTarget = null;
-        if(_nearbyTargets.Length <= 0) return;
+        if(_nearbyTargets.Length <= 0) {
+            _activeZone = noticeZone;
+            return;
+        }
+        _activeZone = leaveZone;
 
         for(int i = 0; i < _nearbyTargets.Length; i++){
             Vector3 dir = _nearbyTargets[i].transform.position - _camera.position;
@@ -163,7 +170,7 @@ public class EnemyLockOn : MonoBehaviour
 
     bool TargetOnRange(){
         float dis = (transform.position - _pos).magnitude;
-        if(dis/2 > noticeZone) return false; else return true;
+        if(dis/2 > leaveZone) return false; else return true;
 
     }
 
@@ -192,5 +199,9 @@ public class EnemyLockOn : MonoBehaviour
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, noticeZone);   
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, leaveZone);   
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _activeZone);   
     }
 }

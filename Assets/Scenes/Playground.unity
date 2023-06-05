@@ -1314,6 +1314,7 @@ MonoBehaviour:
   enemyTargetLocator: {fileID: 1099228255}
   zeroVertLook: 0
   noticeZone: 10
+  leaveZone: 12
   lookAtSmoothing: 2
   maxNoticeAngle: 60
   crossHairScale: 0.1
