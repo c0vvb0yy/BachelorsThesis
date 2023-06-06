@@ -5,7 +5,10 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float health = 3f;
+    [SerializeField] float maxHealth = 3f;
+    float _currentHealth = 3f;
+
+    private Healthbar _healthbar;
     
     [Header("IdleBehaviour")]
     [SerializeField] float homeRange;
@@ -37,6 +40,8 @@ public class Enemy : MonoBehaviour
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         _home = transform.position;
+        _currentHealth = maxHealth;
+        _healthbar = GetComponentInChildren<Healthbar>();
     }
 
     private void Update() {
@@ -107,10 +112,10 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damageAmount){
         if(_isDead) return;
-        health -= damageAmount;
+        _currentHealth -= damageAmount;
         _animator.SetTrigger("TakeDamage");
-         
-        if(health <= 0){
+        _healthbar.UpdateHealthbar(maxHealth, _currentHealth);
+        if(_currentHealth <= 0){
             Die();
         }
     }
@@ -129,7 +134,7 @@ public class Enemy : MonoBehaviour
         _isDead = true;
         Destroy(this.gameObject, 5f);
     }
-     private void OnDrawGizmos() {
+     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.green;
