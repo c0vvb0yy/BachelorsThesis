@@ -195,8 +195,7 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.localScale = Vector3.one * ((_camera.position - _pos).magnitude * crossHairScale);
     }
 
-    private void OnDrawGizmos()
-    {
+    private void OnDrawGizmosSelected() {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, noticeZone);   
         Gizmos.color = Color.blue;

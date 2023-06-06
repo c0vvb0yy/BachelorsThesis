@@ -9,50 +9,30 @@ public class EquipmentSystem : MonoBehaviour
     [SerializeField] GameObject weaponSheath;
     [SerializeField] GameObject weapon;
 
-    [SerializeField] GameObject VFXHolder;
-    [SerializeField] List<GameObject> slashVFX;
+    
     
     GameObject currentWeaponInHand;
     GameObject currentWeaponInSheath;
-    GameObject currentVisualEffect;
+
+    PlayerCombat _playerCombat;
 
     // Start is called before the first frame update
     void Start()
     {
         currentWeaponInSheath = Instantiate(weapon, weaponSheath.transform);
+        _playerCombat = GetComponent<PlayerCombat>();
     }
 
     void DrawWeapon(){
         currentWeaponInHand = Instantiate(weapon, weaponHolder.transform);
+        _playerCombat.currentWeapon = currentWeaponInHand;
         Destroy(currentWeaponInSheath);
     }
 
     void SheathWeapon(){
         currentWeaponInSheath = Instantiate(weapon, weaponSheath.transform);
+        _playerCombat.currentWeapon = null;
         Destroy(currentWeaponInHand);
     }
 
-    public void StartDealDamage(){
-       currentWeaponInHand.GetComponentInChildren<DamageDealer>().StartDealDamage();
-    }
-
-    public void EndDealDamage(){
-       currentWeaponInHand.GetComponentInChildren<DamageDealer>().EndDealDamage();
-    }
-
-    public void StartWeaponEffect(){
-        currentWeaponInHand?.GetComponentInChildren<ParticleSystem>()?.Play(true);
-    }
-
-    public void StartVisualEffect(int index){
-        currentVisualEffect = Instantiate(slashVFX[index], VFXHolder.transform);
-        currentVisualEffect.GetComponentInChildren<VisualEffect>().Play();
-    }
-    public void EndVisualEffect(){
-        Destroy(currentVisualEffect);
-    }
-
-    public void EndWeaponEffect(){
-        currentWeaponInHand.GetComponentInChildren<ParticleSystem>().Stop(true);
-    }
 }

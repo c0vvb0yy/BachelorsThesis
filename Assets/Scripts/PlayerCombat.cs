@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 using StarterAssets;
 
 public class PlayerCombat : MonoBehaviour
 {
+
+    [SerializeField] GameObject VFXHolder;
+    [SerializeField] List<GameObject> slashVFX;
+    GameObject _currentVisualEffect;
+    public GameObject currentWeapon;
 
     private Animator _animator;
     private StarterAssetsInputs _input;
@@ -41,24 +47,8 @@ public class PlayerCombat : MonoBehaviour
         DrawWeapon();
         if(_inCombat){
             Attack();
-            if(!_animator.GetCurrentAnimatorStateInfo(_animLayerIndex).IsTag("Attack")){
-                _animator.ResetTrigger(_animIDLeaveCombo);
-                return;
-            }
-            _timePassed += Time.deltaTime;
-            
-            _clipSpeed = _animator.GetCurrentAnimatorStateInfo(_animLayerIndex).speed;
-            _clipLength = _animator.GetCurrentAnimatorClipInfo(_animLayerIndex)[0].clip.length;
-
-            if(_timePassed >= _clipLength / _clipSpeed){
-                if(_attack){
-                    _attack = false;
-                    Attack();
-                }
-                else{
-                    _animator.SetTrigger(_animIDLeaveCombo);
-                }
-            }
+            ManageCombo();
+            CheckDamage();
         }
     }
 
@@ -72,6 +62,32 @@ public class PlayerCombat : MonoBehaviour
             _attack = true;
             _input.attack = false;
         }
+    }
+
+    private void ManageCombo(){
+        if(!_animator.GetCurrentAnimatorStateInfo(_animLayerIndex).IsTag("Attack")){
+                _animator.ResetTrigger(_animIDLeaveCombo);
+                return;
+            }
+        _timePassed += Time.deltaTime;
+        
+        _clipSpeed = _animator.GetCurrentAnimatorStateInfo(_animLayerIndex).speed;
+        _clipLength = _animator.GetCurrentAnimatorClipInfo(_animLayerIndex)[0].clip.length;
+
+        if(_timePassed >= _clipLength / _clipSpeed){
+            if(_attack){
+                _attack = false;
+                Attack();
+            }
+            else{
+                _animator.SetTrigger(_animIDLeaveCombo);
+            }
+        }
+    }
+
+    private void CheckDamage(){
+        if(_currentVisualEffect == null) return;
+        
     }
 
     private void DrawWeapon(){
@@ -92,7 +108,19 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    public void getClipTimes(){
+    public void StartDealDamage(){
+       _currentVisualEffect.GetComponentInChildren<DamageDealer>().StartDealDamage();
+    }
 
+    public void EndDealDamage(){
+       _currentVisualEffect.GetComponentInChildren<DamageDealer>().EndDealDamage();
+    }
+
+    public void StartVisualEffect(int index){
+        _currentVisualEffect = Instantiate(slashVFX[index], VFXHolder.transform);
+        _currentVisualEffect.GetComponentInChildren<VisualEffect>().Play();
+    }
+    public void EndVisualEffect(){
+        Destroy(_currentVisualEffect);
     }
 }

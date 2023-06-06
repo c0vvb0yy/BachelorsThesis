@@ -2490,10 +2490,6 @@ MonoBehaviour:
   weaponHolder: {fileID: 1699057893}
   weaponSheath: {fileID: 463858495}
   weapon: {fileID: 626282352945076595, guid: 07386ea35b0703b4b860da37b73db8c3, type: 3}
-  VFXHolder: {fileID: 1081775614}
-  slashVFX:
-  - {fileID: 1445408434852834428, guid: ba2f2bbd4ebeb504cbe5b808b25544cf, type: 3}
-  - {fileID: 725512497027206344, guid: 836d5e4adffe2f94daca8294323b8a31, type: 3}
 --- !u!114 &1762682273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2506,6 +2502,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50fb3c88c27919e48b16ca67728dd5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VFXHolder: {fileID: 1081775614}
+  slashVFX:
+  - {fileID: 1445408434852834428, guid: ba2f2bbd4ebeb504cbe5b808b25544cf, type: 3}
+  - {fileID: 725512497027206344, guid: 836d5e4adffe2f94daca8294323b8a31, type: 3}
+  currentWeapon: {fileID: 0}
 --- !u!114 &1762682279
 MonoBehaviour:
   m_ObjectHideFlags: 0

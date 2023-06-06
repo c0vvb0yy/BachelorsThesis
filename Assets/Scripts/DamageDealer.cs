@@ -6,33 +6,15 @@ using UnityEngine.VFX;
 public class DamageDealer : MonoBehaviour
 {
     public bool canDealDamage;
-    [SerializeField] GameObject onHitEffect;
     List<GameObject> hasDealtDamage;
 
 
-    [SerializeField] float weaponLength, weaponDamage;
+    [SerializeField] float weaponDamage;
     // Start is called before the first frame update
     void Start()
     {
         canDealDamage = false;
         hasDealtDamage = new List<GameObject>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(canDealDamage){
-            RaycastHit hit;
-
-            int layerMask = 1 << 7;
-            if(Physics.Raycast(transform.position, -transform.up, out hit, weaponLength, layerMask)){
-                if(hit.transform.TryGetComponent(out Enemy enemy) && !hasDealtDamage.Contains(hit.transform.gameObject)){
-                    enemy.TakeDamage(weaponDamage);
-                    enemy.SpawnHitEffect(hit.point);
-                    hasDealtDamage.Add(hit.transform.gameObject);
-                }
-            }
-        }
     }
 
     public void StartDealDamage(){
@@ -44,8 +26,12 @@ public class DamageDealer : MonoBehaviour
         canDealDamage = false;
     }
 
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawLine(transform.position, transform.position - transform.up * weaponLength);
+    private void OnTriggerEnter(Collider other) {
+        if(!canDealDamage || hasDealtDamage.Contains(other.transform.gameObject)) return;
+        if(other.transform.TryGetComponent(out Enemy enemy)){
+            hasDealtDamage.Add(other.transform.gameObject);
+            enemy.TakeDamage(weaponDamage);
+            enemy.SpawnHitEffect(other.ClosestPoint(transform.position));
+        }
     }
 }
