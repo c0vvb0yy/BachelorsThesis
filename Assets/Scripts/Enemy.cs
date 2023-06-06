@@ -132,6 +132,7 @@ public class Enemy : MonoBehaviour
     public void Die(){
         _animator.SetTrigger("Die");
         _isDead = true;
+        GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.black;
         Destroy(this.gameObject, 5f);
     }
      private void OnDrawGizmosSelected() {

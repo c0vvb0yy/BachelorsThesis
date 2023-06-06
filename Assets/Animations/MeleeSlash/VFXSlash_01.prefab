@@ -195,8 +195,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.98, y: 0.4, z: 1.13}
-  m_Center: {x: 0.06, y: 0, z: 0.67}
+  m_Size: {x: 1.98, y: 0.4, z: 1.57}
+  m_Center: {x: 0.06, y: 0, z: 0.42}
 --- !u!114 &9212988870482184927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +210,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDealDamage: 0
-  onHitEffect: {fileID: 0}
   weaponDamage: 1
 --- !u!54 &3818704424073196973
 Rigidbody:
