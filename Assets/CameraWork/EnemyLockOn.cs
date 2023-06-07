@@ -30,6 +30,8 @@ public class EnemyLockOn : MonoBehaviour
     float _currentYOffset;
     Vector3 _pos;
 
+    ThirdPersonController _player;
+
     Collider[] _nearbyTargets;
     int _enemyIndex;
 
@@ -45,6 +47,7 @@ public class EnemyLockOn : MonoBehaviour
         _input = GetComponent<CameraInput>();
         lockOnCanvas.gameObject.SetActive(false);
         _activeZone = noticeZone;
+        _player = GameObject.FindWithTag("Player").GetComponent<ThirdPersonController>();
     }
 
     // Update is called once per frame
@@ -78,7 +81,7 @@ public class EnemyLockOn : MonoBehaviour
             }
             LookAtTarget();
         }
-        else if(_closestEnemy !=null) {
+        else if(_closestEnemy != null) {
             if(!TargetOnRange()){
                 ResetTarget();
             }
@@ -92,6 +95,8 @@ public class EnemyLockOn : MonoBehaviour
         _closestEnemy = null;
         _enemyLocked = false;
         _animator.Play("FollowState");
+        _player.isLockedOn = false;
+        _player.enemyLockOn = null;
     }
 
     void ChangeTarget(){
@@ -160,6 +165,8 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.GetComponentInChildren<Image>().color = Color.white;
         _animator.Play("TargetState");
         _enemyLocked = true;
+        _player.isLockedOn = true;
+        _player.enemyLockOn = _currentTarget;
     }
 
     void ShowPotentialTarget(){

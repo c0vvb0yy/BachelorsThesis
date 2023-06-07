@@ -89,6 +89,10 @@ namespace StarterAssets
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
 
+        [HideInInspector]
+        public bool isLockedOn;
+        [HideInInspector]
+        public Transform enemyLockOn;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -261,11 +265,19 @@ namespace StarterAssets
             {
                 _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                                   _mainCamera.transform.eulerAngles.y;
+                
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
                     RotationSmoothTime);
 
                 // rotate to face input direction relative to camera position
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+
+                if(isLockedOn){
+                    Vector3 dir = enemyLockOn.position - transform.position;
+                    dir.y = 0;
+                    Quaternion rot = Quaternion.LookRotation(dir);
+                    transform.rotation = rot;
+                }
             }
 
 
