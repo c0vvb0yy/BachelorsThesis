@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -31,6 +31,8 @@ public class EnemyLockOn : MonoBehaviour
     Vector3 _pos;
 
     ThirdPersonController _player;
+
+    public static event Action<bool, Vector3> onEnemyLockOn;
 
     Collider[] _nearbyTargets;
     int _enemyIndex;
@@ -95,8 +97,7 @@ public class EnemyLockOn : MonoBehaviour
         _closestEnemy = null;
         _enemyLocked = false;
         _animator.Play("FollowState");
-        _player.isLockedOn = false;
-        _player.enemyLockOn = null;
+        onEnemyLockOn.Invoke(_enemyLocked, Vector3.zero);
     }
 
     void ChangeTarget(){
@@ -165,8 +166,7 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.GetComponentInChildren<Image>().color = Color.white;
         _animator.Play("TargetState");
         _enemyLocked = true;
-        _player.isLockedOn = true;
-        _player.enemyLockOn = _currentTarget;
+        onEnemyLockOn.Invoke(_enemyLocked, _currentTarget.position);
     }
 
     void ShowPotentialTarget(){

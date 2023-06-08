@@ -89,10 +89,10 @@ namespace StarterAssets
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
 
-        [HideInInspector]
-        public bool isLockedOn;
-        [HideInInspector]
-        public Transform enemyLockOn;
+        
+        private bool _isLockedOn;
+        
+        private Vector3 _enemyLockOnPos;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -104,6 +104,9 @@ namespace StarterAssets
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
+        private int _animIDHorizontal;
+        private int _animIDVertical;
+        private int _animIDLockOn;
 
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -138,6 +141,19 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+        }
+
+        private void OnEnable() {
+            EnemyLockOn.onEnemyLockOn += OnEnemyLockOn;
+        }
+        private void OnDisable() {
+            EnemyLockOn.onEnemyLockOn -= OnEnemyLockOn;
+        }
+
+        private void OnEnemyLockOn(bool hasEnemy, Vector3 enemyPosition){
+            _isLockedOn = hasEnemy;
+            _enemyLockOnPos = enemyPosition;
+            _animator.SetBool(_animIDLockOn, hasEnemy);
         }
 
         private void Start()
@@ -181,6 +197,9 @@ namespace StarterAssets
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+            _animIDHorizontal = Animator.StringToHash("Horizontal");
+            _animIDVertical = Animator.StringToHash("Vertical");
+            _animIDLockOn = Animator.StringToHash("LockOn");
         }
 
         private void GroundedCheck()
@@ -272,17 +291,18 @@ namespace StarterAssets
                 // rotate to face input direction relative to camera position
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
 
-                if(isLockedOn){
-                    Vector3 dir = enemyLockOn.position - transform.position;
+                if(_isLockedOn){
+                    Vector3 dir = _enemyLockOnPos - transform.position;
                     dir.y = 0;
                     Quaternion rot = Quaternion.LookRotation(dir);
                     transform.rotation = rot;
+                    
                 }
             }
 
 
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-
+            
             // move the player
             _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
@@ -292,6 +312,17 @@ namespace StarterAssets
             {
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+                SetStrafeAnimatorValues(inputDirection);
+            }
+        }
+
+        private void SetStrafeAnimatorValues(Vector3 inputDirection){
+            if(_speed == 0){
+                _animator.SetFloat(_animIDHorizontal, 0);
+                _animator.SetFloat(_animIDVertical, 0);
+            }else{
+                _animator.SetFloat(_animIDHorizontal, inputDirection.x);
+                _animator.SetFloat(_animIDVertical, inputDirection.z);
             }
         }
 

@@ -57,7 +57,11 @@ public class PlayerCombat : MonoBehaviour
             _animator.SetTrigger(_animIDAttack);
             //We look at the current value of Speed to determine in which animationLayer we are
             //If it's true it means we are moving which means we are in the arms layer, rather than the base combat layer
-            _animLayerIndex = _animator.GetFloat("Speed") > 0.1 ? 2 : 1;
+            if(_animator.GetBool("LockOn")){
+                _animLayerIndex = 4;
+            }else{
+                _animLayerIndex = _animator.GetFloat("Speed") > 0.1 ? 2 : 1;
+            }
             _timePassed = 0f;
             _attack = true;
             _input.attack = false;
