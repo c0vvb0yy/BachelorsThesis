@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class PlayerHealthSystem : MonoBehaviour
 {
-    [SerializeField] float health = 100f; 
+    [SerializeField] const float maxHealth = 100f; 
+    private float _currentHealth;
     [SerializeField] GameObject onHitEffect; 
+    [SerializeField] Healthbar healthBar; 
+    
 
     Animator _animator;
     // Start is called before the first frame update
     void Start()
     {
+        _currentHealth = maxHealth;
         _animator = GetComponent<Animator>();
     }
 
     public void TakeDamage(float damageAmount){
-        health -= damageAmount;
+        _currentHealth -= damageAmount;
+        healthBar.UpdateHealthbar(maxHealth, _currentHealth);
         _animator.SetTrigger("TakeDamage");
         
-        if(health <= 0){
+        if(_currentHealth <= 0){
             Die();
         }
     }
@@ -30,6 +35,6 @@ public class PlayerHealthSystem : MonoBehaviour
     public void SpawnHitEffect(Vector3 point){
         GameObject hitVFX = Instantiate(onHitEffect, this.transform);
         hitVFX.transform.position = point;
-        Destroy(hitVFX, 5f);
+        Destroy(hitVFX, 2f);
     }
 }

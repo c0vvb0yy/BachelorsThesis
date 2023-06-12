@@ -92,7 +92,7 @@ namespace StarterAssets
         
         private bool _isLockedOn;
         
-        private Vector3 _enemyLockOnPos;
+        private GameObject _enemy;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -150,9 +150,9 @@ namespace StarterAssets
             EnemyLockOn.onEnemyLockOn -= OnEnemyLockOn;
         }
 
-        private void OnEnemyLockOn(bool hasEnemy, Vector3 enemyPosition){
+        private void OnEnemyLockOn(bool hasEnemy, GameObject enemy){
             _isLockedOn = hasEnemy;
-            _enemyLockOnPos = enemyPosition;
+            _enemy = enemy;
             _animator.SetBool(_animIDLockOn, hasEnemy);
         }
 
@@ -292,7 +292,7 @@ namespace StarterAssets
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
 
                 if(_isLockedOn){
-                    Vector3 dir = _enemyLockOnPos - transform.position;
+                    Vector3 dir = _enemy.transform.position - transform.position;
                     dir.y = 0;
                     Quaternion rot = Quaternion.LookRotation(dir);
                     transform.rotation = rot;

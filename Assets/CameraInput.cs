@@ -19,7 +19,7 @@ namespace StarterAssets{
         }
 
         public void OnChangeLockOn(InputValue value){
-            print("scrolling "+ value.Get<float>());
+            //print("scrolling "+ value.Get<float>());
             ChangeLock(value.Get<float>());
         }
     #endif

@@ -32,7 +32,7 @@ public class EnemyLockOn : MonoBehaviour
 
     ThirdPersonController _player;
 
-    public static event Action<bool, Vector3> onEnemyLockOn;
+    public static event Action<bool, GameObject> onEnemyLockOn;
 
     Collider[] _nearbyTargets;
     int _enemyIndex;
@@ -97,7 +97,7 @@ public class EnemyLockOn : MonoBehaviour
         _closestEnemy = null;
         _enemyLocked = false;
         _animator.Play("FollowState");
-        onEnemyLockOn.Invoke(_enemyLocked, Vector3.zero);
+        onEnemyLockOn.Invoke(_enemyLocked, null);
     }
 
     void ChangeTarget(){
@@ -166,7 +166,7 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.GetComponentInChildren<Image>().color = Color.white;
         _animator.Play("TargetState");
         _enemyLocked = true;
-        onEnemyLockOn.Invoke(_enemyLocked, _currentTarget.position);
+        onEnemyLockOn.Invoke(_enemyLocked, _currentTarget.gameObject);
     }
 
     void ShowPotentialTarget(){

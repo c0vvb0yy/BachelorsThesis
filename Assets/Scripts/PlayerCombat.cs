@@ -58,7 +58,7 @@ public class PlayerCombat : MonoBehaviour
             //We look at the current value of Speed to determine in which animationLayer we are
             //If it's true it means we are moving which means we are in the arms layer, rather than the base combat layer
             if(_animator.GetBool("LockOn")){
-                _animLayerIndex = 4;
+                _animLayerIndex = 3;
             }else{
                 _animLayerIndex = _animator.GetFloat("Speed") > 0.1 ? 2 : 1;
             }
@@ -96,7 +96,6 @@ public class PlayerCombat : MonoBehaviour
 
     private void DrawWeapon(){
         if(_input.drawWeapon && !_inCombat){
-            Debug.Log("drawing weapon");
             _animator.SetTrigger(_animIDDrawWeapon);
             _inCombat = true;
             _input.drawWeapon = false;
@@ -105,19 +104,10 @@ public class PlayerCombat : MonoBehaviour
     }
     private void SheathWeapon(){
         if(_input.sheathWeapon && _inCombat){
-            Debug.Log("sheathing weapon");
             _animator.SetTrigger(_animIDSheathWeapon);
             _inCombat = false;
             _input.sheathWeapon = false;
         }
-    }
-
-    public void StartDealDamage(){
-       _currentVisualEffect.GetComponentInChildren<DamageDealer>().StartDealDamage();
-    }
-
-    public void EndDealDamage(){
-       _currentVisualEffect.GetComponentInChildren<DamageDealer>().EndDealDamage();
     }
 
     public void StartVisualEffect(int index){
