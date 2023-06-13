@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Analytics;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Analytics;
 
 public class Enemy : MonoBehaviour
 {
@@ -133,8 +135,15 @@ public class Enemy : MonoBehaviour
         _animator.SetTrigger("Die");
         _isDead = true;
         GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.black;
+
+        var eventData = new Dictionary<string, object>{
+            {"EnemyType", this.gameObject.name}
+        };
+        AnalyticsService.Instance.CustomData("EnemyKill", eventData);
+
         Destroy(this.gameObject, 5f);
     }
+
      private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);

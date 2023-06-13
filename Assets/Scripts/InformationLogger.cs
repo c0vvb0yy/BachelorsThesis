@@ -2,27 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.Events;
-
+using UnityEngine.Analytics;
+using Unity.Services.Analytics;
+using Unity.Services.Core;
 public class InformationLogger : MonoBehaviour
 {
     float collectionTime;
-    public void LogPointOfInterest(string pointName)
-    {
-        string path = Application.dataPath + "/test.txt";
-
-        StreamWriter writer = new StreamWriter(path, true);
-
-        string timeData = TimeOfCollection();
-
-        writer.WriteLine("{0} {1}", pointName, timeData);
-        writer.Close();
-
-        StreamReader reader = new StreamReader(path);
-        Debug.Log(reader.ReadToEnd());
-        reader.Close();
-    }
-    
     void OnEnable()
     {
         PointOfInterest.OnCollect_Data += LogPointOfInterest;
@@ -32,20 +17,49 @@ public class InformationLogger : MonoBehaviour
     {
         PointOfInterest.OnCollect_Data -= LogPointOfInterest;
     }
-
-
-    private void Start() {
+    public void LogPointOfInterest(string pointName)
+    {
+        var eventData = new Dictionary<string, object>{
+            {"PointOfInterest", pointName},
+            {"TimeBetween", TimeOfCollection()},
+            {"CollectionTime", collectionTime},
+        };
+        AnalyticsService.Instance.CustomData("CollectedPointOfInterest", eventData);
         
+        
+        /*
+        string path = Application.dataPath + "/test.txt";
+
+        StreamWriter writer = new StreamWriter(path, true);
+
+
+        writer.WriteLine("{0} {1}", pointName, timeData);
+        writer.Close();
+
+        StreamReader reader = new StreamReader(path);
+        Debug.Log(reader.ReadToEnd());
+        reader.Close();
+        */
+    }
+    
+    async void Start()
+    {
         collectionTime = 0;
+        try
+        {
+            await UnityServices.InitializeAsync();
+            List<string> consentIdentifiers = await AnalyticsService.Instance.CheckForRequiredConsents();
+        }
+        catch (ConsentCheckException e)
+        {
+          print(e.Reason);// Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
+        }
     }
 
-    string TimeOfCollection(){
-        
+    float TimeOfCollection(){
         var previousCollectionTime = collectionTime;
         collectionTime = Time.time;
-        var timeBetween = collectionTime - previousCollectionTime;
-        string text = string.Format("collected at {0}. Time since last collect {1}", collectionTime, timeBetween);
-        return text;
+        return collectionTime - previousCollectionTime;
     }
 
 }
