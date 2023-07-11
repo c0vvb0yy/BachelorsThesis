@@ -23,7 +23,7 @@ public class PlayerCombat : MonoBehaviour
     private int _animIDDrawWeapon;
     private int _animIDSheathWeapon;
     private int _animIDLeaveCombo;
-    private int _animLayerIndex;
+    private int _animLayerIndex = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +43,7 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GetAnimLayerIndex();
         SheathWeapon();
         DrawWeapon();
         if(_inCombat){
@@ -52,19 +53,24 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
+    void GetAnimLayerIndex(){
+        if(_animator.GetBool("LockOn")){
+                _animLayerIndex = _animator.GetFloat("Speed") > 0.1 ? 4 : 3;
+        }else{
+            //We look at the current value of Speed to determine in which animationLayer we are
+            //If it's true it means we are moving which means we are in the arms layer, rather than the base combat layer
+            _animLayerIndex = _animator.GetFloat("Speed") > 0.1 ? 2 : 1;
+        }
+    }
+
     private void Attack(){
         if(_input.attack){
             _animator.SetTrigger(_animIDAttack);
-            //We look at the current value of Speed to determine in which animationLayer we are
-            //If it's true it means we are moving which means we are in the arms layer, rather than the base combat layer
-            if(_animator.GetBool("LockOn")){
-                _animLayerIndex = 3;
-            }else{
-                _animLayerIndex = _animator.GetFloat("Speed") > 0.1 ? 2 : 1;
-            }
             _timePassed = 0f;
             _attack = true;
             _input.attack = false;
+            _input.drawWeapon = false;
+            _input.sheathWeapon = false;
         }
     }
 
@@ -95,7 +101,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     private void DrawWeapon(){
-        if(_input.drawWeapon && !_inCombat){
+        if(_input.drawWeapon && !_inCombat && EnsureSyncOn("Default")){
             _animator.SetTrigger(_animIDDrawWeapon);
             _inCombat = true;
             _input.drawWeapon = false;
@@ -103,11 +109,20 @@ public class PlayerCombat : MonoBehaviour
         }
     }
     private void SheathWeapon(){
-        if(_input.sheathWeapon && _inCombat){
+        if(_input.sheathWeapon && _inCombat && EnsureSyncOn("CombatBlend")){
             _animator.SetTrigger(_animIDSheathWeapon);
             _inCombat = false;
             _input.sheathWeapon = false;
+            _input.drawWeapon = false;
         }
+    }
+
+    private bool EnsureSyncOn(string tag){
+        if(_animator.GetCurrentAnimatorStateInfo(1).IsTag(tag) 
+        && _animator.GetCurrentAnimatorStateInfo(2).IsTag(tag)){
+            return true;
+        }
+        return false;
     }
 
     public void StartVisualEffect(int index){

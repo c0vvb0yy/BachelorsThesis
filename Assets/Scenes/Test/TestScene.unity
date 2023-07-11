@@ -503,6 +503,36 @@ PrefabInstance:
       propertyPath: m_Dithering
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2070925441832804400, guid: f6d148d888ffbf54b9afe9936dfaec1f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.019107249
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070925441832804400, guid: f6d148d888ffbf54b9afe9936dfaec1f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.001756404
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070925441832804400, guid: f6d148d888ffbf54b9afe9936dfaec1f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9925771
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070925441832804400, guid: f6d148d888ffbf54b9afe9936dfaec1f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.12009432
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070925441832804401, guid: f6d148d888ffbf54b9afe9936dfaec1f,
+        type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 516324309}
+    - target: {fileID: 2070925441832804401, guid: f6d148d888ffbf54b9afe9936dfaec1f,
+        type: 3}
+      propertyPath: m_LookAt
+      value: 
+      objectReference: {fileID: 516324309}
     - target: {fileID: 8944336655422409496, guid: f6d148d888ffbf54b9afe9936dfaec1f,
         type: 3}
       propertyPath: m_FocalLength
