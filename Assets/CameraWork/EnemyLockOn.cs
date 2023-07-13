@@ -39,7 +39,6 @@ public class EnemyLockOn : MonoBehaviour
 
    // [SerializeField] CameraFollow cameraFollow;
     [SerializeField] Transform lockOnCanvas;
-    DefMovement _defMovement;
 
     // Start is called before the first frame update
     void Start()
