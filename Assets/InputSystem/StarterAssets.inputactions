@@ -281,17 +281,6 @@
                 },
                 {
                     "name": "",
-                    "id": "30e7cdd8-0be5-40cb-aa09-4cb5b24bf622",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SheathWeapon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "20b168b3-832a-4df8-b224-0e4f428e2fa5",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",

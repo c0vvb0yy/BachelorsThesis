@@ -37,8 +37,7 @@ public class PointOfInterest : MonoBehaviour
             OnCollect_Display.Invoke(name, description);
             vfx.SetFloat("SpawnMult", 0);
             vfx.SetFloat("TrailMult", 5);
-            //LeanTween.easeOutSine()
-            //Destroy(this.gameObject);
+            Destroy(this.gameObject, 5f);
         }
     }
 }
