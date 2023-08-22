@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7335051610645913851}
   - component: {fileID: 5937025269913874270}
   - component: {fileID: 8466901779473963924}
-  - component: {fileID: -3695003150869857466}
+  - component: {fileID: 2395055010002419105}
+  - component: {fileID: 3235617617330807651}
   m_Layer: 0
   m_Name: tree_pine_snow
   m_TagString: Untagged
@@ -29,6 +30,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,6 +54,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -83,8 +86,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-3695003150869857466
-MeshCollider:
+--- !u!205 &2395055010002419105
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962511746986719809}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.100347996, y: 3.0082135, z: 0.015758276}
+  m_Size: 6.016427
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 8466901779473963924}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 8466901779473963924}
+  - screenRelativeHeight: 0.002617518
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 8466901779473963924}
+  m_Enabled: 1
+--- !u!65 &3235617617330807651
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,7 +123,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1383659195646241547, guid: 8a3f1eab4dad19e49944349161e51d9e, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2.545867, y: 6.016427, z: 1.8907995}
+  m_Center: {x: 0.06596953, y: 3.0082135, z: -0.14192319}

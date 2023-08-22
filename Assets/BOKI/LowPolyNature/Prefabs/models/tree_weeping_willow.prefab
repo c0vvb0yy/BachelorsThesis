@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7244735059107313878}
   - component: {fileID: 5991374871432001395}
   - component: {fileID: 8413099012797170617}
-  - component: {fileID: 5190145377575684188}
   - component: {fileID: -5678039770848766953}
+  - component: {fileID: 7517221534464795898}
   m_Layer: 0
   m_Name: tree_weeping_willow
   m_TagString: Untagged
@@ -86,20 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5190145377575684188
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8052902921309299308}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7597932163015031009, guid: 569acb77775fd1a4bb306ebdcd43d719, type: 3}
 --- !u!205 &-5678039770848766953
 LODGroup:
   m_ObjectHideFlags: 0
@@ -127,3 +113,16 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8413099012797170617}
   m_Enabled: 1
+--- !u!65 &7517221534464795898
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8052902921309299308}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.359315, y: 12.087802, z: 3.3473196}
+  m_Center: {x: 0.067252636, y: 5.1578593, z: -0.0796445}

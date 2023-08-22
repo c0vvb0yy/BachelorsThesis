@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3185447028110058621}
   - component: {fileID: 1989219551968881624}
   - component: {fileID: 4359440378522050322}
-  - component: {fileID: -1107210689656019492}
   - component: {fileID: 6334007553269974773}
+  - component: {fileID: 9107443250798843938}
   m_Layer: 0
   m_Name: tree_hero
   m_TagString: Untagged
@@ -86,20 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-1107210689656019492
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2846041444909760199}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5151188051618064453, guid: efe1ff1cc19889a4593a70694d080451, type: 3}
 --- !u!205 &6334007553269974773
 LODGroup:
   m_ObjectHideFlags: 0
@@ -122,9 +108,21 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 4359440378522050322}
-  - screenRelativeHeight: 0.1
+  - screenRelativeHeight: 0
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 7955275607337264369, guid: fb5a139590217c04b99ba7a62ab70e79,
-        type: 3}
+    - renderer: {fileID: 4359440378522050322}
   m_Enabled: 1
+--- !u!65 &9107443250798843938
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2846041444909760199}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.472226, y: 25.152565, z: 5.158349}
+  m_Center: {x: -0.15388572, y: 10.912865, z: -0.41132164}
