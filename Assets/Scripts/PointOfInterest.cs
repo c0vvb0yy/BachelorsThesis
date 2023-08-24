@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class PointOfInterest : MonoBehaviour
-{
+public class PointOfInterest : MonoBehaviour{
     new public string name;
     public string description;
 
+    public static event Action OnCollect;
     public static event Action<string> OnCollect_Data;
     public static event Action<string, string> OnCollect_Display;
 
@@ -16,23 +16,14 @@ public class PointOfInterest : MonoBehaviour
     VisualEffect vfx;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         coll = GetComponent<Collider>();
         vfx = GetComponentInChildren<VisualEffect>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("entered");
-        if(other.tag == "Player")
-        {
+        if(other.tag == "Player"){
+            OnCollect.Invoke();
             OnCollect_Data.Invoke(name);
             OnCollect_Display.Invoke(name, description);
             vfx.SetFloat("SpawnMult", 0);

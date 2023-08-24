@@ -5,20 +5,16 @@ using UnityEngine;
 using UnityEngine.Analytics;
 using Unity.Services.Analytics;
 using Unity.Services.Core;
-public class InformationLogger : MonoBehaviour
-{
+public class InformationLogger : MonoBehaviour{
     float collectionTime;
-    void OnEnable()
-    {
+    void OnEnable(){
         PointOfInterest.OnCollect_Data += LogPointOfInterest;
     }
 
-    void OnDisable()
-    {
+    void OnDisable(){
         PointOfInterest.OnCollect_Data -= LogPointOfInterest;
     }
-    public void LogPointOfInterest(string pointName)
-    {
+    public void LogPointOfInterest(string pointName){
         var eventData = new Dictionary<string, object>{
             {"PointOfInterest", pointName},
             {"TimeBetween", TimeOfCollection()},
@@ -42,8 +38,7 @@ public class InformationLogger : MonoBehaviour
         */
     }
     
-    async void Start()
-    {
+    async void Start(){
         collectionTime = 0;
         try
         {

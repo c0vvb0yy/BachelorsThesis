@@ -69,5 +69,5 @@ Material:
     - Color_a389c53ee3ca42da89edeeac013ef05c: {r: 0.07831967, g: 0.09861974, b: 0.31132078,
         a: 1}
     - Vector2_4041d5327b7446bc8b5b29c51396a32f: {r: 0, g: 0.38, b: 0, a: 0}
-    - _RipplesColorDown: {r: 0.15686268, g: 0.890587, b: 0.90588236, a: 1}
+    - _RipplesColorDown: {r: 0.37593442, g: 0.7819658, b: 0.9339623, a: 1}
   m_BuildTextureStacks: []
