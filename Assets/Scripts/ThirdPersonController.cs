@@ -435,5 +435,11 @@ namespace StarterAssets
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
         }
+
+        public void Teleport(Vector3 position){
+            _controller.enabled = false;
+            this.gameObject.transform.position = position;
+            _controller.enabled = true;
+        }
     }
 }
