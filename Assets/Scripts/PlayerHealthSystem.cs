@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHealthSystem : MonoBehaviour
 {
-    [SerializeField] const float maxHealth = 100f; 
+    [SerializeField] float maxHealth = 100f; 
     private float _currentHealth;
     [SerializeField] GameObject onHitEffect; 
     [SerializeField] Healthbar healthBar; 

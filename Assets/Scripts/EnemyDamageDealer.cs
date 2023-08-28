@@ -6,12 +6,15 @@ public class EnemyDamageDealer : MonoBehaviour
 {
     public bool canDealDamage;
     public bool hasDealtDamage;
-    public float attackLength, attackDamage;
+    public float attackRange, attackDamage;
+    public float attackheight;
+    private Vector3 _attackOrigin;
     // Start is called before the first frame update
     void Start()
     {
         canDealDamage = false;
         hasDealtDamage = false;
+        
     }
 
     // Update is called once per frame
@@ -21,8 +24,12 @@ public class EnemyDamageDealer : MonoBehaviour
             RaycastHit hit;
 
             int layerMask = 1 << 8;
-            if(Physics.Raycast(transform.position, transform.forward, out hit, attackLength, layerMask)){
+            _attackOrigin = transform.position;
+            _attackOrigin.y += attackheight;
+            if(Physics.Raycast(_attackOrigin, transform.forward, out hit, attackRange, layerMask)){
+                Debug.Log("attack");
                 if(hit.transform.TryGetComponent(out PlayerHealthSystem playerHealth)){
+                    Debug.Log("attack hit");
                     playerHealth.TakeDamage(attackDamage);
                     playerHealth.SpawnHitEffect(hit.point);
                     hasDealtDamage = true;
@@ -41,6 +48,8 @@ public class EnemyDamageDealer : MonoBehaviour
     }
     private void OnDrawGizmos() {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * attackLength);
+        Vector3 attackOrigin = transform.position;
+        attackOrigin.y += attackheight;
+        Gizmos.DrawLine(attackOrigin, attackOrigin + transform.forward * attackRange);
     }
 }

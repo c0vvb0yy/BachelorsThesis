@@ -14,9 +14,10 @@ public class Enemy : MonoBehaviour
     
     [Header("IdleBehaviour")]
     [SerializeField] float homeRange;
-    [SerializeField] float wanderCoolDown;
+    [SerializeField] float wanderCoolDownMax;
     [SerializeField] float idleSpeed;
     Vector3 _home;
+    float _wanderCoolDown;
     
 
     [Header("Combat")]
@@ -44,6 +45,7 @@ public class Enemy : MonoBehaviour
         _home = transform.position;
         _currentHealth = maxHealth;
         _healthbar = GetComponentInChildren<Healthbar>();
+        _wanderCoolDown = Random.Range(1, wanderCoolDownMax);
     }
 
     private void Update() {
@@ -69,6 +71,7 @@ public class Enemy : MonoBehaviour
     }
 
     void StartCombatBehaviour(){
+        _timePassed = 999; //Bumping up time passed so that an enemy can immediealty start attacking
         _agent.speed = combatSpeed;
         _inCombat = true;
     }
@@ -97,10 +100,11 @@ public class Enemy : MonoBehaviour
 
     void IdleBehaviour(){
         _animator.SetFloat("Speed", _agent.hasPath ? 0.5f:0);
-        if(_timePassed >= wanderCoolDown){
+        if(_timePassed >= _wanderCoolDown){
             Vector3 newPos = RandomWanderPosition(_home, homeRange, -1);
             _agent.SetDestination(newPos);
             _timePassed = 0f;
+            _wanderCoolDown = Random.Range(1, wanderCoolDownMax);
         }
     }
 
@@ -144,12 +148,13 @@ public class Enemy : MonoBehaviour
         Destroy(this.gameObject, 5f);
     }
 
-     private void OnDrawGizmosSelected() {
+    private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, aggroRange);
-        
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, homeRange);
     }
 
     internal void SpawnHitEffect(Vector3 point){

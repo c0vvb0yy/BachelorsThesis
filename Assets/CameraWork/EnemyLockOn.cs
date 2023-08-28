@@ -49,6 +49,7 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.gameObject.SetActive(false);
         _activeZone = noticeZone;
         _player = GameObject.FindWithTag("Player").GetComponent<ThirdPersonController>();
+        _pos = transform.position;
     }
 
     // Update is called once per frame
@@ -177,7 +178,6 @@ public class EnemyLockOn : MonoBehaviour
     bool TargetOnRange(){
         float dis = (transform.position - _pos).magnitude;
         if(dis/2 > leaveZone) return false; else return true;
-
     }
 
     void LookAtTarget(){
