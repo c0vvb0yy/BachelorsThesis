@@ -18,6 +18,8 @@ namespace StarterAssets
 		public bool drawWeapon;
 		public bool sheathWeapon;
 
+		public bool interact;
+
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -63,6 +65,10 @@ namespace StarterAssets
 			SprintInput(value.isPressed);
 		}
 
+		public void OnInteract(InputValue value){
+			InteractInput(value.isPressed);
+		}
+
 #endif
 
 
@@ -97,6 +103,11 @@ namespace StarterAssets
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
+		}
+
+		public void InteractInput(bool newInteractState)
+		{
+			interact = newInteractState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
