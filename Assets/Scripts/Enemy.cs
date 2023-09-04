@@ -144,7 +144,7 @@ public class Enemy : MonoBehaviour
             {"EnemyType", this.gameObject.name}
         };
         AnalyticsService.Instance.CustomData("EnemyKill", eventData);
-
+        
         Destroy(this.gameObject, 5f);
     }
 

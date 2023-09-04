@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +13,7 @@ public class IdleBehaviour : MonoBehaviour
     [SerializeField] float idleSpeed;
     [SerializeField] Vector3 home;
     
+    bool _isFree = true;
     float _timePassed;
     List<Vector3> _waypoints = new List<Vector3>();
     Animator _animator;
@@ -36,10 +38,12 @@ public class IdleBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _animator.SetFloat("Speed", _agent.hasPath ? idleSpeed:0);
-        _timePassed += Time.deltaTime;
-        if(_timePassed >= wanderCoolDown){
-            Wander();
+        if(_isFree){
+            _animator.SetFloat("Speed", _agent.hasPath ? idleSpeed:0);
+            _timePassed += Time.deltaTime;
+            if(_timePassed >= wanderCoolDown){
+                Wander();
+            }
         }
     }
 
@@ -61,5 +65,19 @@ public class IdleBehaviour : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(randomDirection, out hit, maxDist, layerMask);
         return hit.position;
+    }
+
+    public void StartConversation(){
+        _agent.updateRotation = false;
+        _agent.isStopped = true;
+        _animator.SetFloat("Speed",0);
+        transform.LookAt(GameObject.FindWithTag("Player").transform);
+        _isFree = false;
+    }
+
+    public void EndConversation(){
+        _agent.isStopped = false;
+        _agent.updateRotation = true;
+        _isFree = true;
     }
 }

@@ -1,6 +1,24 @@
-﻿title: SmithDialogue
+title: SmithDialogue
 ---
-Smith: This is a line
-Smith: And here's a second line
-lezz fucking go
+Smith: Oh, hello! Didn't see you there.
+Smith: I'm a bit busy at the moment.
+Smith: Y'see the farms down the road have been overrun with monsters
+<<if $hasSword == false>>
+<<getOldSword Player>>
+Smith: You look competent. Have this old sword and take care of the monsters, will ya?
+<<set $hasSword = true>>
+<<else>>
+Smith: You already have a sword. Looks pretty run down though.
+<<endif>>
+Smith: When you suceed in defeating the monster I will give you a shiny new sword, okay?
+===
+title: SmithQuestComplete
+---
+<<if $farmQuestComplete == true>>
+Smith: I heard the news! Thank you!!!
+<<getQuestSword Player>>
+Smith: As promised, here's a new sword, fresh off the anvil!
+<<else>>
+Smith: The monsters are still at large! Go defeat them!
+<<endif>>
 ===

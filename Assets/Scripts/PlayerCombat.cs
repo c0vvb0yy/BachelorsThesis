@@ -11,6 +11,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] List<GameObject> slashVFX;
     GameObject _currentVisualEffect;
     public GameObject currentWeapon;
+    [HideInInspector]public int indexStep;
 
     private Animator _animator;
     private StarterAssetsInputs _input;
@@ -101,20 +102,20 @@ public class PlayerCombat : MonoBehaviour
     }
 
     private void DrawWeapon(){
-        if(_input.drawWeapon && !_inCombat && EnsureSyncOn("Default")){
+        if(currentWeapon != null && _input.drawWeapon && !_inCombat && EnsureSyncOn("Default")){
             _animator.SetTrigger(_animIDDrawWeapon);
             _inCombat = true;
-            _input.drawWeapon = false;
             _input.attack = false;
         }
+            _input.drawWeapon = false;
     }
     private void SheathWeapon(){
-        if(_input.sheathWeapon && _inCombat && EnsureSyncOn("CombatBlend")){
+        if(currentWeapon != null && _input.sheathWeapon && _inCombat && EnsureSyncOn("CombatBlend")){
             _animator.SetTrigger(_animIDSheathWeapon);
             _inCombat = false;
-            _input.sheathWeapon = false;
             _input.drawWeapon = false;
         }
+            _input.sheathWeapon = false;
     }
 
     private bool EnsureSyncOn(string tag){
@@ -126,7 +127,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void StartVisualEffect(int index){
-        _currentVisualEffect = Instantiate(slashVFX[index], VFXHolder.transform);
+        _currentVisualEffect = Instantiate(slashVFX[index+indexStep], VFXHolder.transform);
         _currentVisualEffect.GetComponentInChildren<VisualEffect>().Play();
     }
     public void EndVisualEffect(){
