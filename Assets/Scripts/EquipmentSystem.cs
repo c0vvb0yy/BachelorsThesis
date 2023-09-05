@@ -12,6 +12,7 @@ public class EquipmentSystem : MonoBehaviour
     [SerializeField] GameObject rustyWeapon;
     [SerializeField] GameObject questWeapon;
     
+    [SerializeField] List<AudioClip> audioClips = new();
     GameObject weapon;
     GameObject weaponHolder;
 
@@ -32,12 +33,17 @@ public class EquipmentSystem : MonoBehaviour
     void DrawWeapon(){
         CheckForChildren(weaponHolder);
         currentWeaponInHand = Instantiate(weapon, weaponHolder.transform);
+        AudioSource.PlayClipAtPoint(audioClips[0], this.transform.position);
         CheckForChildren(weaponSheath);
     }
     void SheathWeapon(){
         CheckForChildren(weaponSheath);
         currentWeaponInSheath = Instantiate(weapon, weaponSheath.transform);
         CheckForChildren(weaponHolder);
+    }
+
+    void SheathAudio(){
+        AudioSource.PlayClipAtPoint(audioClips[1], this.transform.position);
     }
 
     void CheckForChildren(GameObject weaponPosition){
@@ -69,9 +75,10 @@ public class EquipmentSystem : MonoBehaviour
     }
 
     void ClearWeapons(){
-        if(currentWeaponInHand != null)
-        _playerCombat.ForceSheatheWeapon();
+        if(currentWeaponInHand != null){
+            _playerCombat.ForceSheatheWeapon();
             Destroy(currentWeaponInHand);
+        }   
         if(currentWeaponInSheath != null)
             Destroy(currentWeaponInSheath);
     }

@@ -9,6 +9,7 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] GameObject VFXHolder;
     [SerializeField] List<GameObject> slashVFX;
+    [SerializeField] List<AudioClip> slashSFX;
     GameObject _currentVisualEffect;
     public GameObject currentWeapon;
     [HideInInspector]public int indexStep;
@@ -136,6 +137,7 @@ public class PlayerCombat : MonoBehaviour
     public void StartVisualEffect(int index){
         _currentVisualEffect = Instantiate(slashVFX[index+indexStep], VFXHolder.transform);
         _currentVisualEffect.GetComponentInChildren<VisualEffect>().Play();
+        AudioSource.PlayClipAtPoint(slashSFX[index], VFXHolder.transform.position);
     }
     public void EndVisualEffect(){
         DestroyChildren(GetChildren(VFXHolder.transform));
