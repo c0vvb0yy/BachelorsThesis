@@ -89,7 +89,8 @@ namespace StarterAssets
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
 
-        
+
+        private bool _freeToMove = true;        
         private bool _isLockedOn;
         
         private GameObject _enemy;
@@ -179,10 +180,11 @@ namespace StarterAssets
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
-
-            JumpAndGravity();
+            if(_freeToMove){
+                Move();
+                JumpAndGravity();
+            }
             GroundedCheck();
-            Move();
         }
 
         private void LateUpdate()
@@ -434,6 +436,16 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        public void RestrainMovement(){
+            _controller.enabled = false;
+            _animator.SetFloat(_animIDSpeed, 0f);
+            _freeToMove = false;
+        }
+        public void UnleashMovement(){
+            _controller.enabled = true;
+            _freeToMove = true;
         }
 
         public void Teleport(Vector3 position){

@@ -11,12 +11,14 @@ public class PlayerInteraction : MonoBehaviour
     DialogueRunner _dialogueRunner;
     TextLineProvider _lineProvider;
     NPCDialogueManager _dialogueManager;
+    ThirdPersonController _controls;
 
     bool _inDialogue;
     // Start is called before the first frame update
     void Start()
     {
         _input = GetComponent<StarterAssetsInputs>();
+        _controls = GetComponent<ThirdPersonController>();
     }
 
     // Update is called once per frame
@@ -45,11 +47,13 @@ public class PlayerInteraction : MonoBehaviour
         _dialogueManager.StartDialogue();
         _input.interact = false;
         _inDialogue = true;
+        _controls.RestrainMovement();
     }
 
     public void EndDialogue(){
         _dialogueManager.EndDialogue();
         _inDialogue = false;
         _input.interact = false;
+        _controls.UnleashMovement();
     }
 }
