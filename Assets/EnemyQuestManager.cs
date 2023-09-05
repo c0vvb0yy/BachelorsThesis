@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Yarn.Unity;
 using Unity.Services.Analytics;
-using UnityEngine.Analytics;
 
 public class EnemyQuestManager : MonoBehaviour
 {
@@ -30,7 +28,6 @@ public class EnemyQuestManager : MonoBehaviour
     }
 
     void SendEventData(){
-        Debug.Log("Quest vorher angenommen: "+questReady);
         var eventData = new Dictionary<string, object>{
             {"AcceptedQuestBeforehand", questReady}
         };

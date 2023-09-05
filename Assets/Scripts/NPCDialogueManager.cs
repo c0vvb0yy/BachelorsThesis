@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
+using Unity.Services.Analytics;
 
 public class NPCDialogueManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class NPCDialogueManager : MonoBehaviour
     
     string _starterNode {get;set;}
     int _index = 0;
+
 
     DialogueRunner _dialogueRunner;
     IdleBehaviour _idleBehaviour;
@@ -26,6 +28,10 @@ public class NPCDialogueManager : MonoBehaviour
     public void StartDialogue(){
         _idleBehaviour.StartConversation();
         _dialogueRunner.StartDialogue(_starterNode);
+        var eventData = new Dictionary<string, object>{
+            {"NPCName", this.gameObject.name},
+        };
+        AnalyticsService.Instance.CustomData("EngagedNPCDialogue", eventData);
     }
 
     public void EndDialogue(){

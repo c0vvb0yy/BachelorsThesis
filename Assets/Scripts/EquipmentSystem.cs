@@ -70,6 +70,7 @@ public class EquipmentSystem : MonoBehaviour
 
     void ClearWeapons(){
         if(currentWeaponInHand != null)
+        _playerCombat.ForceSheatheWeapon();
             Destroy(currentWeaponInHand);
         if(currentWeaponInSheath != null)
             Destroy(currentWeaponInSheath);

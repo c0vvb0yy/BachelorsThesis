@@ -118,6 +118,13 @@ public class PlayerCombat : MonoBehaviour
             _input.sheathWeapon = false;
     }
 
+    public void ForceSheatheWeapon(){
+        _animator.SetTrigger(_animIDSheathWeapon);
+        _inCombat = false;
+        _input.drawWeapon = false;
+        _input.sheathWeapon = false;
+    }
+
     private bool EnsureSyncOn(string tag){
         if(_animator.GetCurrentAnimatorStateInfo(1).IsTag(tag) 
         && _animator.GetCurrentAnimatorStateInfo(2).IsTag(tag)){
