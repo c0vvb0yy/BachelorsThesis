@@ -19,11 +19,14 @@ public class EquipmentSystem : MonoBehaviour
     GameObject currentWeaponInSheath;
 
     PlayerCombat _playerCombat;
+    public DialogueVariableManager variableStorage;
 
     // Start is called before the first frame update
     void Start()
     {
         _playerCombat = GetComponent<PlayerCombat>();
+        variableStorage = GameObject.FindWithTag("DVS").GetComponent<DialogueVariableManager>();
+        getOldSword();
     }
 
     void DrawWeapon(){
@@ -75,30 +78,32 @@ public class EquipmentSystem : MonoBehaviour
     public void getRustySword(){
         ClearWeapons();
         weapon = rustyWeapon;
-        _playerCombat.currentWeapon = weapon;
         weaponHolder = weaponHolders[0];
-        currentWeaponInSheath = Instantiate(weapon, weaponSheath.transform);
         _playerCombat.indexStep = 0;
+        EquipSword();
     }
 
     [YarnCommand("getOldSword")]
     public void getOldSword(){
         ClearWeapons();
         weapon = oldWeapon;
-        _playerCombat.currentWeapon = weapon;
         weaponHolder = weaponHolders[1];
-        currentWeaponInSheath = Instantiate(weapon, weaponSheath.transform);
         _playerCombat.indexStep = 2;
+        EquipSword();
     }
 
     [YarnCommand("getQuestSword")]
     public void getQuestSword(){
         ClearWeapons();
         weapon = questWeapon;
-        _playerCombat.currentWeapon = weapon;
         weaponHolder = weaponHolders[2];
-        currentWeaponInSheath = Instantiate(weapon, weaponSheath.transform);
         _playerCombat.indexStep = 4;
+        EquipSword();
     }
 
+    public void EquipSword(){
+        currentWeaponInSheath = Instantiate(weapon, weaponSheath.transform);
+        _playerCombat.currentWeapon = weapon;
+        variableStorage.UpdateSword(true);
+    }
 }

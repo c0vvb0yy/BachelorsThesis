@@ -3,13 +3,16 @@ title: SmithDialogue
 Smith: Oh, hello! Didn't see you there.
 Smith: I'm a bit busy at the moment.
 Smith: Y'see the farms down the road have been overrun with monsters
-<<if $hasSword == false>>
+<<if $farmQuestComplete == true>>
+<<jump EarlyQuestComplete>>
+<<elseif $hasSword == false>>
 <<getOldSword Player>>
 Smith: You look competent. Have this old sword and take care of the monsters, will ya?
 <<set $hasSword = true>>
 <<else>>
 Smith: You already have a sword. Looks pretty run down though.
 <<endif>>
+<<set $questReady = true>>
 Smith: When you suceed in defeating the monster I will give you a shiny new sword, okay?
 ===
 title: SmithQuestComplete
@@ -17,8 +20,15 @@ title: SmithQuestComplete
 <<if $farmQuestComplete == true>>
 Smith: I heard the news! Thank you!!!
 <<getQuestSword Player>>
-Smith: As promised, here's a new sword, fresh off the anvil!
+Smith: As promised, here's a new sword, fresh off the anvil! Thank you!
 <<else>>
 Smith: The monsters are still at large! Go defeat them!
 <<endif>>
 ===
+title: EarlyQuestComplete
+---
+Smith: What? The farms already save? WOW!
+<<getQuestSword Player>>
+Smith: Take this as thanks, it's the least I can do
+===
+

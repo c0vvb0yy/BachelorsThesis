@@ -9,6 +9,7 @@ TagManager:
   - WayPoint
   - POI
   - NPC
+  - DVS
   layers:
   - Default
   - TransparentFX

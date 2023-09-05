@@ -131,6 +131,23 @@ public class PlayerCombat : MonoBehaviour
         _currentVisualEffect.GetComponentInChildren<VisualEffect>().Play();
     }
     public void EndVisualEffect(){
-        Destroy(_currentVisualEffect);
+        DestroyChildren(GetChildren(VFXHolder.transform));
+    }
+
+    GameObject[] GetChildren(Transform parent){
+        GameObject[] allChildren = new GameObject[parent.childCount];
+        int i = 0;
+        foreach (Transform child in parent){
+            allChildren[i] = child.gameObject;
+            i++;
+        }
+        return allChildren;
+    }
+
+    void DestroyChildren(GameObject[] children){
+        foreach (var child in children)
+        {
+            Destroy(child);
+        }
     }
 }
