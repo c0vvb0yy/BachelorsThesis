@@ -64,4 +64,15 @@ public class NPCDialogueManager : MonoBehaviour
             _interactUI.ShowInteractable();
         }
     }
+
+    private void OnTriggerExit(Collider other) {
+        if(other.CompareTag("Player")){
+            SetUpCanvas();
+        }
+    }
+
+    [YarnCommand("acceptQuest")]
+    public void AcceptQuest(){
+        hasQuest = false;
+    }
 }

@@ -27,7 +27,6 @@ public class EquipmentSystem : MonoBehaviour
     {
         _playerCombat = GetComponent<PlayerCombat>();
         variableStorage = GameObject.FindWithTag("DVS").GetComponent<DialogueVariableManager>();
-        getOldSword();
     }
 
     void DrawWeapon(){
