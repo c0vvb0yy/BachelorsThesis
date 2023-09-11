@@ -54,7 +54,7 @@ public class IdleBehaviour : MonoBehaviour
     }
 
     Vector3 RandomDestination(){
-        int random = Random.Range(0, _waypoints.Count-1);
+        int random = Random.Range(0, _waypoints.Count);
         return _waypoints[random];
     }
 
