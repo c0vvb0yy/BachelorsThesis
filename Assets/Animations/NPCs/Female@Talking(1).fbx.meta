@@ -57,7 +57,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.97984076
+      - time: 0.12728873
         functionName: PlayRandomTalkAnimation
         data: 
         objectReferenceParameter: {instanceID: 0}

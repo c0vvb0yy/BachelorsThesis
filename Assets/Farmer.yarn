@@ -1,0 +1,13 @@
+﻿title: Farmer
+---
+<<if $farmQuestComplete == false>>
+Farmer: Aaaaah! The monsters are everywhere! FUCK!
+Farmer: If someone doesn't do something against they will ruin the whole harvest!
+Farmer: Help!!!
+<<else>>
+Farmer: You defeated the monsters! Thank you!!! 
+Farmer: Now I can get back to farming. 
+Farmer: I'll make sure to get you a fresh meal from these.
+Farmer: Uh. If you even eat?
+<<endif>>
+===

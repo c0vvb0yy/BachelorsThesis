@@ -10,7 +10,6 @@ public class CollectableSword : CollectableItem
     }
     protected override void OnEnable() {
         base.OnEnable();
-        Debug.Log("sword enabled");
     }
     protected override void OnTriggerEnter(Collider other) {
         base.OnTriggerEnter(other);

@@ -8,10 +8,9 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class IdleBehaviour : MonoBehaviour
 {
-    [SerializeField] float homeRange;
-    [SerializeField] float wanderCoolDown;
+    [SerializeField] float wanderCoolDownMax;
+    float _wanderCoolDown;
     [SerializeField] float idleSpeed;
-    [SerializeField] Vector3 home;
     
     bool _isFree = true;
     float _timePassed;
@@ -38,10 +37,10 @@ public class IdleBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_isFree){
+        if(_isFree && wanderCoolDownMax > 0){
             _animator.SetFloat("Speed", _agent.hasPath ? idleSpeed:0);
             _timePassed += Time.deltaTime;
-            if(_timePassed >= wanderCoolDown){
+            if(_timePassed >= _wanderCoolDown){
                 Wander();
             }
         }
@@ -50,7 +49,7 @@ public class IdleBehaviour : MonoBehaviour
     void Wander(){
         Vector3 newPos = RandomDestination();
         _agent.SetDestination(newPos);
-        wanderCoolDown = Random.Range(3, 6);
+        _wanderCoolDown = Random.Range(3, wanderCoolDownMax);
         _timePassed = 0f;
     }
 
