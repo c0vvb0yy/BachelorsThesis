@@ -8,8 +8,6 @@ using Yarn.Unity;
 public class PlayerInteraction : MonoBehaviour
 {
     StarterAssetsInputs _input;
-    DialogueRunner _dialogueRunner;
-    TextLineProvider _lineProvider;
     NPCDialogueManager _dialogueManager;
     ThirdPersonController _controls;
 

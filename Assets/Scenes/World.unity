@@ -4705,7 +4705,7 @@ PrefabInstance:
     - target: {fileID: 6103262681898754528, guid: fcabbf6dce97b4143895e121697800f1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50.968933
+      value: -28.73
       objectReference: {fileID: 0}
     - target: {fileID: 6103262681898754528, guid: fcabbf6dce97b4143895e121697800f1,
         type: 3}
@@ -4715,12 +4715,12 @@ PrefabInstance:
     - target: {fileID: 6103262681898754528, guid: fcabbf6dce97b4143895e121697800f1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52.179535
+      value: 248.05
       objectReference: {fileID: 0}
     - target: {fileID: 6103262681898754528, guid: fcabbf6dce97b4143895e121697800f1,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6241301
+      value: 0.6960852
       objectReference: {fileID: 0}
     - target: {fileID: 6103262681898754528, guid: fcabbf6dce97b4143895e121697800f1,
         type: 3}
@@ -4730,7 +4730,7 @@ PrefabInstance:
     - target: {fileID: 6103262681898754528, guid: fcabbf6dce97b4143895e121697800f1,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7813204
+      value: 0.71795917
       objectReference: {fileID: 0}
     - target: {fileID: 6103262681898754528, guid: fcabbf6dce97b4143895e121697800f1,
         type: 3}
@@ -4745,7 +4745,7 @@ PrefabInstance:
     - target: {fileID: 6103262681898754528, guid: fcabbf6dce97b4143895e121697800f1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 102.763
+      value: 91.772
       objectReference: {fileID: 0}
     - target: {fileID: 6103262681898754528, guid: fcabbf6dce97b4143895e121697800f1,
         type: 3}
@@ -9548,7 +9548,7 @@ GameObject:
   m_Layer: 0
   m_Name: wp1
   m_TagString: WayPoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9560,7 +9560,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 313403387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.05, y: 0, z: 0.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12087,6 +12087,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 562680061}
     m_Modifications:
+    - target: {fileID: 766477844, guid: 3c0b66c1fb55cd34994e034186a852c1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 766477844, guid: 3c0b66c1fb55cd34994e034186a852c1, type: 3}
       propertyPath: yarnProject
       value: 
@@ -20317,6 +20321,17 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3579681405068720530, guid: 7f29e5f7ffdea4a6793cefb278b61f0c,
+        type: 3}
+      propertyPath: yarnProject
+      value: 
+      objectReference: {fileID: 7545569452688597077, guid: 81d0fc2c86439404eb46e508e3518626,
+        type: 3}
+    - target: {fileID: 3579681405068720530, guid: 7f29e5f7ffdea4a6793cefb278b61f0c,
+        type: 3}
+      propertyPath: startAutomatically
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3831113771892455813, guid: 7f29e5f7ffdea4a6793cefb278b61f0c,
         type: 3}
       propertyPath: m_Enabled
@@ -20492,8 +20507,7 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3579681405068720530, guid: 7f29e5f7ffdea4a6793cefb278b61f0c, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f29e5f7ffdea4a6793cefb278b61f0c, type: 3}
 --- !u!1001 &666581354
 PrefabInstance:
@@ -24530,6 +24544,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Smith
+      objectReference: {fileID: 0}
+    - target: {fileID: 6103262681899122112, guid: fcabbf6dce97b4143895e121697800f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6103262681899122116, guid: fcabbf6dce97b4143895e121697800f1,
         type: 3}
@@ -30539,7 +30558,7 @@ GameObject:
   m_Layer: 0
   m_Name: wp4
   m_TagString: WayPoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -31476,7 +31495,7 @@ GameObject:
   - component: {fileID: 1103169113}
   m_Layer: 0
   m_Name: DialogueParent (1)
-  m_TagString: Untagged
+  m_TagString: Runner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31489,7 +31508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103169111}
   m_LocalRotation: {x: -0, y: -0.0013107954, z: -0, w: 0.99999917}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.01, y: 0, z: 0.003}
   m_LocalScale: {x: 0.88888776, y: 0.88888896, z: 0.72727376}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38717,6 +38736,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8093971054542044395, guid: 6f4b78f19b2b79c4d9bef312b60e6927,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8093971054542044395, guid: 6f4b78f19b2b79c4d9bef312b60e6927,
+        type: 3}
       propertyPath: startNode
       value: Farmer
       objectReference: {fileID: 0}
@@ -44802,7 +44826,7 @@ GameObject:
   m_Layer: 0
   m_Name: wp2
   m_TagString: WayPoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -46911,7 +46935,7 @@ GameObject:
   m_Layer: 0
   m_Name: wp3
   m_TagString: WayPoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -50434,7 +50458,7 @@ GameObject:
   m_Layer: 0
   m_Name: WayPoints (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -53626,6 +53650,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 50324307}
     m_Modifications:
+    - target: {fileID: 766477844, guid: 3c0b66c1fb55cd34994e034186a852c1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 766477844, guid: 3c0b66c1fb55cd34994e034186a852c1, type: 3}
       propertyPath: _variableStorage
       value: 

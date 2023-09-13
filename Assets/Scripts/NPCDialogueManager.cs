@@ -29,7 +29,7 @@ public class NPCDialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _dialogueRunner = GetComponentInChildren<DialogueRunner>();
+        _dialogueRunner = GameObject.FindGameObjectWithTag("Runner").GetComponent<DialogueRunner>();//GetComponentInChildren<DialogueRunner>();
         _idleBehaviour = GetComponent<IdleBehaviour>();
         _interactUI = GetComponentInChildren<NPCInteractUI>();
         _animator = GetComponent<Animator>();
