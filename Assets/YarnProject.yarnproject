@@ -1,7 +1,7 @@
 {
   "projectFileVersion": 2,
   "sourceFiles": [
-    "**/SmithDialogue.yarn"
+    "**/*.yarn"
   ],
   "excludeFiles": [],
   "localisation": {},

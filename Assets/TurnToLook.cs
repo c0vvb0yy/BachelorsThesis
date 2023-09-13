@@ -19,7 +19,8 @@ public class TurnToLook : MonoBehaviour
             Look();
             _hasLooked = true;
         }
-        if(_agent.hasPath) _hasLooked = false;
+        else
+        _hasLooked = false;
     }
     public void Look(){
         _agent.updateRotation = false;
