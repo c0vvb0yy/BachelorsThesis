@@ -1,0 +1,38 @@
+﻿title: Introduction
+tags:
+---
+The Wizard: Yes! It lives!!!
+The Wizard: YOU live!
+The Wizard: I've been working so long on you, my robot.
+The Wizard: I... I forgot what I made you for.
+The Wizard: Why don't you look around and explore a bit. The world is big!
+The Wizard: I'll get back to you when I remember
+===
+
+title: WizardIdle
+tags:
+---
+<<if $farmQuestComplete == true>>
+	<<if $mushroomQuestComplete == true>>
+		The Wizard: WOW! You've come around so much! I'm proud of you.
+		The Wizard: I hope you had a lot of fun helping the people around you.
+		The Wizard: And playing this game <3
+	<<else>>	
+		The Wizard: You helped out at the farm? that's nice! Did you bring in the harvest?
+		The Wizard: ...
+		The Wizard: YOU WHAT! THAT'S DANGEROUS!
+		The Wizard: I'm glad you didn't come to harm. Also yea that <i>is</i> a cool sword.
+		The Wizard: If you want i can teach you some magic blasts some time. :)
+	<<endif>>
+<<else>>
+	<<if $mushroomQuestComplete == true>>
+		The Wizard: You...collected some mushrooms?
+		The Wizard: OF COURSE! That's exactly what I wanted to ask of you!
+		The Wizard: ...
+		The Wizard: You gave them to ol' gertrude in the village? There's no more mushrooms in all of the woods?
+		The Wizard: ....ok..... that's fine. We'll just wait for them to grow back.
+	<<else>>
+		The Wizard: You haven't look around at all yet. Now get along! Shoo!
+	<<endif>>
+<<endif>>
+===

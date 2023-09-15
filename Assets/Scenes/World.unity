@@ -7769,6 +7769,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 74428005}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &262457101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262457093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ead899c5589133b489c7b648729e2b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StarterNodes: []
+  hasQuest: 0
 --- !u!1 &266475609 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6562031803846321546, guid: 619f88d1e87438a43a166f80364f0fd4,
