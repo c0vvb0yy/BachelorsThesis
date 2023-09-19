@@ -19,14 +19,23 @@ public class EnemyQuestManager : MonoBehaviour
     void Update()
     {
         if(!questFulfilled && this.transform.childCount <= 0){
-            variableStorage.variableStorage.TryGetValue("$questReady", out questReady);
-            questFulfilled = true;
-            variableStorage.UpdateFarmQuest(questFulfilled);
-            Debug.Log("Quest Success!");
-            SendEventData();
+            FinishQuest();
         }
     }
 
+    public void FinishQuest(){
+        variableStorage.variableStorage.TryGetValue("$questReady", out questReady);
+        questFulfilled = true;
+        variableStorage.UpdateFarmQuest(questFulfilled);
+        Debug.Log("Quest Success!");
+        SendEventData();
+    }
+    public void DebugFinishQuest(bool fullfilled){
+        variableStorage.variableStorage.TryGetValue("$questReady", out questReady);
+        questFulfilled = fullfilled;
+        variableStorage.UpdateFarmQuest(questFulfilled);
+        Debug.Log("Quest Success!");
+    }
     void SendEventData(){
         var eventData = new Dictionary<string, object>{
             {"AcceptedQuestBeforehand", questReady}

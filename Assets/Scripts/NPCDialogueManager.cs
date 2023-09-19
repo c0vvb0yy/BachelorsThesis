@@ -5,6 +5,7 @@ using Yarn.Unity;
 using Unity.Services.Analytics;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(IdleBehaviour))]
 public class NPCDialogueManager : MonoBehaviour
 {
     
@@ -21,6 +22,8 @@ public class NPCDialogueManager : MonoBehaviour
     int _animatorState;
 
     public bool hasQuest;
+    [HideInInspector]
+    public bool isTalking;
 
     DialogueRunner _dialogueRunner;
     IdleBehaviour _idleBehaviour;
@@ -57,12 +60,6 @@ public class NPCDialogueManager : MonoBehaviour
             {"NPCName", this.gameObject.name},
         };
         AnalyticsService.Instance.CustomData("EngagedNPCDialogue", eventData);
-    }
-
-    public void StartRandomTalkAnimation(){
-        int randomIndex = Random.Range(0, _states.Count);
-        _animatorState = randomIndex;
-        _animator.Play(_states[randomIndex]);
     }
 
     //function used by the animator to determine the next talk animation and play it in a smooth way

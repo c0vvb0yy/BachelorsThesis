@@ -27,6 +27,9 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+		[Header("Debug Helps")]
+		public bool FarmQuest = false;
+
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 		public void OnMove(InputValue value)
 		{
@@ -67,6 +70,10 @@ namespace StarterAssets
 
 		public void OnInteract(InputValue value){
 			InteractInput(value.isPressed);
+		}
+
+		public void OnFinishFarmQuest(InputValue value){
+			FinishFarmQuest(value.isPressed);
 		}
 
 #endif
@@ -118,6 +125,13 @@ namespace StarterAssets
 		private void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+		}
+
+		private void FinishFarmQuest(bool finish){
+			var questManager = GameObject.FindGameObjectWithTag("QuestManager").GetComponent<EnemyQuestManager>();
+			questManager.DebugFinishQuest(!questManager.questFulfilled);
+			//questManager.questFulfilled = !questManager.questFulfilled;
+			Debug.Log("Quest finished is: "+ questManager.questFulfilled);
 		}
 	}
 	

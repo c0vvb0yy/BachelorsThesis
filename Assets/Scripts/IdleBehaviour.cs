@@ -8,7 +8,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class IdleBehaviour : MonoBehaviour
 {
-    [SerializeField] float wanderCoolDownMax;
+    public float wanderCoolDownMax;
     float _wanderCoolDown;
     [SerializeField] float idleSpeed;
     
@@ -49,7 +49,7 @@ public class IdleBehaviour : MonoBehaviour
     void Wander(){
         Vector3 newPos = RandomDestination();
         _agent.SetDestination(newPos);
-        _wanderCoolDown = Random.Range(3, wanderCoolDownMax);
+        _wanderCoolDown = Random.Range(wanderCoolDownMax/2, wanderCoolDownMax);
         _timePassed = 0f;
     }
 
