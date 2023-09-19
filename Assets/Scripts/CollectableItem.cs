@@ -5,12 +5,6 @@ using Unity.Services.Analytics;
 
 public class CollectableItem : MonoBehaviour
 {
-    public float spinSpeed;
-    
-    protected virtual void OnEnable(){
-        LeanTween.rotateAround(this.gameObject, Vector3.up, 360, spinSpeed).setLoopClamp();
-    }
-
     protected virtual void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Player")){
             SendCollectionData();
@@ -19,12 +13,10 @@ public class CollectableItem : MonoBehaviour
     }
 
     void SendCollectionData(){
-        Debug.Log(this.gameObject.name);
-        /*
         var eventData = new Dictionary<string, object>{
             {"ItemName", this.gameObject.name},
         };
-        AnalyticsService.Instance.CustomData("PickedUpItem", eventData);*/
+        AnalyticsService.Instance.CustomData("PickedUpItem", eventData);
     }
     
 }

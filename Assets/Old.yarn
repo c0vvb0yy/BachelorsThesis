@@ -1,0 +1,35 @@
+﻿title: OldIntroduction
+tags:
+---
+Village Elder: Hello! I haven't seen you around here, welcome to our little village.
+Village Elder: I hope you have a lot of fun looking around
+Village Elder: Please excuse the tumult around here. There's monsters on the farm and the old dragon that lives on the mountain has awoken again.
+Village Elder: That hasn't happened in 300 years!
+Village Elder: The dragon awakening I mean, the monsters are a more usual occurence.
+Village Elder: But you see how both of these are concerning for us.
+Village Elder: And now neither I nor anyone else has the time to collect the mushrooms I need...
+<<acceptQuest Old>>
+Village Elder:Say, you wouldn't happen to have some free time on your hands to snoop around the forest just behind this town? 
+Village Elder: 5 Mushrooms is all I need, they have red caps, you cant miss them!
+===
+title: OldIdle
+---
+<<if $MushroomQuestComplete == true>>
+Village Elder: You've helped me wonderfully by bringing me those mushrooms
+Village Elder: Now if only someone would take care of that dragon...
+<<else>>
+<<jump OldQuest>>
+<<endif>>
+===
+title: OldQuest
+---
+<<if $MushroomsCollected <= 0>>
+Village Elder: Would you help me collect some mushrooms from the forest just behind town? 5 is all I need.
+<<elseif $MushroomsCollected < 5>>
+<<set $MushroomsNeeded = 5 - $MushroomsCollected>>
+Village Elder: Ohhh you already collected some mushrooms, thanks! I only need {$MushroomsNeeded} more.
+<<else>>
+Village Elder: You've brought me 5 mushrooms! Thank you! You warm this old crone's heart <3
+<<finishQuest Forest>>
+<<endif>>
+===

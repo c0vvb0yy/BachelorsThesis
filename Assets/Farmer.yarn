@@ -1,4 +1,6 @@
-﻿title: Farmer
+title: Farmer
+tags: 
+position: 138,253
 ---
 <<if $farmQuestComplete == false>>
 Farmer: Aaaaah! The monsters are everywhere! FUCK!

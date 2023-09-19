@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class DialogueVariableManager : MonoBehaviour
     {
         variableStorage = GetComponent<InMemoryVariableStorage>();
         variableStorage.SetValue("$hasSword", false);
+        variableStorage.SetValue("$MushroomsCollected", 0);
     }
 
     public void UpdateSword(bool state){
@@ -19,5 +21,14 @@ public class DialogueVariableManager : MonoBehaviour
     }
     public void UpdateFarmQuest(bool state){
         variableStorage.SetValue("$farmQuestComplete", state);
+    }
+    public void UpdateMushroomQuest(bool state){
+        variableStorage.SetValue("$MushroomQuestComplete", state);
+    }
+    public void AddMushroom(){
+        variableStorage.TryGetValue("$MushroomsCollected", out Single mushroomsCollected);
+        mushroomsCollected++;
+        Debug.Log(mushroomsCollected);
+        variableStorage.SetValue("$MushroomsCollected", mushroomsCollected);
     }
 }

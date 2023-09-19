@@ -7,11 +7,7 @@ public class TowerCrystal : MonoBehaviour
     [SerializeField] float _spinSpeed = 1f;
     [SerializeField] float _floatSpeed = 2f;
 
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
-    void Awake()
-    {
+    void Awake(){
         LeanTween.reset();
     }
     void OnEnable(){

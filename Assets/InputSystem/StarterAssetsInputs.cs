@@ -128,10 +128,21 @@ namespace StarterAssets
 		}
 
 		private void FinishFarmQuest(bool finish){
-			var questManager = GameObject.FindGameObjectWithTag("QuestManager").GetComponent<EnemyQuestManager>();
+			var questManager = GetQuestManager<EnemyQuestManager>();
 			questManager.DebugFinishQuest(!questManager.questFulfilled);
 			//questManager.questFulfilled = !questManager.questFulfilled;
 			Debug.Log("Quest finished is: "+ questManager.questFulfilled);
+		}
+
+		private T GetQuestManager<T>(){
+			var objects = GameObject.FindGameObjectsWithTag("QuestManager");
+			foreach (var manager in objects){
+				if(manager.TryGetComponent<T>(out T questmanager)){
+					return questmanager;
+				}
+        	}
+			Debug.LogWarning("Could not find the QuestManager for the starterInputs");
+			return default(T);
 		}
 	}
 	
