@@ -25,10 +25,7 @@ public class DialogueVariableManager : MonoBehaviour
     public void UpdateMushroomQuest(bool state){
         variableStorage.SetValue("$MushroomQuestComplete", state);
     }
-    public void AddMushroom(){
-        variableStorage.TryGetValue("$MushroomsCollected", out Single mushroomsCollected);
-        mushroomsCollected++;
-        Debug.Log(mushroomsCollected);
-        variableStorage.SetValue("$MushroomsCollected", mushroomsCollected);
+    public void UpdateCollectedMushrooms(int amount){
+        variableStorage.SetValue("$MushroomsCollected", amount);
     }
 }

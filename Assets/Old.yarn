@@ -11,6 +11,7 @@ Village Elder: And now neither I nor anyone else has the time to collect the mus
 <<acceptQuest Old>>
 Village Elder:Say, you wouldn't happen to have some free time on your hands to snoop around the forest just behind this town? 
 Village Elder: 5 Mushrooms is all I need, they have red caps, you cant miss them!
+<<initUI Forest>>
 ===
 title: OldIdle
 ---
