@@ -12,6 +12,7 @@ TagManager:
   - DVS
   - Runner
   - QuestManager
+  - Obelisk
   layers:
   - Default
   - TransparentFX

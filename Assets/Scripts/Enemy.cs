@@ -129,6 +129,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //leaves the enemy with one fraction of health left
+    public void ReduceHealth(float fraction){
+        _currentHealth = _currentHealth/fraction;
+        _healthbar.UpdateHealthbar(maxHealth, _currentHealth);
+    }
 
     public void StartDealDamage(){
         //GetComponentInChildren<EnemyDamageDealer>().StartDealDamage();

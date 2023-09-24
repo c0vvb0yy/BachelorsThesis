@@ -5,6 +5,7 @@ using UnityEngine;
 public class SimpleLockOn : MonoBehaviour
 {
     [SerializeField] Transform target;
+    [SerializeField] float rotationOffset;
     void OnEnable(){
         if(target == null) target = Camera.main.transform;
         StartCoroutine(LookAtTarget());
@@ -15,6 +16,7 @@ public class SimpleLockOn : MonoBehaviour
             Vector3 _dir = target.position - transform.position;
             //_dir.y = 0;
             transform.rotation = Quaternion.LookRotation(_dir);
+            
             yield return null;
         }
     }

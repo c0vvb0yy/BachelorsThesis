@@ -11,6 +11,8 @@ public class DamageDealer : MonoBehaviour
         if(other.transform.TryGetComponent(out Enemy enemy)){
             enemy.TakeDamage(weaponDamage);
             enemy.SpawnHitEffect(other.ClosestPoint(transform.position));
+        }else if(other.transform.TryGetComponent(out Obelisk obelisk)){
+            obelisk.Activate();
         }
     }
     
