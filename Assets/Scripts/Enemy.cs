@@ -87,12 +87,14 @@ public class Enemy : MonoBehaviour
         _animator.SetFloat("Speed", _agent.hasPath ? 1:0);
         if(_timePassed >= attackCoolDown){
             if(Vector3.Distance(_player.transform.position, transform.position) <= attackRange){
+                _agent.SetDestination(transform.position);
+                _animator.SetFloat("Speed", _agent.hasPath ? 1:0);
                 _animator.SetTrigger("Attack");
                 _timePassed = 0f;
             }
         }
         if(_newDestinationCoolDown <= 0 ){
-                _newDestinationCoolDown = 0.5f;
+                _newDestinationCoolDown = 2.5f;
                 _agent.SetDestination(_player.transform.position);
         }
         _newDestinationCoolDown -= Time.deltaTime;
@@ -129,11 +131,11 @@ public class Enemy : MonoBehaviour
 
 
     public void StartDealDamage(){
-        GetComponentInChildren<EnemyDamageDealer>().StartDealDamage();
+        //GetComponentInChildren<EnemyDamageDealer>().StartDealDamage();
     }
 
     public void EndDealDamage(){
-        GetComponentInChildren<EnemyDamageDealer>().EndDealDamage();
+        //GetComponentInChildren<EnemyDamageDealer>().EndDealDamage();
     }
 
     public void Die(){

@@ -453,5 +453,12 @@ namespace StarterAssets
             this.gameObject.transform.position = position;
             _controller.enabled = true;
         }
+
+        public void KnockBack(Vector3 origin, float force){
+            var direction = origin - this.transform.position;
+            Debug.Log(direction.normalized * force);
+            _controller.SimpleMove(direction.normalized*force);
+            Debug.Log("Knockback");
+        }
     }
 }
