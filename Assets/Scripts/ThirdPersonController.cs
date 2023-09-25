@@ -450,14 +450,18 @@ namespace StarterAssets
 
         public void Teleport(Vector3 position){
             _controller.enabled = false;
-            this.gameObject.transform.position = position;
+            this.transform.position = position;
             _controller.enabled = true;
         }
 
         public void KnockBack(Vector3 origin, float force){
-            var direction = origin - this.transform.position;
+            var direction = this.transform.position - origin;
             Debug.Log(direction.normalized * force);
-            _controller.SimpleMove(direction.normalized*force);
+            Debug.DrawRay(this.transform.position, direction.normalized * force);
+            var target = this.transform.position + direction.normalized*force;
+            target.y = this.transform.position.y + 5;
+            //_controller.SimpleMove(target);
+            Teleport(target);
             Debug.Log("Knockback");
         }
     }
