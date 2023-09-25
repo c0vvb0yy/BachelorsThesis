@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Services.Analytics;
@@ -37,6 +38,8 @@ public class Enemy : MonoBehaviour
     bool _isDead;
     bool _inCombat;
 
+    public static event Action<GameObject> OnDeath;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +49,7 @@ public class Enemy : MonoBehaviour
         _home = transform.position;
         _currentHealth = maxHealth;
         _healthbar = GetComponentInChildren<Healthbar>();
-        _wanderCoolDown = Random.Range(1, wanderCoolDownMax);
+        _wanderCoolDown = UnityEngine.Random.Range(1, wanderCoolDownMax);
     }
 
     private void Update() {
@@ -62,7 +65,7 @@ public class Enemy : MonoBehaviour
             IdleBehaviour();
         }
 
-        if(Vector3.Distance(_player.transform.position, transform.position) <= aggroRange && !_inCombat){
+        if(Vector3.Distance(_player.transform.position, transform.position) <= aggroRange && !_inCombat && CheckVerticality()){
             StartCombatBehaviour();
         } 
         if(Vector3.Distance(_player.transform.position, transform.position) > aggroRange && _inCombat) {
@@ -107,12 +110,12 @@ public class Enemy : MonoBehaviour
             Vector3 newPos = RandomWanderPosition(_home, homeRange, -1);
             _agent.SetDestination(newPos);
             _timePassed = 0f;
-            _wanderCoolDown = Random.Range(1, wanderCoolDownMax);
+            _wanderCoolDown = UnityEngine.Random.Range(1, wanderCoolDownMax);
         }
     }
 
     Vector3 RandomWanderPosition(Vector3 origin, float maxDist, int layerMask){
-        Vector3 randomDirection = Random.insideUnitSphere * maxDist;
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * maxDist;
         randomDirection += origin;
         NavMeshHit hit;
         NavMesh.SamplePosition(randomDirection, out hit, maxDist, layerMask);
@@ -152,8 +155,15 @@ public class Enemy : MonoBehaviour
             {"EnemyType", this.gameObject.name}
         };
         AnalyticsService.Instance.CustomData("EnemyKill", eventData);
-        
+        OnDeath.Invoke(this.gameObject);
         Destroy(this.gameObject, 5f);
+    }
+
+    bool CheckVerticality(){
+        if(_player.transform.position.y <= transform.position.y + 5 
+        && _player.transform.position.y >= transform.position.y - 5)
+            return true;
+        return false;
     }
 
     private void OnDrawGizmosSelected() {

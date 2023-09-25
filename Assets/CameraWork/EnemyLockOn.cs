@@ -196,7 +196,8 @@ public class EnemyLockOn : MonoBehaviour
     }
 
     void PrepareCanvas(){
-        _pos = _closestEnemy.position + new Vector3(0, _currentYOffset, 0);
+        if(_closestEnemy == null) _pos = _player.transform.position + new Vector3(0, _currentYOffset, 0);
+        else _pos = _closestEnemy.position + new Vector3(0, _currentYOffset, 0);
         lockOnCanvas.position = _pos;
         lockOnCanvas.localScale = Vector3.one * ((_camera.position - _pos).magnitude * crossHairScale);
     }
