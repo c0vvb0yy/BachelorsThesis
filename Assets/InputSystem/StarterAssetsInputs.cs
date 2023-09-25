@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -26,9 +28,6 @@ namespace StarterAssets
 		[Header("Mouse Cursor Settings")]
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
-
-		[Header("Debug Helps")]
-		public bool FarmQuest = false;
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 		public void OnMove(InputValue value)
@@ -74,6 +73,15 @@ namespace StarterAssets
 
 		public void OnFinishFarmQuest(InputValue value){
 			FinishFarmQuest(value.isPressed);
+		}public void OnFinishMushroomQuest(InputValue value){
+			FinishMushroomQuest(value.isPressed);
+		}
+
+        public void OnActivateObelisks(InputValue value){
+			ActivateObelisks();
+		}
+		public void OnGetSword(InputValue value){
+			GetSword();
 		}
 
 #endif
@@ -127,13 +135,30 @@ namespace StarterAssets
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
 
+		private void ActivateObelisks(){
+			var parent = GameObject.Find("Obelisks");
+			Debug.Log(parent.GetComponentsInChildren<Transform>().Length);
+			foreach (var chlid in parent.GetComponentsInChildren<Transform>())
+			{
+				if(chlid.gameObject.TryGetComponent<Obelisk>(out Obelisk obelisk)){
+					obelisk.Activate();
+				}
+			}
+		}
+		private void GetSword(){
+			this.gameObject.GetComponent<EquipmentSystem>().getRustySword();
+		}
+
 		private void FinishFarmQuest(bool finish){
 			var questManager = GetQuestManager<EnemyQuestManager>();
 			questManager.DebugFinishQuest(!questManager.questFulfilled);
 			//questManager.questFulfilled = !questManager.questFulfilled;
 			Debug.Log("Quest finished is: "+ questManager.questFulfilled);
 		}
-
+		private void FinishMushroomQuest(bool isPressed){
+            var questManager = GetQuestManager<MushroomQuestManager>();
+			questManager.DebugFinishQuest(!questManager._fulfilled);
+        }
 		private T GetQuestManager<T>(){
 			var objects = GameObject.FindGameObjectsWithTag("QuestManager");
 			foreach (var manager in objects){

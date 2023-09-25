@@ -396,6 +396,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ActivateObelisks",
+                    "type": "Button",
+                    "id": "e47768d7-433f-4178-92c9-a9674f8458a2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GetSword",
+                    "type": "Button",
+                    "id": "495a6a0e-b6d5-47b7-9c28-b0b664009d74",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FinishMushroomQuest",
+                    "type": "Button",
+                    "id": "bdc69499-5f52-444c-845b-3b983b4a09d1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -638,6 +665,39 @@
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "FinishFarmQuest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "188b3a06-425d-4b00-a915-fc2505127579",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateObelisks",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1655f53e-63c8-4b50-aabd-d4ed0ef979c9",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GetSword",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "46adbe3e-ea44-4423-98c1-38627a952d3e",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FinishMushroomQuest",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

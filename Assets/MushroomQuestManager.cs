@@ -8,6 +8,10 @@ public class MushroomQuestManager : MonoBehaviour
     DialogueVariableManager variableStorage;
     MushroomQuestUI ui;
     int _collectedMushrooms = 0;
+
+    //just for debug purposes
+    public bool _fulfilled; 
+
     // Start is called before the first frame update
     void Start(){
         variableStorage = GameObject.FindWithTag("DVS").GetComponent<DialogueVariableManager>();
@@ -23,6 +27,20 @@ public class MushroomQuestManager : MonoBehaviour
     public void FinishQuest(){
         variableStorage.UpdateMushroomQuest(true);
         ui.SendOff();
+    }
+
+    public void DebugFinishQuest(bool finish){
+        if(finish){
+            _collectedMushrooms = 999;
+            variableStorage.UpdateCollectedMushrooms(_collectedMushrooms);
+            variableStorage.UpdateMushroomQuest(true);
+            _fulfilled = !_fulfilled;
+        }else{
+            _collectedMushrooms = 0;
+            variableStorage.UpdateCollectedMushrooms(_collectedMushrooms);
+            variableStorage.UpdateMushroomQuest(false);
+            _fulfilled = !_fulfilled;
+        }
     }
 
     public void CollectMushroom(){

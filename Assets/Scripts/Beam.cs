@@ -30,8 +30,7 @@ public class Beam : MonoBehaviour
     void AlignBeam(){
         transform.LookAt(_dragon);
         var offset = _dragon.position - transform.position;
-        var distance = offset.magnitude / 5;
-        Debug.Log(distance+" "+offset);
+        var distance = offset.magnitude / 6;
         _vfx.SetFloat("length", distance);
     }
 }
