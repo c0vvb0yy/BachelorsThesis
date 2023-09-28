@@ -1,5 +1,6 @@
 title: SmithDialogue
 ---
+<<acceptQuest Smith>>
 Smith: Oh, hello! Didn't see you there.
 Smith: I'm a bit busy at the moment.
 Smith: Y'see the farms down the road have been overrun with monsters
@@ -13,7 +14,6 @@ Smith: You look competent. Have this old sword and take care of the monsters, wi
 Smith: You already have a sword. Looks pretty run down though.
 <<endif>>
 <<set $questReady = true>>
-<<acceptQuest Smith>>
 Smith: When you suceed in defeating the monster I will give you a shiny new sword, okay?
 ===
 title: SmithQuestComplete

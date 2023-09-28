@@ -19,10 +19,10 @@ public class Pause : MonoBehaviour
     void Update(){
         if(_input.pause){
             PauseCanvas.SetActive(!PauseCanvas.activeInHierarchy);
-            if(PauseCanvas.activeInHierarchy){
+            /*if(PauseCanvas.activeInHierarchy){
                 DataManager dataManager = GameObject.Find("DataManager").GetComponent<DataManager>();
 			    dataManager.Save();
-            }
+            }*/
             Time.timeScale = PauseCanvas.activeInHierarchy ? 0 : 1;
             UpdateText();
             _input.pause = false;

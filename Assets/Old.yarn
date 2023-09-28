@@ -1,6 +1,10 @@
 ﻿title: OldIntroduction
 tags:
 ---
+<<acceptQuest Old>>
+<<if $MushroomQuestComplete == true>>
+<<jump OldIdle>>
+<<endif>>
 Village Elder: Hello! I haven't seen you around here, welcome to our little village.
 Village Elder: I hope you have a lot of fun looking around
 Village Elder: Please excuse the tumult around here. There's monsters on the farm and the old dragon that lives on the mountain has awoken again.
@@ -8,7 +12,6 @@ Village Elder: That hasn't happened in 300 years!
 Village Elder: The dragon awakening I mean, the monsters are a more usual occurence.
 Village Elder: But you see how both of these are concerning for us.
 Village Elder: And now neither I nor anyone else has the time to collect the mushrooms I need...
-<<acceptQuest Old>>
 Village Elder:Say, you wouldn't happen to have some free time on your hands to snoop around the forest just behind this town? 
 Village Elder: 5 Mushrooms is all I need, they have red caps, you cant miss them!
 <<initUI Forest>>

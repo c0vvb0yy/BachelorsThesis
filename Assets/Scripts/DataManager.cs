@@ -59,6 +59,8 @@ public class DataManager : MonoBehaviour{
         SaveData saveData = SaveSystem.Load();
         if(saveData != null){
             OnLoad.Invoke(saveData);
+        }else{
+            Debug.LogWarning("no save data");
         }
         
     }

@@ -106,5 +106,6 @@ public class NPCDialogueManager : MonoBehaviour
     [YarnCommand("acceptQuest")]
     public void AcceptQuest(){
         hasQuest = false;
+        SetUpCanvas();
     }
 }

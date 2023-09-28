@@ -1,1 +1,1 @@
-{"playerPosition":{"x":-656.0985717773438,"y":4.9590840339660648,"z":354.7914733886719},"collectedPOIs":[],"activeObelisks":[],"farmQuest_done":false,"mushroomQuest_done":true,"dragon_pacified":false,"dragon_killed":false,"collectedMushrooms":5,"currentWeapon":""}
+{"playerPosition":{"x":-742.812744140625,"y":4.9590840339660648,"z":354.84478759765627},"collectedPOIs":[],"activeObelisks":["Obelisk_island"],"farmQuest_done":true,"mushroomQuest_done":true,"dragon_pacified":false,"dragon_killed":false,"collectedMushrooms":5,"currentWeapon":"QuestRewardSword"}

@@ -67,6 +67,7 @@ public class MushroomQuestManager : MonoBehaviour
         UpdateText();
         if(saveData.mushroomQuest_done){
             FinishQuest();
+            GameObject.Find("Old").GetComponent<NPCDialogueManager>().AcceptQuest();
         }
     }
 }

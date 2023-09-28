@@ -51,6 +51,12 @@ public class EnemyQuestManager : MonoBehaviour
     }
     
     void Deserialize(SaveData saveData){
-        DebugFinishQuest(saveData.farmQuest_done);
+        if(saveData.farmQuest_done){
+            GameObject.Find("Smith DIALOGUE BEARER").GetComponent<NPCDialogueManager>().AcceptQuest();
+            DebugFinishQuest(true);
+            foreach (var enemy in GetComponentsInChildren<Transform>()){
+                Destroy(enemy.gameObject);
+            }
+        }
     }
 }
