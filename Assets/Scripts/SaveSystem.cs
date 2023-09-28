@@ -5,15 +5,16 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-    private static readonly string SAVE_FOLDER = Application.dataPath + "/Saves/";
+    private static readonly string SAVE_FOLDER = Application.persistentDataPath + "/Saves/";
 
-    public static void Init(){
+    public static bool Init(){
         if(!Directory.Exists(SAVE_FOLDER)){
             Directory.CreateDirectory(SAVE_FOLDER);
         }
         if(File.Exists(SAVE_FOLDER + "/save.txt")){
-            Load();
+            return true;
         }
+        return false;
     }
 
     public static void Save(string data){

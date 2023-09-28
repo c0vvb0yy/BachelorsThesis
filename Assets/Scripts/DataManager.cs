@@ -26,7 +26,7 @@ public class DataManager : MonoBehaviour{
         CollectableSword.OnCollect -= Save;
     }
     
-    void Awake(){
+    void Start(){
         SaveSystem.Init();
     }
 

@@ -63,8 +63,10 @@ public class MushroomQuestManager : MonoBehaviour
     }
 
     public void Deserialize(SaveData saveData){
-        collectedMushrooms = saveData.collectedMushrooms;
-        UpdateText();
+        if(saveData.collectedMushrooms != 0){
+            collectedMushrooms = saveData.collectedMushrooms;
+            UpdateText();
+        }
         if(saveData.mushroomQuest_done){
             FinishQuest();
             GameObject.Find("Old").GetComponent<NPCDialogueManager>().AcceptQuest();

@@ -150,9 +150,6 @@ namespace StarterAssets
 
 		private void Pause(bool newPauseState){
 			pause = newPauseState;
-			if(Cursor.lockState == CursorLockMode.Locked)
-				Cursor.lockState = CursorLockMode.Confined;
-			else Cursor.lockState = CursorLockMode.Locked;
 		}
 
 		private void Save(){
