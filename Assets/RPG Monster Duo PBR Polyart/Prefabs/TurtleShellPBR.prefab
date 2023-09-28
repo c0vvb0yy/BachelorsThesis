@@ -887,6 +887,8 @@ MonoBehaviour:
   combatSpeed: 10
   onHitEffect: {fileID: 2757420994342177254, guid: d29eba6eca53aba46ab8dd590f3f11d7,
     type: 3}
+  damageNumber: {fileID: 5496797598997669450, guid: 147f2ecdb27f4e04ca9131c47da8b27a,
+    type: 3}
 --- !u!195 &1183451722
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -925,6 +927,7 @@ MonoBehaviour:
   hasDealtDamage: 0
   attackRange: 0
   attackDamage: 1
+  attackheight: 0
 --- !u!1 &1822049695589022
 GameObject:
   m_ObjectHideFlags: 0

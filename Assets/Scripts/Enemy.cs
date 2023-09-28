@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.Mathematics;
 using Unity.Services.Analytics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -28,6 +30,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float aggroRange = 4f;
     [SerializeField] float combatSpeed;
     [SerializeField] GameObject onHitEffect;
+    [SerializeField] GameObject damageNumber;
 
     GameObject _player;
     Animator _animator;
@@ -122,11 +125,13 @@ public class Enemy : MonoBehaviour
         return hit.position;
     }
 
-    public void TakeDamage(float damageAmount){
+    public void TakeDamage(float damageAmount, Vector3 point){
         if(_isDead) return;
         _currentHealth -= damageAmount;
-        _animator.SetTrigger("TakeDamage");
         _healthbar.UpdateHealthbar(maxHealth, _currentHealth);
+        _animator.SetTrigger("TakeDamage");
+        SpawnHitEffect(point);
+        ShowDamageNumber(damageAmount);
         if(_currentHealth <= 0){
             Die();
         }
@@ -179,5 +184,16 @@ public class Enemy : MonoBehaviour
         GameObject hitVFX = Instantiate(onHitEffect, this.transform);
         hitVFX.transform.position = point;
         Destroy(hitVFX, 5f);
+    }
+
+    void ShowDamageNumber(float damageAmount){
+        var number = Instantiate(damageNumber, transform.position, Quaternion.identity, transform);
+        var pos = number.transform.position;
+        pos = new Vector3(pos.x, pos.y, pos.z+1f);
+        number.transform.position = pos;
+        number.GetComponent<TextMeshPro>().text = damageAmount.ToString();
+        number.LeanMoveLocalX(UnityEngine.Random.Range(-1.5f, 1.5f), 1f);
+        number.LeanScale(Vector3.one, 1f).setEaseOutBounce();
+        number.LeanScale(Vector3.zero, 1f).setEaseInBounce().setDelay(3f);
     }
 }

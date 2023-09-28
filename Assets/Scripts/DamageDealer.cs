@@ -9,8 +9,7 @@ public class DamageDealer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.transform.TryGetComponent(out Enemy enemy)){
-            enemy.TakeDamage(weaponDamage);
-            enemy.SpawnHitEffect(other.ClosestPoint(transform.position));
+            enemy.TakeDamage(weaponDamage, other.ClosestPoint(transform.position));
         }else if(other.transform.TryGetComponent(out Obelisk obelisk)){
             obelisk.Activate();
         }

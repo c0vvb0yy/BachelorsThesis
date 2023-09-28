@@ -5,7 +5,7 @@ using UnityEngine;
 public class SimpleLockOn : MonoBehaviour
 {
     [SerializeField] Transform target;
-    [SerializeField] float rotationOffset;
+    [SerializeField] bool mirror;
     void OnEnable(){
         if(target == null) target = Camera.main.transform;
         StartCoroutine(LookAtTarget());
@@ -13,8 +13,11 @@ public class SimpleLockOn : MonoBehaviour
 
     private IEnumerator LookAtTarget(){
         while(this.gameObject.activeInHierarchy){
-            Vector3 _dir = target.position - transform.position;
-            //_dir.y = 0;
+            Vector3 _dir = Vector3.zero;
+            if(mirror) _dir = 2 * transform.position - target.position;
+            else _dir = target.position - transform.position;
+            
+            var name = this.gameObject.name;
             transform.rotation = Quaternion.LookRotation(_dir);
             
             yield return null;

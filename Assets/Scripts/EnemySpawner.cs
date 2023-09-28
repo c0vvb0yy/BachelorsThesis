@@ -46,7 +46,6 @@ public class EnemySpawner : MonoBehaviour{
     IEnumerator StartRespawnTimer(){
         float timePassed = 0f;
         while(timePassed < _respawnDelay){
-            Debug.Log(timePassed);
             timePassed += Time.deltaTime;
             yield return null;
         }
