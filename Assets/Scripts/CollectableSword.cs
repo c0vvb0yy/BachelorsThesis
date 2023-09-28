@@ -3,23 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectableSword : MonoBehaviour
+public class CollectableSword : CollectableItem
 {
-    public float spinSpeed;
     EquipmentSystem _playerEquipment;
     public static event Action OnCollect;
-    private void Awake() {
-        LeanTween.reset();
+
+    protected override void Awake(){
+        base.Awake();
     }
 
-    void Start() {
+    protected override void Start() {
+        base.Start();
         _playerEquipment = GameObject.FindWithTag("Player").GetComponent<EquipmentSystem>();
+        //LeanTween.rotateAround(this.gameObject, Vector3.up, 360, spinSpeed).setLoopClamp();
     }
-    void OnEnable(){
-        LeanTween.rotateAround(this.gameObject, Vector3.up, 360, spinSpeed).setLoopClamp();
-    }
-    private void OnTriggerEnter(Collider other) {
-        //base.OnTriggerEnter(other);
+
+    protected override void OnTriggerEnter(Collider other) {
+        base.OnTriggerEnter(other);
         _playerEquipment.getRustySword();
         OnCollect.Invoke();
     }

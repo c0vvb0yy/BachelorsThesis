@@ -5,22 +5,18 @@ using UnityEngine;
 
 public class CollectableMushroom : CollectableItem
 {
-    public float spinSpeed;
     private MushroomQuestManager questManager;
 
     public static event Action OnCollect;
 
-    void Awake()
-    {
-        LeanTween.reset();
+    protected override void Awake(){
+        base.Awake();
     }
 
-    void Start(){
-        questManager = FindQuestManager();
-    }
-    
-    protected virtual void OnEnable(){
+    protected override void Start(){
+        base.Start();
         LeanTween.rotateAround(this.gameObject, Vector3.up, 360, spinSpeed).setLoopClamp();
+        questManager = FindQuestManager();
     }
 
     // Update is called once per frame
