@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.CompilerServices;
 using StarterAssets;
 using UnityEngine;
 
@@ -22,21 +20,24 @@ public class DataManager : MonoBehaviour{
         CollectableMushroom.OnCollect += Save;
         CollectableSword.OnCollect -= Save;
     }
-    private void OnDisable() {
+    private void OnDisable(){
         InformationLogger.OnCollect -= Save;
         CollectableMushroom.OnCollect -= Save;
         CollectableSword.OnCollect -= Save;
     }
-    // Start is called before the first frame update
-    void Awake()
-    {
+    
+    void Awake(){
         SaveSystem.Init();
     }
 
     public void Save(){
         var currWeap = "";
+        var dragon_killed = false;
         if(Player.GetComponent<PlayerCombat>().currentWeapon != null){
             currWeap = Player.GetComponent<PlayerCombat>().currentWeapon.name;
+        }
+        if(!Dragon.gameObject.activeInHierarchy){
+            dragon_killed = true;
         }
         SaveData saveData = new(){
             playerPosition = Player.transform.position,
@@ -44,11 +45,14 @@ public class DataManager : MonoBehaviour{
             activeObelisks = Dragon.activatedObelisks,
             farmQuest_done = FarmQuestManager.questFulfilled,
             mushroomQuest_done = MushroomQuestManager._fulfilled,
+            dragon_pacified = Dragon.pacified,
+            dragon_killed = dragon_killed,
             collectedMushrooms = MushroomQuestManager.collectedMushrooms,
             currentWeapon = currWeap
         };
         string json = JsonUtility.ToJson(saveData);
         SaveSystem.Save(json);
+        Debug.Log("SAVE");
     }
 
     public void Load(){
@@ -57,5 +61,10 @@ public class DataManager : MonoBehaviour{
             OnLoad.Invoke(saveData);
         }
         
+    }
+
+    public void SaveQuit(){
+        Save();
+        Application.Quit();
     }
 }

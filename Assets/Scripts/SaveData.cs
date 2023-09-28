@@ -8,6 +8,8 @@ public class SaveData{
     public List<string> activeObelisks;
     public bool farmQuest_done;
     public bool mushroomQuest_done;
+    public bool dragon_pacified;
+    public bool dragon_killed;
     public int collectedMushrooms;
     public string currentWeapon;
 }

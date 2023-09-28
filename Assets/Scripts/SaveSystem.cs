@@ -11,6 +11,9 @@ public static class SaveSystem
         if(!Directory.Exists(SAVE_FOLDER)){
             Directory.CreateDirectory(SAVE_FOLDER);
         }
+        if(File.Exists(SAVE_FOLDER + "/save.txt")){
+            Load();
+        }
     }
 
     public static void Save(string data){

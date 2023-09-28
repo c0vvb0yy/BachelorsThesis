@@ -16,6 +16,8 @@ public class Dragon : MonoBehaviour
     NavMeshAgent _agent;
     float _neededObelisks;
     [HideInInspector] public List<string> activatedObelisks = new();
+
+    public bool pacified;
     
     void OnEnable(){
         Obelisk.OnActivation += RegisterObelisk;
@@ -40,13 +42,14 @@ public class Dragon : MonoBehaviour
 
     void RegisterObelisk(string name){
         activatedObelisks.Add(name);
-        if(activatedObelisks.Count == _neededObelisks){
+        if(activatedObelisks.Count == _neededObelisks && !pacified){
             AnalyticsService.Instance.CustomData("DragonPacified");
             Weaken();
         }
     }
 
     void Weaken(){
+        pacified = true;
         _health.ReduceHealth(100);
         _animator.SetTrigger("Sleep");
         _agent.isStopped = true;

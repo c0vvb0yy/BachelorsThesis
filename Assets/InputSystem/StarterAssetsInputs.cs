@@ -22,6 +22,8 @@ namespace StarterAssets
 
 		public bool interact;
 
+		public bool pause;
+
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -91,6 +93,10 @@ namespace StarterAssets
 			Load();
 		}
 
+		public void OnPause(InputValue value){
+			Pause(value.isPressed);
+		}
+
 #endif
 
 
@@ -140,6 +146,13 @@ namespace StarterAssets
 		private void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+		}
+
+		private void Pause(bool newPauseState){
+			pause = newPauseState;
+			if(Cursor.lockState == CursorLockMode.Locked)
+				Cursor.lockState = CursorLockMode.Confined;
+			else Cursor.lockState = CursorLockMode.Locked;
 		}
 
 		private void Save(){

@@ -33,6 +33,7 @@ public class MushroomQuestManager : MonoBehaviour
 
     [YarnCommand("finishQuest")]
     public void FinishQuest(){
+        _fulfilled = true;
         variableStorage.UpdateMushroomQuest(true);
         ui.SendOff();
     }
