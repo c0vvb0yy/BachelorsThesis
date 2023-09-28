@@ -14,10 +14,12 @@ public class DisplayPOIInformation : MonoBehaviour
 
     void OnEnable(){
         PointOfInterest.OnCollect_Display += DisplayPoinOfInterest;
+        DataManager.OnLoad += UpdateText;
     }
 
     void OnDisable(){
         PointOfInterest.OnCollect_Display -= DisplayPoinOfInterest;
+        DataManager.OnLoad -= UpdateText;        
     }
 
     void Start(){
@@ -39,4 +41,8 @@ public class DisplayPOIInformation : MonoBehaviour
         LeanTween.moveLocalY(POI_name.gameObject, 800, 0.75f).setDelay(3.5f).setEase(LeanTweenType.easeInSine);
     }
 
+    public void UpdateText(SaveData saveData){
+        currentPointsCollected = saveData.collectedPOIs.Count;
+        POI_tracker.text = ""+currentPointsCollected+"/"+totalPoints;
+    }
 }

@@ -10,6 +10,14 @@ public class EnemyQuestManager : MonoBehaviour
 
     public DialogueVariableManager variableStorage;
     
+    private void OnEnable() {
+        DataManager.OnLoad += Deserialize;
+    }
+
+    private void OnDisable() {
+        DataManager.OnLoad -= Deserialize;
+    }
+
     void Start(){
         variableStorage.variableStorage.SetValue("$questReady", questReady);
         variableStorage = GameObject.FindWithTag("DVS").GetComponent<DialogueVariableManager>();
@@ -34,7 +42,6 @@ public class EnemyQuestManager : MonoBehaviour
         variableStorage.variableStorage.TryGetValue("$questReady", out questReady);
         questFulfilled = fullfilled;
         variableStorage.UpdateFarmQuest(questFulfilled);
-        Debug.Log("Quest Success!");
     }
     void SendEventData(){
         var eventData = new Dictionary<string, object>{
@@ -43,4 +50,7 @@ public class EnemyQuestManager : MonoBehaviour
         AnalyticsService.Instance.CustomData("FarmQuest", eventData);
     }
     
+    void Deserialize(SaveData saveData){
+        DebugFinishQuest(saveData.farmQuest_done);
+    }
 }

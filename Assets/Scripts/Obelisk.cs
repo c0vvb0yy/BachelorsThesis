@@ -14,16 +14,26 @@ public class Obelisk : MonoBehaviour
     public GameObject tinyPillars;
     public GameObject mainPillar;
     private Beam _beam;
-    public static event Action OnActivation;
+    public static event Action<string> OnActivation;
+
+    private void OnEnable() {
+        DataManager.OnLoad += Deserialize;
+    }
+
+    private void OnDisable() {
+        DataManager.OnLoad -= Deserialize;
+    }
 
     private void Start() {
         _beam = GetComponentInChildren<Beam>();
     }
 
+    
+
     public void Activate(){
         if(!_activated){
             Debug.Log("obelisk: " + gameObject.name + " activated");
-            OnActivation.Invoke();
+            OnActivation.Invoke(gameObject.name);
             SendData();
             StartTweens();
             InitializeBeam();
@@ -48,4 +58,10 @@ public class Obelisk : MonoBehaviour
         _beam.Go();
     }
 
+    public void Deserialize(SaveData saveData){
+        foreach (var obelisk in saveData.activeObelisks){
+            if(obelisk == gameObject.name)
+                Activate();
+        }
+    }
 }

@@ -22,6 +22,16 @@ public class EquipmentSystem : MonoBehaviour
     PlayerCombat _playerCombat;
     public DialogueVariableManager variableStorage;
 
+
+    
+    private void OnEnable() {
+        DataManager.OnLoad += Deserialize;
+    }
+
+    private void OnDisable() {
+        DataManager.OnLoad -= Deserialize;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -112,5 +122,20 @@ public class EquipmentSystem : MonoBehaviour
         currentWeaponInSheath = Instantiate(weapon, weaponSheath.transform);
         _playerCombat.currentWeapon = weapon;
         variableStorage.UpdateSword(true);
+    }
+
+    public void Deserialize(SaveData saveData){
+        switch (saveData.currentWeapon){
+            case "RustyPirateSword": 
+                getRustySword();
+                break;
+            case "OldSword":
+                getOldSword();
+                break;
+            case "QuestRewardSword":
+                getQuestSword();
+                break;
+            default: return;
+        }
     }
 }

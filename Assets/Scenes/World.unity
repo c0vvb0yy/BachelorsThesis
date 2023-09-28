@@ -2519,7 +2519,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1834506055}
     m_Modifications:
     - target: {fileID: 1357348910592513438, guid: 63ca017099130fa45afef21fab5b91e9,
         type: 3}
@@ -2529,7 +2529,7 @@ PrefabInstance:
     - target: {fileID: 1845795284396871460, guid: 63ca017099130fa45afef21fab5b91e9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1845795284396871460, guid: 63ca017099130fa45afef21fab5b91e9,
         type: 3}
@@ -2549,17 +2549,17 @@ PrefabInstance:
     - target: {fileID: 1845795284396871460, guid: 63ca017099130fa45afef21fab5b91e9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -199.7
+      value: 67.733444
       objectReference: {fileID: 0}
     - target: {fileID: 1845795284396871460, guid: 63ca017099130fa45afef21fab5b91e9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.044
+      value: -10.955999
       objectReference: {fileID: 0}
     - target: {fileID: 1845795284396871460, guid: 63ca017099130fa45afef21fab5b91e9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -53.7
+      value: -40.97303
       objectReference: {fileID: 0}
     - target: {fileID: 1845795284396871460, guid: 63ca017099130fa45afef21fab5b91e9,
         type: 3}
@@ -7168,7 +7168,7 @@ PrefabInstance:
     - target: {fileID: 1514838442195789469, guid: 6c5a99a2d80875d4f9087a3fd64bcea1,
         type: 3}
       propertyPath: m_Name
-      value: Obelisk_zodiac_low (1)
+      value: Obelisk_forest
       objectReference: {fileID: 0}
     - target: {fileID: 1514838442195789469, guid: 6c5a99a2d80875d4f9087a3fd64bcea1,
         type: 3}
@@ -11524,7 +11524,7 @@ PrefabInstance:
     - target: {fileID: 1514838442195789469, guid: 6c5a99a2d80875d4f9087a3fd64bcea1,
         type: 3}
       propertyPath: m_Name
-      value: Obelisk_zodiac_low
+      value: Obelisk_mountain
       objectReference: {fileID: 0}
     - target: {fileID: 2183710516522777639, guid: 6c5a99a2d80875d4f9087a3fd64bcea1,
         type: 3}
@@ -21732,6 +21732,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2137726938}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &679664247 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1845795284396871460, guid: 63ca017099130fa45afef21fab5b91e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 71069251}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &682676586 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8554979865546078707, guid: aec8969d0290c6d4cbc587ef85a01ce4,
@@ -31218,6 +31224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a18a72314c91e4ba1c059984aedfcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activatedObelisks: []
 --- !u!1001 &1047522976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36237,6 +36244,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 410506749}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1184605834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544,
+    type: 3}
+  m_PrefabInstance: {fileID: 1444498244}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1190286138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2906742830765571359, guid: 78da2ace1ab76ce478600ebe37fa10fe,
@@ -38153,7 +38166,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1262137164 stripped
 Transform:
@@ -39697,7 +39710,7 @@ PrefabInstance:
     - target: {fileID: 1514838442195789469, guid: 6c5a99a2d80875d4f9087a3fd64bcea1,
         type: 3}
       propertyPath: m_Name
-      value: Obelisk_zodiac_low (2)
+      value: Obelisk_island
       objectReference: {fileID: 0}
     - target: {fileID: 2183710516522777639, guid: 6c5a99a2d80875d4f9087a3fd64bcea1,
         type: 3}
@@ -53224,6 +53237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce7debdea798034181b11ab1509c7ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectedMushrooms: 0
   _fulfilled: 0
 --- !u!4 &1715828907
 Transform:
@@ -56482,6 +56496,55 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1809045893}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1809526715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1809526717}
+  - component: {fileID: 1809526716}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1809526716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809526715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef44101e4dd18714498d2f16b5916888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1184605834}
+  POILogger: {fileID: 1913220101}
+  Dragon: {fileID: 1046971447}
+  FarmQuestManager: {fileID: 1969982324}
+  MushroomQuestManager: {fileID: 1715828906}
+--- !u!4 &1809526717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809526715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1810463195
 GameObject:
   m_ObjectHideFlags: 0
@@ -57484,6 +57547,7 @@ Transform:
   - {fileID: 1358579434}
   - {fileID: 2106178222}
   - {fileID: 662519820}
+  - {fileID: 679664247}
   m_Father: {fileID: 934360393}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -59131,6 +59195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ef400a22dcce740bdb263e34af9526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectedPoints: []
 --- !u!1001 &1914442741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63084,15 +63149,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 543405481, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.0733232
+      value: -4.073127
       objectReference: {fileID: 0}
     - target: {fileID: 543405481, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.5506344
+      value: -4.5506577
       objectReference: {fileID: 0}
     - target: {fileID: 543405481, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.654161
+      value: -20.654259
       objectReference: {fileID: 0}
     - target: {fileID: 543405481, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -63104,11 +63169,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 543405481, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.12805593
+      value: -0.12805608
       objectReference: {fileID: 0}
     - target: {fileID: 543405481, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.01162255
+      value: 0.011622569
       objectReference: {fileID: 0}
     - target: {fileID: 543405482, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_Follow
@@ -66287,7 +66352,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1444498244}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1184605834}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99d195e9543528340b2ef25d23221f8d, type: 3}

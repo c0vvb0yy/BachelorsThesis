@@ -7,7 +7,6 @@ using UnityEngine.VFX;
 public class PointOfInterest : MonoBehaviour{
     new public string name;
     public string description;
-
     public static event Action<string> OnCollect_Data;
     public static event Action<string, string> OnCollect_Display;
 
@@ -28,7 +27,15 @@ public class PointOfInterest : MonoBehaviour{
             OnCollect_Display.Invoke(name, description);
             vfx.SetFloat("SpawnMult", 0);
             vfx.SetFloat("TrailMult", 5);
-            Destroy(this.gameObject, 5f);
+            StartCoroutine("Deactivate");
         }
+    }
+    IEnumerator Deactivate(){
+        var _timePassed = 0f;
+        while(_timePassed < 5f){
+            _timePassed += Time.deltaTime;
+            yield return null;
+        }
+        gameObject.SetActive(false);
     }
 }

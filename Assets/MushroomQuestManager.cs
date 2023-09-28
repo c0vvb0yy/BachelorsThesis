@@ -7,10 +7,18 @@ public class MushroomQuestManager : MonoBehaviour
 {
     DialogueVariableManager variableStorage;
     MushroomQuestUI ui;
-    int _collectedMushrooms = 0;
+    [HideInInspector] public int collectedMushrooms = 0;
 
-    //just for debug purposes
     public bool _fulfilled; 
+    
+    private void OnEnable() {
+        DataManager.OnLoad += Deserialize;
+    }
+
+    private void OnDisable() {
+        DataManager.OnLoad -= Deserialize;
+    }
+
 
     // Start is called before the first frame update
     void Start(){
@@ -31,21 +39,33 @@ public class MushroomQuestManager : MonoBehaviour
 
     public void DebugFinishQuest(bool finish){
         if(finish){
-            _collectedMushrooms = 999;
-            variableStorage.UpdateCollectedMushrooms(_collectedMushrooms);
+            collectedMushrooms = 999;
+            variableStorage.UpdateCollectedMushrooms(collectedMushrooms);
             variableStorage.UpdateMushroomQuest(true);
             _fulfilled = !_fulfilled;
         }else{
-            _collectedMushrooms = 0;
-            variableStorage.UpdateCollectedMushrooms(_collectedMushrooms);
+            collectedMushrooms = 0;
+            variableStorage.UpdateCollectedMushrooms(collectedMushrooms);
             variableStorage.UpdateMushroomQuest(false);
             _fulfilled = !_fulfilled;
         }
     }
 
     public void CollectMushroom(){
-        _collectedMushrooms++;
-        ui.UpdateText(_collectedMushrooms);
-        variableStorage.UpdateCollectedMushrooms(_collectedMushrooms);
+        collectedMushrooms++;
+        UpdateText();
+    }
+
+    public void UpdateText(){
+        ui.UpdateText(collectedMushrooms);
+        variableStorage.UpdateCollectedMushrooms(collectedMushrooms);
+    }
+
+    public void Deserialize(SaveData saveData){
+        collectedMushrooms = saveData.collectedMushrooms;
+        UpdateText();
+        if(saveData.mushroomQuest_done){
+            FinishQuest();
+        }
     }
 }

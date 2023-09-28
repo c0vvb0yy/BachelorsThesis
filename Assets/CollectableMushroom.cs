@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class CollectableMushroom : CollectableItem
 {
     public float spinSpeed;
     private MushroomQuestManager questManager;
+
+    public static event Action OnCollect;
 
     void Awake()
     {
@@ -24,6 +27,7 @@ public class CollectableMushroom : CollectableItem
     protected override void OnTriggerEnter(Collider other) {
         base.OnTriggerEnter(other);
         questManager.CollectMushroom();
+        OnCollect.Invoke();
     }
 
     private MushroomQuestManager FindQuestManager(){

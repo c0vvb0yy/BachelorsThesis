@@ -17,6 +17,7 @@ public class Wizard : MonoBehaviour
         _animator = GetComponent<Animator>();
         _idling = GetComponent<IdleBehaviour>();
         _agent = GetComponent<NavMeshAgent>();
+        _idling.StartConversation();
     }
 
     // Update is called once per frame

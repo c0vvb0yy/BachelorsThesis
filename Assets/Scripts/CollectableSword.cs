@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class CollectableSword : MonoBehaviour
 {
     public float spinSpeed;
     EquipmentSystem _playerEquipment;
+    public static event Action OnCollect;
     private void Awake() {
         LeanTween.reset();
     }
@@ -19,6 +21,6 @@ public class CollectableSword : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         //base.OnTriggerEnter(other);
         _playerEquipment.getRustySword();
-        Debug.Log("Sword Log");
+        OnCollect.Invoke();
     }
 }

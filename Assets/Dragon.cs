@@ -14,8 +14,8 @@ public class Dragon : MonoBehaviour
     Animator _animator;
     Enemy _health;
     NavMeshAgent _agent;
-    float _activeObelisks;
     float _neededObelisks;
+    [HideInInspector] public List<string> activatedObelisks = new();
     
     void OnEnable(){
         Obelisk.OnActivation += RegisterObelisk;
@@ -38,10 +38,9 @@ public class Dragon : MonoBehaviour
         
     }
 
-    void RegisterObelisk(){
-        _activeObelisks++;
-        Debug.Log(_activeObelisks);
-        if(_activeObelisks == _neededObelisks){
+    void RegisterObelisk(string name){
+        activatedObelisks.Add(name);
+        if(activatedObelisks.Count == _neededObelisks){
             AnalyticsService.Instance.CustomData("DragonPacified");
             Weaken();
         }

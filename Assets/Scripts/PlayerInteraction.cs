@@ -17,12 +17,14 @@ public class PlayerInteraction : MonoBehaviour
     {
         _input = GetComponent<StarterAssetsInputs>();
         _controls = GetComponent<ThirdPersonController>();
+        _input.interact = false;
+        //_inDialogue = true;
+        //_controls.RestrainMovement();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         if(_input.interact && _dialogueManager != null && !_inDialogue){
             StartDialogue();
         }

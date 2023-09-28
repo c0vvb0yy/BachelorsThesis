@@ -5,14 +5,19 @@ using UnityEngine;
 using UnityEngine.Analytics;
 using Unity.Services.Analytics;
 using Unity.Services.Core;
+using System;
 public class InformationLogger : MonoBehaviour{
     float collectionTime;
+    [HideInInspector] public List<string> collectedPoints = new();
+    public static event Action OnCollect;
     void OnEnable(){
         PointOfInterest.OnCollect_Data += LogPointOfInterest;
+        DataManager.OnLoad += Deserialize;
     }
 
     void OnDisable(){
         PointOfInterest.OnCollect_Data -= LogPointOfInterest;
+        DataManager.OnLoad -= Deserialize;
     }
     public void LogPointOfInterest(string pointName){
         var eventData = new Dictionary<string, object>{
@@ -22,7 +27,8 @@ public class InformationLogger : MonoBehaviour{
         };
         AnalyticsService.Instance.CustomData("CollectedPointOfInterest", eventData);
         
-        
+        collectedPoints.Add(pointName);
+        OnCollect.Invoke();
         /*
         string path = Application.dataPath + "/test.txt";
 
@@ -55,6 +61,25 @@ public class InformationLogger : MonoBehaviour{
         var previousCollectionTime = collectionTime;
         collectionTime = Time.time;
         return collectionTime - previousCollectionTime;
+    }
+
+    //the list of string hols all points that have been collected
+    //so we go over all points in our scene and see if they're uncollected i.e. active 
+    //and if they've previously been uncollected in the scene they're deactivated
+    public void Deserialize(SaveData saveData){
+        List<string> inactivePOI = saveData.collectedPOIs;
+        foreach (var obj in GetComponentsInChildren<Transform>()){
+            if(obj.gameObject.activeInHierarchy){
+                if(obj.gameObject.TryGetComponent<PointOfInterest>(out PointOfInterest poi)){
+                    foreach (var collectedPOI in inactivePOI){
+                        if(poi.name == collectedPOI){
+                            obj.gameObject.SetActive(false);
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
 }

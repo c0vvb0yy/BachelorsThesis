@@ -84,6 +84,13 @@ namespace StarterAssets
 			GetSword();
 		}
 
+		public void OnSave(InputValue value){
+			Save();
+		}
+		public void OnLoad(InputValue value){
+			Load();
+		}
+
 #endif
 
 
@@ -133,6 +140,16 @@ namespace StarterAssets
 		private void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+		}
+
+		private void Save(){
+			DataManager dataManager = GameObject.Find("DataManager").GetComponent<DataManager>();
+			dataManager.Save();
+		}
+
+		private void Load(){
+			DataManager dataManager = GameObject.Find("DataManager").GetComponent<DataManager>();
+			dataManager.Load();
 		}
 
 		private void ActivateObelisks(){

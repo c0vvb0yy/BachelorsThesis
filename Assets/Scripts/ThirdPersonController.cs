@@ -146,9 +146,11 @@ namespace StarterAssets
 
         private void OnEnable() {
             EnemyLockOn.onEnemyLockOn += OnEnemyLockOn;
+            DataManager.OnLoad += Deserialize;
         }
         private void OnDisable() {
             EnemyLockOn.onEnemyLockOn -= OnEnemyLockOn;
+            DataManager.OnLoad -= Deserialize;
         }
 
         private void OnEnemyLockOn(bool hasEnemy, GameObject enemy){
@@ -463,6 +465,10 @@ namespace StarterAssets
             //_controller.SimpleMove(target);
             Teleport(target);
             Debug.Log("Knockback");
+        }
+
+        public void Deserialize(SaveData saveData){
+            Teleport(saveData.playerPosition);
         }
     }
 }

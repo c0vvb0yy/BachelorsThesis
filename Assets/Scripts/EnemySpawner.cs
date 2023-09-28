@@ -18,12 +18,7 @@ public class EnemySpawner : MonoBehaviour{
 
     private void Start() {
         var children = GetComponentsInChildren<Transform>();
-        foreach (var item in children)
-        {
-            Debug.Log(item.name);
-        }
         for(int i = 0; i < children.Length; i++){
-            Debug.Log(children[i].position);
             GameObject obj = Instantiate(_enemy, children[i].position, Quaternion.identity, this.transform);
             _activeEnemies.Add(children[i].position, obj);
         }
@@ -56,7 +51,6 @@ public class EnemySpawner : MonoBehaviour{
     void SpawnEnemy(){
         Debug.Log("Spawning");
         foreach (var spawnPos in _activeEnemies){
-            Debug.Log(spawnPos.Key +" "+ spawnPos.Value);
             if(spawnPos.Value == null){
                 GameObject obj = Instantiate(_enemy, spawnPos.Key, Quaternion.identity, this.transform);
                 _activeEnemies[spawnPos.Key] = obj;
