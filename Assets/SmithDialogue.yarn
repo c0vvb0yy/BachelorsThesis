@@ -6,7 +6,9 @@ Smith: I'm a bit busy at the moment.
 Smith: Y'see the farms down the road have been overrun with monsters
 <<if $farmQuestComplete == true>>
 <<jump EarlyQuestComplete>>
-<<elseif $hasSword == false>>
+<<endif>>
+Smith: And there's a dragon on the loose. And I can only smith this fast! Noone here is a fighter really.
+<<if $hasSword == false>>
 <<getOldSword Player>>
 Smith: You look competent. Have this old sword and take care of the monsters, will ya?
 <<set $hasSword = true>>
@@ -22,13 +24,16 @@ title: SmithQuestComplete
 Smith: I heard the news! Thank you!!!
 <<getQuestSword Player>>
 Smith: As promised, here's a new sword, fresh off the anvil! Thank you!
+Smith: Maybe you can use it to help us with our dragon problem? Pretty please?
 <<else>>
 Smith: The monsters are still at large! Go defeat them!
 <<endif>>
 ===
 title: EarlyQuestComplete
 ---
-Smith: What? The farms already save? WOW!
+Smith: What? The farm's already save? WOW!
+Smith: If you're already so inclined to help us... Will you do it once more?
+Smith: I've just finished this sword, for the noble fighter who'll take down the dragon for us. Please have it.
 <<getQuestSword Player>>
-Smith: Take this as thanks, it's the least I can do
+Smith: Obviously there's no obligation to use this to slay the dragon. But you're probably our best bet anyway. ...Thank you.
 ===

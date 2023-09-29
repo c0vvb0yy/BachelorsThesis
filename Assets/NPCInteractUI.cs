@@ -7,23 +7,23 @@ public class NPCInteractUI : MonoBehaviour
 {
     public Sprite questAvailable;
     public Sprite interact;
-    Image _image;
+    public Image image;
     // Start is called before the first frame update
     void Start()
     {
-        _image = GetComponentInChildren<Image>();
+        image = GetComponentInChildren<Image>();
     }
 
     public void QuestAvailable(){
-        _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, 1);
-        _image.sprite = questAvailable;
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+        image.sprite = questAvailable;
     }
     public void ShowInteractable(){
-        _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, 1);
-        _image.sprite = interact;
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+        image.sprite = interact;
     }
 
     public void CleanUp(){
-        _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, 0);
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
     }
 }

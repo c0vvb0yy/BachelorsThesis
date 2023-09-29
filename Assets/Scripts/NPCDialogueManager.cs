@@ -6,6 +6,7 @@ using Unity.Services.Analytics;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(IdleBehaviour))]
+[RequireComponent(typeof(SphereCollider))]
 public class NPCDialogueManager : MonoBehaviour
 {
     

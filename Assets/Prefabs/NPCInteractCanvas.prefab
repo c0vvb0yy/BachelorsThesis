@@ -117,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questAvailable: {fileID: 21300000, guid: 0a6a0bad7023a404895000ae075089d8, type: 3}
   interact: {fileID: 21300000, guid: ea6ba593dc504fa44808dd05a90338a8, type: 3}
+  image: {fileID: 4690461639855604872}
 --- !u!114 &1368184490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  mirror: 0
 --- !u!1 &5434528388744441347
 GameObject:
   m_ObjectHideFlags: 0
