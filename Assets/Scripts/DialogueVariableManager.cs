@@ -7,6 +7,7 @@ using Yarn.Unity;
 public class DialogueVariableManager : MonoBehaviour
 {
     public InMemoryVariableStorage variableStorage;
+    private int _obeliskAmount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -27,5 +28,11 @@ public class DialogueVariableManager : MonoBehaviour
     }
     public void UpdateCollectedMushrooms(int amount){
         variableStorage.SetValue("$MushroomsCollected", amount);
+    }
+    public void UpdateObelisk(string obelisk){
+        _obeliskAmount++;
+        variableStorage.SetValue("$obelisks", _obeliskAmount);
+        string key = "$"+obelisk+"Activated";
+        variableStorage.SetValue(key, true);
     }
 }

@@ -2,7 +2,8 @@
   "projectFileVersion": 2,
   "sourceFiles": [
     "**/*.yarn",
-    "**/Wizard.yarn"
+    "**/Wizard.yarn",
+    "**/Mage.yarn"
   ],
   "excludeFiles": [],
   "localisation": {},

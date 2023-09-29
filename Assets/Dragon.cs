@@ -18,13 +18,20 @@ public class Dragon : MonoBehaviour
     [HideInInspector] public List<string> activatedObelisks = new();
 
     public bool pacified;
-    
+
+    public static event Action DragonSleep;
+    public static event Action DragonDeath;
+
     void OnEnable(){
         Obelisk.OnActivation += RegisterObelisk;
+        Enemy.OnDeath += OnDeath;
+        DataManager.OnLoad += Deserialize;
     }
 
     void OnDisable(){
         Obelisk.OnActivation -= RegisterObelisk;
+        Enemy.OnDeath -= OnDeath;
+        DataManager.OnLoad -= Deserialize;
     }
 
     void Start(){
@@ -33,11 +40,6 @@ public class Dragon : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.FindWithTag("Player").GetComponent<ThirdPersonController>();
         _neededObelisks = GameObject.FindGameObjectsWithTag("Obelisk").Length;
-    }
-
-    // Update is called once per frame
-    void Update(){
-        
     }
 
     void RegisterObelisk(string name){
@@ -52,6 +54,23 @@ public class Dragon : MonoBehaviour
         pacified = true;
         _health.ReduceHealth(100);
         _animator.SetTrigger("Sleep");
+        DragonSleep.Invoke();
         _agent.isStopped = true;
+    }
+    void OnDeath(GameObject dragon){
+        if(dragon == this.gameObject){
+            DragonDeath.Invoke();
+        }
+    }
+
+    void Deserialize(SaveData saveData){
+        if(saveData.dragon_killed){
+            DragonDeath.Invoke();
+            Destroy(this.gameObject);
+            return;
+        }
+        if(saveData.dragon_pacified){
+            Weaken();
+        }
     }
 }

@@ -1,0 +1,86 @@
+﻿title: Mage
+tags:
+---
+<<if $obelisks >= 3>>
+<<jump Dragon>>
+<<else>>
+Mage: Who are you to be up here? Another fool trying to take it up with the dragon? Scram! I don't need you here.
+<<acceptQuest Mage>>
+<<if $farmQuestComplete == true>>
+Mage: That sword... you got it from the village didn't you? So you really think you can take it up with the dragon? 
+Mage: Well just try. There's no way you'll slay him.
+<<endif>>
+<<if $obelisks > 0>>
+Mage: Wait...! The Obelisks... it was you who activated them, right?
+Mage: In that case... There <i>is</i> a way you could save both the village...and the dragon.
+Mage: Legend tells that if the dragon wakes it can be put back to peaceful slumber if all three obelisks are activated. I don't know how or why but it seems you are capable of doing just that.
+<<AddObeliskTalk>>
+Mage: I can tell you more about the Obelisks if you wish.
+<<else>>
+Mage: Even though... You seem...unique. Have you seen those black stone pillars around? If you can activate them, come back here.
+<<endif>>
+<<endif>>
+===
+title: MageIdle
+tags:
+---
+<<if $obelisks >= 3>>
+<<jump Dragon>>
+<<else>>
+<<if $obelisks > 0>>
+<<AddObeliskTalk Mage>>
+Mage: You made it! You got them to activate! Ok here's what i know: 
+Mage: Legend tells that if the dragon wakes it can be put back to peaceful slumber if all three obelisks are activated. I don't know how or why but it seems you are capable of doing just that.
+Mage: That way the dragon doesn't come to harm and the viallagers mustn't worry needlessly
+Mage: I can tell you more about the Obelisks if you wish.
+<<else>>
+Mage: You haven't activated any obelisks yet. Maybe hit them with your sword?
+Mage: It's very important to me, that if you are able to activate the obelisks, that you do so. 
+Mage: It's the only way this all can end peacefully...
+<<endif>>
+<<endif>>
+===
+title: ObeliskTalk
+tags:
+---
+<<if $obelisks >= 3>>
+<<jump Dragon>>
+<<else>>
+<<set $ObelisksNeeded = 3 - $obelisks>>
+Mage: You've activated {$obelisks} obelisks already, so just {$ObelisksNeeded} more to go.
+Mage: Let's see which ones you're missing...
+<<if $Obelisk_islandActivated == false>>
+Mage: There's an obelisk on the southern island, downward from the river. 
+<<endif>>
+<<if $Obelisk_forestActivated == false>>
+Mage: You're missing the one that's in the forest behing the village...
+<<endif>>
+<<if $Obelisk_mountainActivated == false>>
+Mage: On the other side of the river here. That's where I already tried to activate the Obelisk and found out about the legend.
+<<endif>>
+<<endif>>
+===
+title: Dragon
+tags:
+---
+Mage: You did it! The dragon is asleep again.
+Mage: Everything is going to be alright now. You can just turn around and go back to the village. I'll make sure to get it back to it's cave momentarily.
+Mage: Thank you, truly thank you, for activating the obelisks.
+===
+title: Consequence
+tags:
+---
+Mage: How... How could you-
+<<if $obelisks == 3>>
+Mage: What has this dragon done to you?! For you to slay this noble creature... After you've gone through all the trouble of activating the obelisks!
+Mage: Of course... you had to do it to weaken the dragon... I never should have told you about them in the first place.
+<<else>>
+Mage: You've shown tenacity and for what? I don't wish to talk to you anymore. 
+<<endif>>
+Mage: Leave!
+===
+title: End
+tags:
+---
+Mage: Leave.
+===

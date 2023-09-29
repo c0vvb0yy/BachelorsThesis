@@ -14,7 +14,7 @@ public class NPCDialogueManager : MonoBehaviour
     public List<string> StarterNodes = new List<string>();
     
     string _starterNode {get;set;}
-    int _index = 0;
+    [HideInInspector] public int index;
 
     List<string> _states = new(){
         "Talking 0", "Talking 1", "Talking 2" 
@@ -37,7 +37,8 @@ public class NPCDialogueManager : MonoBehaviour
         _idleBehaviour = GetComponent<IdleBehaviour>();
         _interactUI = GetComponentInChildren<NPCInteractUI>();
         _animator = GetComponent<Animator>();
-        _starterNode = StarterNodes[_index];
+        index = 0;
+        _starterNode = StarterNodes[index];
         SetUpCanvas();
     }
 
@@ -86,10 +87,10 @@ public class NPCDialogueManager : MonoBehaviour
     }
 
     public void MarkNewStarterNode(){
-        _index++;
-        if(_index >= StarterNodes.Count)
+        index++;
+        if(index >= StarterNodes.Count)
             return;
-        _starterNode = StarterNodes[_index];
+        _starterNode = StarterNodes[index];
     }
 
     private void OnTriggerEnter(Collider other) {

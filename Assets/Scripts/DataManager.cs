@@ -17,11 +17,13 @@ public class DataManager : MonoBehaviour{
         InformationLogger.OnCollect += Save;
         CollectableMushroom.OnCollect += Save;
         CollectableSword.OnCollect += Save;
+        Dragon.DragonSleep += Save;
     }
     private void OnDisable(){
         InformationLogger.OnCollect -= Save;
         CollectableMushroom.OnCollect -= Save;
         CollectableSword.OnCollect -= Save;
+        Dragon.DragonSleep -= Save;
     }
     
     void Start(){

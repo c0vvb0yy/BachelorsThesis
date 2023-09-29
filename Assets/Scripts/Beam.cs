@@ -11,7 +11,6 @@ public class Beam : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         _vfx = GetComponent<VisualEffect>();
-        //_dragon = GameObject.Find("Dragon").GetComponent<Transform>();
     }
 
     // Update is called once per frame

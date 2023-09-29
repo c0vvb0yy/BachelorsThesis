@@ -20,6 +20,8 @@ public class Obelisk : MonoBehaviour
     
     private Beam _beam;
     private AudioSource _audio;
+    private DialogueVariableManager _variableStorage;
+
     public static event Action<string> OnActivation;
 
     private void OnEnable() {
@@ -33,15 +35,21 @@ public class Obelisk : MonoBehaviour
     private void Start() {
         _beam = GetComponentInChildren<Beam>();
         _audio = GetComponent<AudioSource>();
+        _variableStorage = GameObject.FindWithTag("DVS").GetComponent<DialogueVariableManager>();
     }
-
-    
 
     public void Activate(){
         if(!_activated){
+            TurnOn();
+            SendData();
+        }
+    }
+
+    public void TurnOn(){
+        if(!_activated){
             Debug.Log("obelisk: " + gameObject.name + " activated");
             OnActivation.Invoke(gameObject.name);
-            SendData();
+            _variableStorage.UpdateObelisk(gameObject.name);
             StartTweens();
             _activated = true;
         }
@@ -83,7 +91,7 @@ public class Obelisk : MonoBehaviour
     public void Deserialize(SaveData saveData){
         foreach (var obelisk in saveData.activeObelisks){
             if(obelisk == gameObject.name)
-                Activate();
+                TurnOn();
         }
     }
 }

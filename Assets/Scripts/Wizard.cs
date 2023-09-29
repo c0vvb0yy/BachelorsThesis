@@ -10,7 +10,6 @@ public class Wizard : MonoBehaviour
     Animator _animator;
     IdleBehaviour _idling;
     NavMeshAgent _agent;
-    NPCDialogueManager _dialogueManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,14 +24,18 @@ public class Wizard : MonoBehaviour
     {
         if(!_agent.hasPath){
             if(_timePassed >= Random.Range(_idling.wanderCoolDownMax/4, _idling.wanderCoolDownMax)){
-                if(_animator.GetCurrentAnimatorStateInfo(0).IsTag("Idle01")){
-                    _animator.SetTrigger("Idle2");
-                } else {
-                    _animator.SetTrigger("Idle1");
-                }
-                _timePassed = 0f;
+                SwitchIdleAnimation();
             }
             _timePassed += Time.deltaTime;
         }
+    }
+
+    void SwitchIdleAnimation(){
+        if(_animator.GetCurrentAnimatorStateInfo(0).IsTag("Idle01")){
+            _animator.SetTrigger("Idle2");
+        } else {
+            _animator.SetTrigger("Idle1");
+        }
+        _timePassed = 0f;
     }
 }

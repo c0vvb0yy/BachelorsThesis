@@ -879,11 +879,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 7
-  homeRange: 14.21
+  homeRange: 14.5
   wanderCoolDownMax: 4
   idleSpeed: 0.5
   attackCoolDown: 3
-  attackRange: 3.98
+  attackRange: 4
   aggroRange: 20
   combatSpeed: 10
   onHitEffect: {fileID: 2757420994342177254, guid: d29eba6eca53aba46ab8dd590f3f11d7,
@@ -926,9 +926,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDealDamage: 0
   hasDealtDamage: 0
-  attackRange: 0
+  attackRange: 4.14
   attackDamage: 1
-  attackheight: 0
+  attackheight: 1.21
 --- !u!82 &1456076160619771031
 AudioSource:
   m_ObjectHideFlags: 0
