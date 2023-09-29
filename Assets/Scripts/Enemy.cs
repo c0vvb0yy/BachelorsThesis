@@ -9,6 +9,7 @@ using UnityEngine.AI;
 using UnityEngine.Analytics;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(AudioSource))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float maxHealth = 3f;
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour
     GameObject _player;
     Animator _animator;
     NavMeshAgent _agent;
+    AudioSource _audio;
     float _timePassed;
     float _newDestinationCoolDown = 0.5f;
 
@@ -49,6 +51,7 @@ public class Enemy : MonoBehaviour
         _player = GameObject.FindWithTag("Player");
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
+        _audio = GetComponent<AudioSource>();
         _home = transform.position;
         _currentHealth = maxHealth;
         _healthbar = GetComponentInChildren<Healthbar>();
@@ -183,6 +186,7 @@ public class Enemy : MonoBehaviour
     internal void SpawnHitEffect(Vector3 point){
         GameObject hitVFX = Instantiate(onHitEffect, this.transform);
         hitVFX.transform.position = point;
+        _audio.Play();
         Destroy(hitVFX, 5f);
     }
 

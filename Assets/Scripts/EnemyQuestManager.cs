@@ -35,6 +35,7 @@ public class EnemyQuestManager : MonoBehaviour
         variableStorage.variableStorage.TryGetValue("$questReady", out questReady);
         questFulfilled = true;
         variableStorage.UpdateFarmQuest(questFulfilled);
+        GameObject.Find("DataManager").GetComponent<DataManager>().Save();
         Debug.Log("Quest Success!");
         SendEventData();
     }

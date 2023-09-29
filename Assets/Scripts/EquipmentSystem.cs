@@ -13,6 +13,7 @@ public class EquipmentSystem : MonoBehaviour
     [SerializeField] GameObject questWeapon;
     
     [SerializeField] List<AudioClip> audioClips = new();
+    AudioSource _audio;
     GameObject weapon;
     GameObject weaponHolder;
 
@@ -37,12 +38,14 @@ public class EquipmentSystem : MonoBehaviour
     {
         _playerCombat = GetComponent<PlayerCombat>();
         variableStorage = GameObject.FindWithTag("DVS").GetComponent<DialogueVariableManager>();
+        _audio = GetComponent<AudioSource>();
     }
 
     void DrawWeapon(){
         CheckForChildren(weaponHolder);
         currentWeaponInHand = Instantiate(weapon, weaponHolder.transform);
-        AudioSource.PlayClipAtPoint(audioClips[0], this.transform.position);
+        _audio.clip = audioClips[0];
+        _audio.Play();
         CheckForChildren(weaponSheath);
     }
     void SheathWeapon(){
@@ -51,8 +54,10 @@ public class EquipmentSystem : MonoBehaviour
         CheckForChildren(weaponHolder);
     }
 
+    //animation event function
     void SheathAudio(){
-        AudioSource.PlayClipAtPoint(audioClips[1], this.transform.position);
+        _audio.clip = audioClips[1];
+        _audio.Play();
     }
 
     void CheckForChildren(GameObject weaponPosition){

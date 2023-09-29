@@ -5,8 +5,6 @@ using StarterAssets;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour{
-
-    private static readonly string SAVE_FOLDER = "/Saves/";
     public GameObject Player;
     public InformationLogger POILogger;
     public Dragon Dragon; //holds the info on the Obelisks

@@ -16,6 +16,7 @@ public class PlayerCombat : MonoBehaviour
 
     private Animator _animator;
     private StarterAssetsInputs _input;
+    private AudioSource _audio;
     private bool _inCombat = false;
     private bool _attack = false;
     private float _timePassed;
@@ -31,6 +32,7 @@ public class PlayerCombat : MonoBehaviour
     {
         _input = GetComponent<StarterAssetsInputs>();
         _animator = GetComponent<Animator>();
+        _audio = GetComponent<AudioSource>();
         AssignAnimationIDs();
     }
 
@@ -137,7 +139,8 @@ public class PlayerCombat : MonoBehaviour
     public void StartVisualEffect(int index){
         _currentVisualEffect = Instantiate(slashVFX[index+indexStep], VFXHolder.transform);
         _currentVisualEffect.GetComponentInChildren<VisualEffect>().Play();
-        AudioSource.PlayClipAtPoint(slashSFX[index], VFXHolder.transform.position);
+        _audio.clip = slashSFX[index];
+        _audio.Play();
     }
     public void EndVisualEffect(){
         DestroyChildren(GetChildren(VFXHolder.transform));
