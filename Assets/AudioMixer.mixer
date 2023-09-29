@@ -72,6 +72,7 @@ AudioMixerController:
     - f66517ef20b919a4d81d6621dae21f1a
     - bfc6e2490fb906349bde9a2471444ab1
     - 97800380266c93245b8ac092948443aa
+    - e06dc0cd525c068479e788e8860dbbc6
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -87,6 +88,7 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: -3870131328249469914}
   - {fileID: 8784026946937875824}
+  - {fileID: 90277447922487233}
   m_Volume: 8652cde385637c7458532f383d35ea30
   m_Pitch: a7203adafa7bc6e45bd4b1d38273d17e
   m_Send: 00000000000000000000000000000000
@@ -122,7 +124,41 @@ AudioMixerSnapshotController:
   m_FloatValues:
     67477841f9c9f024691f2d060eafc145: -0.16685188
     bb896854dc8400846b573c7b16eaa992: 8.963478
+    26e3e83a32262634eab9dcc2a51008c5: -4.9356413
   m_TransitionOverrides: {}
+--- !u!243 &90277447922487233
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Obelisks
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: e06dc0cd525c068479e788e8860dbbc6
+  m_Children: []
+  m_Volume: 26e3e83a32262634eab9dcc2a51008c5
+  m_Pitch: 64793098eba980a44ba8d1b540799236
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 1699678413740083378}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &1699678413740083378
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 321db19c348251e44a4a8d26a179dd07
+  m_EffectName: Attenuation
+  m_MixLevel: c0265fc218da5eb458a5bb137700f219
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &8784026946937875824
 AudioMixerGroupController:
   m_ObjectHideFlags: 0

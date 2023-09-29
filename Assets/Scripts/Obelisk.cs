@@ -6,6 +6,7 @@ using Unity.Services.Analytics;
 using UnityEngine.VFX;
 using Unity.VisualScripting;
 
+[RequireComponent(typeof(AudioSource))]
 public class Obelisk : MonoBehaviour
 {
     bool _activated;
@@ -13,7 +14,12 @@ public class Obelisk : MonoBehaviour
     public float floatSpeed;
     public GameObject tinyPillars;
     public GameObject mainPillar;
+    public AudioClip StoneRotate;
+    public AudioClip PowerUp;
+    public AudioClip ActiveSound;
+    
     private Beam _beam;
+    private AudioSource _audio;
     public static event Action<string> OnActivation;
 
     private void OnEnable() {
@@ -26,6 +32,7 @@ public class Obelisk : MonoBehaviour
 
     private void Start() {
         _beam = GetComponentInChildren<Beam>();
+        _audio = GetComponent<AudioSource>();
     }
 
     
@@ -36,7 +43,6 @@ public class Obelisk : MonoBehaviour
             OnActivation.Invoke(gameObject.name);
             SendData();
             StartTweens();
-            InitializeBeam();
             _activated = true;
         }
     }
@@ -49,13 +55,29 @@ public class Obelisk : MonoBehaviour
     }
 
     void StartTweens(){
-        LeanTween.rotateAround(tinyPillars, Vector3.up, 360, spinSpeed);
-        LeanTween.rotateAround(mainPillar, Vector3.up, 360, spinSpeed);
+        _audio.clip = StoneRotate;
+        _audio.loop = true;
+        _audio.Play();
+        LeanTween.rotateAround(tinyPillars, Vector3.up, 180, spinSpeed).setOnComplete(InitializeBeam);
+        LeanTween.rotateAround(mainPillar, Vector3.up, 180, spinSpeed);
         LeanTween.moveLocalY(mainPillar, 1.5f, floatSpeed).setEaseInOutSine().setLoopPingPong();
     }
 
     void InitializeBeam(){
+        StartCoroutine(Sounds());
         _beam.Go();
+    }
+
+    IEnumerator Sounds(){
+        _audio.loop = false;
+        _audio.clip = PowerUp;
+        _audio.Play();
+        while(_audio.isPlaying){
+            yield return null;
+        }
+        _audio.clip = ActiveSound;
+        _audio.loop = true;
+        _audio.Play();
     }
 
     public void Deserialize(SaveData saveData){
