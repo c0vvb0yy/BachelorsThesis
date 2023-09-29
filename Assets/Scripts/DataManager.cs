@@ -18,7 +18,7 @@ public class DataManager : MonoBehaviour{
     void OnEnable(){
         InformationLogger.OnCollect += Save;
         CollectableMushroom.OnCollect += Save;
-        CollectableSword.OnCollect -= Save;
+        CollectableSword.OnCollect += Save;
     }
     private void OnDisable(){
         InformationLogger.OnCollect -= Save;
