@@ -12,14 +12,15 @@ public class PlayerInteraction : MonoBehaviour
     ThirdPersonController _controls;
 
     bool _inDialogue;
-    // Start is called before the first frame update
-    void Start()
-    {
+
+    private void Awake() {
+    
         _input = GetComponent<StarterAssetsInputs>();
         _controls = GetComponent<ThirdPersonController>();
-        _input.interact = false;
-        //_inDialogue = true;
-        //_controls.RestrainMovement();
+        //StartDialogue(GameObject.Find("Witch").GetComponent<NPCDialogueManager>());
+    }
+    // Start is called before the first frame update
+    void Start(){
     }
 
     // Update is called once per frame
@@ -43,7 +44,11 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    public void StartDialogue(){
+    public void StartDialogue(NPCDialogueManager dialogueManager = null){
+        if(_dialogueManager == null && dialogueManager != null){
+            _dialogueManager = dialogueManager;
+        }
+        Cursor.lockState = CursorLockMode.Confined;
         _dialogueManager.StartDialogue();
         _input.interact = false;
         _inDialogue = true;
@@ -51,6 +56,7 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     public void EndDialogue(){
+        Cursor.lockState = CursorLockMode.Locked;
         _dialogueManager.EndDialogue();
         _inDialogue = false;
         _input.interact = false;

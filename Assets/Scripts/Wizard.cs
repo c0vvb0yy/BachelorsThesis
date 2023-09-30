@@ -11,12 +11,16 @@ public class Wizard : MonoBehaviour
     IdleBehaviour _idling;
     NavMeshAgent _agent;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _animator = GetComponent<Animator>();
         _idling = GetComponent<IdleBehaviour>();
         _agent = GetComponent<NavMeshAgent>();
-        _idling.StartConversation();
+    }
+
+    private void Start() {
+        //_idling.StartConversation();
+        _agent.isStopped = true;
     }
 
     // Update is called once per frame

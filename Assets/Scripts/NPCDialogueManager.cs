@@ -51,6 +51,10 @@ public class NPCDialogueManager : MonoBehaviour
     }
 
     public void StartDialogue(){
+        if(_idleBehaviour == null){
+            _idleBehaviour = GetComponent<IdleBehaviour>();
+            _dialogueRunner = GameObject.FindGameObjectWithTag("Runner").GetComponent<DialogueRunner>();
+        }
         _idleBehaviour.StartConversation();
         _dialogueRunner.StartDialogue(_starterNode);
         //_animator.SetTrigger("EnterDialogue");

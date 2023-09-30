@@ -20,7 +20,6 @@ public class DragonAttack : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Trigger enter");
         if(other.gameObject.tag == "Player"){
             Attack();
         }
