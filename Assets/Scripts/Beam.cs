@@ -9,6 +9,15 @@ public class Beam : MonoBehaviour
     public Transform _dragon;
     bool _isActive;
     // Start is called before the first frame update
+    
+    private void OnEnable() {
+        Dragon.DragonDeath += EndEffect;
+    }
+
+    private void OnDisable() {
+        Dragon.DragonDeath -= EndEffect;
+    }
+
     void Start(){
         _vfx = GetComponent<VisualEffect>();
     }
@@ -31,5 +40,9 @@ public class Beam : MonoBehaviour
         var offset = _dragon.position - transform.position;
         var distance = offset.magnitude / 6;
         _vfx.SetFloat("length", distance);
+    }
+    void EndEffect(){
+        _isActive = false;
+        _vfx.Stop();
     }
 }

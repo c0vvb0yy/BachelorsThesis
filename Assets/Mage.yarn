@@ -26,10 +26,10 @@ tags:
 ---
 <<if $obelisks >= 3>>
 <<jump Dragon>>
-<<else>>
+<<endif>>
 <<if $obelisks > 0>>
-<<AddObeliskTalk Mage>>
 Mage: You made it! You got them to activate! Ok here's what i know: 
+<<AddObeliskTalk Mage>>
 Mage: Legend tells that if the dragon wakes it can be put back to peaceful slumber if all three obelisks are activated. I don't know how or why but it seems you are capable of doing just that.
 Mage: That way the dragon doesn't come to harm and the viallagers mustn't worry needlessly
 Mage: I can tell you more about the Obelisks if you wish.
@@ -37,7 +37,6 @@ Mage: I can tell you more about the Obelisks if you wish.
 Mage: You haven't activated any obelisks yet. Maybe hit them with your sword?
 Mage: It's very important to me, that if you are able to activate the obelisks, that you do so. 
 Mage: It's the only way this all can end peacefully...
-<<endif>>
 <<endif>>
 ===
 title: ObeliskTalk
