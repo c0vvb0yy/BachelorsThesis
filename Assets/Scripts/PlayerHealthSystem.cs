@@ -8,14 +8,17 @@ public class PlayerHealthSystem : MonoBehaviour
     private float _currentHealth;
     [SerializeField] GameObject onHitEffect; 
     [SerializeField] Healthbar healthBar; 
+    [SerializeField] AudioClip onHitSound;
     
 
     Animator _animator;
+    AudioSource _audio;
     // Start is called before the first frame update
     void Start()
     {
         _currentHealth = maxHealth;
         _animator = GetComponent<Animator>();
+        _audio = GetComponent<AudioSource>();
     }
 
     public void TakeDamage(float damageAmount){
@@ -35,6 +38,8 @@ public class PlayerHealthSystem : MonoBehaviour
     public void SpawnHitEffect(Vector3 point){
         GameObject hitVFX = Instantiate(onHitEffect, this.transform);
         hitVFX.transform.position = point;
+        _audio.clip = onHitSound;
+        _audio.Play();
         Destroy(hitVFX, 2f);
     }
 }
