@@ -60,6 +60,7 @@ public class Dragon : MonoBehaviour
         _variableStorage.UpdateDragonStatus(pacified);
         DragonSleep.Invoke();
         _agent.isStopped = true;
+        GetComponent<Enemy>().dragon = true;
     }
     void OnDeath(GameObject dragon){
         if(dragon == this.gameObject){

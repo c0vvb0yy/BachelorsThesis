@@ -45,6 +45,8 @@ public class Enemy : MonoBehaviour
 
     public static event Action<GameObject> OnDeath;
 
+    [HideInInspector] public bool dragon;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -107,6 +109,8 @@ public class Enemy : MonoBehaviour
                 _agent.SetDestination(_player.transform.position);
         }
         _newDestinationCoolDown -= Time.deltaTime;
+        if(dragon)
+            return;
         transform.LookAt(_player.transform);
     }
 

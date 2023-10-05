@@ -2577,7 +2577,7 @@ PrefabInstance:
     - target: {fileID: 4905393803222867149, guid: b7e88667c4e3dde4f8c624a55359c2a9,
         type: 3}
       propertyPath: m_Name
-      value: TowerPointOfInterest (1)
+      value: UpWaterfallPointOfInterest
       objectReference: {fileID: 0}
     - target: {fileID: 4905393803222867149, guid: b7e88667c4e3dde4f8c624a55359c2a9,
         type: 3}
