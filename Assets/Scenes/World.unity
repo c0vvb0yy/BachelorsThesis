@@ -46247,7 +46247,7 @@ PrefabInstance:
     - target: {fileID: 4416926081852918493, guid: 64dce48905ffd9b4293e595fa6941544,
         type: 3}
       propertyPath: m_DefaultActionMap
-      value: f62a4b92-ef5e-4175-8f4c-c9075429d32c
+      value: 99606318-896a-40e6-949a-a93a4272a4c6
       objectReference: {fileID: 0}
     - target: {fileID: 7933603722019672155, guid: 64dce48905ffd9b4293e595fa6941544,
         type: 3}
