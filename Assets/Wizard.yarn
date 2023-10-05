@@ -1,38 +1,103 @@
 ﻿title: Wizard
 tags:
 ---
-The Wizard: Yes! It lives!!!
-The Wizard: YOU live!
-The Wizard: I've been working so long on you, my robot.
-The Wizard: I... I forgot what I made you for.
-The Wizard: Why don't you look around and explore a bit. The world is big!
-The Wizard: I'll get back to you when I remember
+The Witch: Yes! It lives!!!
+<<set $toldAboutFarm = false>>
+<<set $toldAboutMushroom = false>>
+The Witch: YOU live!
+The Witch: I've been working so long on you, my robot.
+The Witch: I... I forgot what I made you for.
+The Witch: Why don't you look around and explore a bit. The world is big!
+The Witch: I'll get back to you when I remember
 ===
 
 title: WizardIdle
 tags:
 ---
 <<if $farmQuestComplete == true>>
-<<if $mushroomQuestComplete == true>>
-The Wizard: WOW! You've come around so much! I'm proud of you.
-The Wizard: I hope you had a lot of fun helping the people around you.
-The Wizard: And playing this game <3
-<<else>>	
-The Wizard: You helped out at the farm? that's nice! Did you bring in the harvest?
-The Wizard: ...
-The Wizard: YOU WHAT! THAT'S DANGEROUS!
-The Wizard: I'm glad you didn't come to harm. Also yea that <i>is</i> a cool sword.
-The Wizard: If you want i can teach you some magic blasts some time. :)
+<<if $toldAboutFarm == false>>
+<<jump WitchFarm>>
+<<else>>
+The Witch: I'm sure the people are still happy you've defeated the monsters on the farm. 
 <<endif>>
-<<else>>
+<<endif>>
 <<if $mushroomQuestComplete == true>>
-The Wizard: You...collected some mushrooms?
-The Wizard: OF COURSE! That's exactly what I wanted to ask of you!
-The Wizard: ...
-The Wizard: You gave them to ol' gertrude in the village? There's no more mushrooms in all of the woods?
-The Wizard: ....ok..... that's fine. We'll just wait for them to grow back.
+<<if $toldAboutMushroom == false>>
+<<jump WitchMushroom>>
 <<else>>
-The Wizard: You haven't look around at all yet. Now get along! Shoo!
+The Witch: We cannot forget about collecting some mushrooms for ourselves next time!
+<<endif>>
+<<endif>>
+<<if $dragonAsleep == true>>
+<<if $toldAboutDragon == false>>
+<<jump WitchDragon>>
+<<else>>
+The Witch: Putting a dragon to sleep.... What a feat!
+<<endif>>
+<<elseif $farmQuestComplete == false>>
+<<if $mushroomQuestComplete == false>>
+The Witch: You haven't looked around at all yet! Shoo! Get out into the world and explore!
+<<endif>> 
+<<endif>>
+<<if $farmQuestComplete == true>>
+<<if $mushroomQuestComplete == true>>
+<<if $dragonAsleep == true>>
+<<jump WitchEnd>>
+<<endif>>
+<<endif>>
+<<endif>>
+===
+title: WitchFarm
+tags:
+---
+The Witch: You helped out at the farm? that's nice! Did you bring in the harvest?
+The Witch: ...
+The Witch: YOU WHAT! THAT'S DANGEROUS!
+The Witch: I'm glad you didn't come to harm. Also yea that <i>is</i> a cool sword.
+<<set $toldAboutFarm = true>>
+The Witch: If you want i can teach you some magic blasts some time. :)
+<<if $mushroomQuestComplete == true>>
+<<jump WitchMushroom>>
+<<endif>>
+===
+title: WitchMushroom
+tags:
+---
+The Witch: You...collected some mushrooms?
+The Witch: OF COURSE! That's exactly what I wanted to ask of you!
+The Witch: ...
+The Witch: You gave them to ol' gertrude in the village? There's no more mushrooms in all of the woods?
+<<set $toldAboutMushroom = true>>
+The Witch: ....ok..... that's fine... We'll just wait for them to grow back. :)
+<<if $dragonAsleep>>
+<<jump WitchDragon>>
+<<endif>>
+===
+title: WitchDragon
+tags:
+---
+The Witch: You put a dragon to sleep?
+The Witch: There was a dragon on the loose?! 
+<<set $toldAboutDragon = true>>
+The Witch: Never in my dreams have I imagined that you'd go on to become so accomplished! I'm impressed!!!
+<<if $farmQuestComplete == true>>
+<<if $mushroomQuestComplete == true>>
+<<if $dragonAsleep == true>>
+<<jump WitchEnd>>
+<<endif>>
+<<endif>>
+<<endif>>
+===
+title: WitchEnd
+tags:
+---
+<<if $farmQuestComplete == true>>
+<<if $mushroomQuestComplete == true>>
+<<if $dragonAsleep == true>>
+The Witch: WOW! You've come around so much! I'm proud of you.
+The Witch: I hope you had a lot of fun helping the people around you.
+The Witch: And playing this game <3
+<<endif>>
 <<endif>>
 <<endif>>
 ===

@@ -1,6 +1,6 @@
 title: SmithDialogue
 ---
-<<acceptQuest Smith>>
+<<acceptQuest Smith DIALOGUE BEARER>>
 Smith: Oh, hello! Didn't see you there.
 Smith: I'm a bit busy at the moment.
 Smith: Y'see the farms down the road have been overrun with monsters
@@ -20,6 +20,9 @@ Smith: When you suceed in defeating the monster I will give you a shiny new swor
 ===
 title: SmithQuestComplete
 ---
+<<if $dragonAsleep == true>>
+<<jump SmithDragon>>
+<<endif>>
 <<if $farmQuestComplete == true>>
 Smith: I heard the news! Thank you!!!
 <<getQuestSword Player>>
@@ -36,4 +39,9 @@ Smith: If you're already so inclined to help us... Will you do it once more?
 Smith: I've just finished this sword, for the noble fighter who'll take down the dragon for us. Please have it.
 <<getQuestSword Player>>
 Smith: Obviously there's no obligation to use this to slay the dragon. But you're probably our best bet anyway. ...Thank you.
+===
+title: SmithDragon
+---
+Smith: You defeated the dragon? Amazing! I knew I put my blade in the right hands with you
+<<getQuestSword Player>>
 ===

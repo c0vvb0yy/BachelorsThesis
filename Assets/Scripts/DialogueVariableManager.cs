@@ -24,7 +24,7 @@ public class DialogueVariableManager : MonoBehaviour
         variableStorage.SetValue("$farmQuestComplete", state);
     }
     public void UpdateMushroomQuest(bool state){
-        variableStorage.SetValue("$MushroomQuestComplete", state);
+        variableStorage.SetValue("$mushroomQuestComplete", state);
     }
     public void UpdateCollectedMushrooms(int amount){
         variableStorage.SetValue("$MushroomsCollected", amount);
@@ -34,5 +34,9 @@ public class DialogueVariableManager : MonoBehaviour
         variableStorage.SetValue("$obelisks", _obeliskAmount);
         string key = "$"+obelisk+"Activated";
         variableStorage.SetValue(key, true);
+    }
+
+    public void UpdateDragonStatus(bool state){
+        variableStorage.SetValue("$dragonAsleep", state);
     }
 }

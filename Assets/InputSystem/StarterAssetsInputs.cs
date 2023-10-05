@@ -185,6 +185,7 @@ namespace StarterAssets
 		private void FinishMushroomQuest(bool isPressed){
             var questManager = GetQuestManager<MushroomQuestManager>();
 			questManager.DebugFinishQuest(!questManager._fulfilled);
+			Debug.Log("Quest finished is: "+ questManager._fulfilled);
         }
 		private T GetQuestManager<T>(){
 			var objects = GameObject.FindGameObjectsWithTag("QuestManager");

@@ -20,6 +20,10 @@ title: OldIdle
 ---
 <<if $MushroomQuestComplete == true>>
 Village Elder: You've helped me wonderfully by bringing me those mushrooms
+<<if $dragonAsleep == true>>
+Village Elder: AND you've pacified the dragon?
+Village Elder: I can't thank you enough.
+<<endif>>
 Village Elder: Now if only someone would take care of that dragon...
 <<else>>
 <<jump OldQuest>>

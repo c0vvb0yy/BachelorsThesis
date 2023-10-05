@@ -14,6 +14,7 @@ public class Dragon : MonoBehaviour
     Animator _animator;
     Enemy _health;
     NavMeshAgent _agent;
+    DialogueVariableManager _variableStorage;
     float _neededObelisks;
     [HideInInspector] public List<string> activatedObelisks = new();
 
@@ -38,6 +39,8 @@ public class Dragon : MonoBehaviour
         _animator = GetComponent<Animator>();
         _health = GetComponent<Enemy>();
         _agent = GetComponent<NavMeshAgent>();
+        _variableStorage = GameObject.FindWithTag("DVS").GetComponent<DialogueVariableManager>();
+        
         _player = GameObject.FindWithTag("Player").GetComponent<ThirdPersonController>();
         _neededObelisks = GameObject.FindGameObjectsWithTag("Obelisk").Length;
     }
@@ -54,6 +57,7 @@ public class Dragon : MonoBehaviour
         pacified = true;
         _health.ReduceHealth(100);
         _animator.SetTrigger("Sleep");
+        _variableStorage.UpdateDragonStatus(pacified);
         DragonSleep.Invoke();
         _agent.isStopped = true;
     }

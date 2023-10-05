@@ -1,6 +1,9 @@
 ﻿title: Shepherd
 tags:
 ---
+<<if $dragonAsleep == true>>
+<<jump DragonSleep>>
+<<endif>>
 Shepherd: *sigh* The animals don't even know about the dragon. Their lives sure are easy.
 Shepherd: I gotta spend all day making sure nothing happens to them.
 Shepherd: To be fair, they're so cute I would go to the ends of the world for them <3
@@ -8,6 +11,9 @@ Shepherd: To be fair, they're so cute I would go to the ends of the world for th
 title: Bench
 tags:
 ---
+<<if $dragonAsleep == true>>
+<<jump DragonSleep>>
+<<endif>>
 Red: ...And you know what? I don't get why everyone is so upset about that dragon.
 Red: It's not even doing anything.
 Blue: ...yet. But I agree. Have you been at the upper lake recently?
@@ -20,6 +26,9 @@ Red: Hell yea. That reminds me-
 title: Lumberjack
 tags:
 ---
+<<if $dragonAsleep == true>>
+<<jump DragonSleep>>
+<<endif>>
 Lumberjack: Hello there! Looking to go out into the forest? I'd be careful if I were you.
 Lumberjack: There's some weird, mushroom-looking creatures there. Got bitten by one! I'm telling you it's that dragon that's woken up that made them appear
 Lumberjack: I'm glad I already got enough wood for the village to last us a few months. So now I'm just basking in the sunlight.
@@ -27,6 +36,9 @@ Lumberjack: I'm glad I already got enough wood for the village to last us a few 
 title: GossipWitch
 tags:
 ---
+<<if $dragonAsleep == true>>
+<<jump DragonSleep>>
+<<endif>>
 [You Eavesdrop on their conversation]
 Green: Have you heard what the old witch has been up to?
 Yellow: No. Do tell!
@@ -36,6 +48,9 @@ Yellow: Ooooh... spooky! I wonder what for. I'll have to look out for that when 
 title: GossipMage
 tags:
 ---
+<<if $dragonAsleep == true>>
+<<jump DragonSleep>>
+<<endif>>
 [You eavesdrop on their conversation]
 Yellow: Speaking of the witch. I'm pretty sure there's a connection between them and the mage living near the mountains... right?
 Green: Oh, <i>absolutely!</i> Have you ever seen them together? That tension screams secret shared backstory!
@@ -43,8 +58,16 @@ Green: Oh, <i>absolutely!</i> Have you ever seen them together? That tension scr
 title: Responsible
 tags:
 ---
+<<if $dragonAsleep == true>>
+<<jump DragonSleep>>
+<<endif>>
 Guy: Everyone is throwing a fuss about some dragon or some monsters.
 Guy: But who's gonna keep doing the laundry? That's right. Good ol' me
 Responsible Guy: *sigh* At least there's satisfaction in a job well done.
 Guy in Denial: If you'll excuse me, I'll go back to try and pretend I have control over myself and the situation now.
+===
+title: DragonSleep
+tags:
+---
+What? The Dragon won't be a problem anymore? Wow! Thank you!
 ===
