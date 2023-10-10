@@ -13,7 +13,7 @@ Village Elder: The dragon awakening I mean, the monsters are a more usual occure
 Village Elder: But you see how both of these are concerning for us.
 Village Elder: And now neither I nor anyone else has the time to collect the mushrooms I need...
 Village Elder:Say, you wouldn't happen to have some free time on your hands to snoop around the forest just behind this town? 
-Village Elder: 5 Mushrooms is all I need, they have red caps, you cant miss them!
+Village Elder: 5 Mushrooms is all I need, they have <b>white</b> caps, you cant miss them!
 <<initUI Forest>>
 ===
 title: OldIdle

@@ -19,6 +19,7 @@ public class Dragon : MonoBehaviour
     [HideInInspector] public List<string> activatedObelisks = new();
 
     public bool pacified;
+    public DragonAttack dragonAttack;
 
     public static event Action DragonSleep;
     public static event Action DragonDeath;
@@ -55,6 +56,7 @@ public class Dragon : MonoBehaviour
 
     void Weaken(){
         pacified = true;
+        dragonAttack.isActive = false;
         _health.ReduceHealth(100);
         _animator.SetTrigger("Sleep");
         _variableStorage.UpdateDragonStatus(pacified);

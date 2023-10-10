@@ -9,6 +9,8 @@ public class EnemyQuestManager : MonoBehaviour
     public bool questReady = false;
 
     public DialogueVariableManager variableStorage;
+
+    public Animator FarmerAnimator;
     
     private void OnEnable() {
         DataManager.OnLoad += Deserialize;
@@ -36,6 +38,7 @@ public class EnemyQuestManager : MonoBehaviour
         questFulfilled = true;
         variableStorage.UpdateFarmQuest(questFulfilled);
         GameObject.Find("DataManager").GetComponent<DataManager>().Save();
+        FarmerAnimator.SetTrigger("QuestDone");
         Debug.Log("Quest Success!");
         SendEventData();
     }
@@ -43,6 +46,7 @@ public class EnemyQuestManager : MonoBehaviour
         variableStorage.variableStorage.TryGetValue("$questReady", out questReady);
         questFulfilled = fullfilled;
         variableStorage.UpdateFarmQuest(questFulfilled);
+        FarmerAnimator.SetTrigger("QuestDone");
     }
     void SendEventData(){
         var eventData = new Dictionary<string, object>{

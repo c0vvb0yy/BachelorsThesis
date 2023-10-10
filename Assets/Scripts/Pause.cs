@@ -25,6 +25,7 @@ public class Pause : MonoBehaviour
             } 
             Time.timeScale = PauseCanvas.activeInHierarchy ? 0 : 1;
             Cursor.lockState = PauseCanvas.activeInHierarchy ? CursorLockMode.Confined : CursorLockMode.Locked;
+            _input.cursorInputForLook = PauseCanvas.activeInHierarchy ? false : true;
             UpdateText();
             _input.pause = false;
         }

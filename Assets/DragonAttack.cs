@@ -8,6 +8,7 @@ public class DragonAttack : MonoBehaviour
     public float attackForce;
     public Transform tailTip;
     ThirdPersonController _player;
+    public bool isActive = true;
     // Start is called before the first frame update
     void Start(){
         _player = GameObject.FindWithTag("Player").GetComponent<ThirdPersonController>();
@@ -17,10 +18,11 @@ public class DragonAttack : MonoBehaviour
         Debug.Log("knockback");
         
         _player.KnockBack(tailTip.position, attackForce);
+        
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "Player"){
+        if(isActive && other.gameObject.tag == "Player"){
             Attack();
         }
     }

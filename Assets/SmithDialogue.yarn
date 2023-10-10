@@ -1,9 +1,9 @@
 title: SmithDialogue
 ---
-<<acceptQuest Smith DIALOGUE BEARER>>
 Smith: Oh, hello! Didn't see you there.
 Smith: I'm a bit busy at the moment.
-Smith: Y'see the farms down the road have been overrun with monsters
+<<acceptQuest Smith>>
+Smith: Y'see the vegetable farms down the road have been overrun with monsters.
 <<if $farmQuestComplete == true>>
 <<jump EarlyQuestComplete>>
 <<endif>>

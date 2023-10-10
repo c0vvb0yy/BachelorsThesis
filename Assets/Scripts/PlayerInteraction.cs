@@ -17,10 +17,12 @@ public class PlayerInteraction : MonoBehaviour
     
         _input = GetComponent<StarterAssetsInputs>();
         _controls = GetComponent<ThirdPersonController>();
-        //StartDialogue(GameObject.Find("Witch").GetComponent<NPCDialogueManager>());
+        
     }
     // Start is called before the first frame update
     void Start(){
+        _inDialogue = true;
+        StartDialogue(GameObject.Find("Witch").GetComponent<NPCDialogueManager>());
     }
 
     // Update is called once per frame
