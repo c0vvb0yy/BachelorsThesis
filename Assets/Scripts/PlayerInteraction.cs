@@ -36,7 +36,7 @@ public class PlayerInteraction : MonoBehaviour
     void OnTriggerEnter(Collider other){
 
         if(other.CompareTag("NPC")){
-             _dialogueManager = other.gameObject.GetComponentInChildren<NPCDialogueManager>();
+            _dialogueManager = other.gameObject.GetComponentInChildren<NPCDialogueManager>();
         }
 
     }

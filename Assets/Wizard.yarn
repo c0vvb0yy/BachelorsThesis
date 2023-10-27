@@ -14,6 +14,12 @@ The Witch: I'll get back to you when I remember
 title: WizardIdle
 tags:
 ---
+<<if $PlayerIsDead == true>>
+<<jump WitchDead>>
+<<endif>>
+<<if $PlayerCurrentHealth < 25>>
+<<jump WitchHeal>>
+<<endif>>
 <<if $farmQuestComplete == true>>
 <<if $toldAboutFarm == false>>
 <<jump WitchFarm>>
@@ -100,4 +106,20 @@ The Witch: And playing this game <3
 <<endif>>
 <<endif>>
 <<endif>>
+===
+title: WitchDead
+tags:
+---
+The Witch: Thank Goodness you're awake again!
+The Witch: A Villager brought you here all broken down. I patched you up as best as I could. 
+The Witch: You gotta take better care of yourself! If you get ever hurt again just come by here, I can make the needed repairs whenever.
+The Witch: And I really appreciate knowing you're hurt but here rather than in some ditch
+The Witch: Now go back to your adventures! 
+===
+title: WitchHeal
+tags:
+---
+The Witch: O Dearie! Look at you all battered up. Nothing a little magic can't fix.
+<<Heal Player>>
+The Witch: Here you go good as new~!
 ===

@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour
     void CombatBehaviour(){
          
         _animator.SetFloat("Speed", _agent.hasPath ? 1:0);
-        if(_timePassed >= attackCoolDown){
+        if(_timePassed >= attackCoolDown && !_player.GetComponent<PlayerHealthSystem>().IsDead){
             if(Vector3.Distance(_player.transform.position, transform.position) <= attackRange){
                 _agent.SetDestination(transform.position);
                 _animator.SetFloat("Speed", _agent.hasPath ? 1:0);

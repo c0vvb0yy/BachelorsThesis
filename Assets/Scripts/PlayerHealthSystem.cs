@@ -1,29 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine;
+using UnityEngine.UI;
+using Yarn.Unity;
 
 public class PlayerHealthSystem : MonoBehaviour
 {
-    [SerializeField] float maxHealth = 100f; 
-    private float _currentHealth;
+    [SerializeField] int maxHealth; 
+    private int _currentHealth;
     [SerializeField] GameObject onHitEffect; 
     [SerializeField] Healthbar healthBar; 
     [SerializeField] AudioClip onHitSound;
     
-
+    [SerializeField] GameObject deathScreenCanvas;
+    ThirdPersonController _player;
     Animator _animator;
     AudioSource _audio;
+    Vector3 _startPos;
+
+    DialogueVariableManager _variableStorage;
+
+    public bool IsDead;
     // Start is called before the first frame update
     void Start()
     {
         _currentHealth = maxHealth;
         _animator = GetComponent<Animator>();
         _audio = GetComponent<AudioSource>();
+        _player = GetComponent<ThirdPersonController>();
+        _variableStorage = GameObject.FindWithTag("DVS").GetComponent<DialogueVariableManager>();
+        _startPos = transform.position;
+        LeanTween.reset();
+        LeanTween.moveLocalY(deathScreenCanvas, Screen.height, 1.5f).setEaseInExpo();
     }
 
     public void TakeDamage(float damageAmount){
-        _currentHealth -= damageAmount;
+        _currentHealth -= (int)damageAmount;
         healthBar.UpdateHealthbar(maxHealth, _currentHealth);
+        _variableStorage.UpdatePlayerHealth(_currentHealth);
         _animator.SetTrigger("TakeDamage");
         
         if(_currentHealth <= 0){
@@ -32,7 +47,21 @@ public class PlayerHealthSystem : MonoBehaviour
     }
 
     void Die(){
-        Destroy(this.gameObject);
+        IsDead = true;
+        _animator.SetTrigger("Death");
+        LeanTween.moveLocalY(deathScreenCanvas, 0, 1.5f).setEaseInExpo().setDelay(3.5f).setOnComplete(Respawn);
+        _variableStorage.UpdatePlayerDeathStatus(true);
+    }
+
+    void Respawn(){
+        _player.Teleport(_startPos);
+        _currentHealth = maxHealth;
+        healthBar.UpdateHealthbar(maxHealth, _currentHealth);
+        GetComponent<PlayerInteraction>().StartDialogue(GameObject.Find("Witch").GetComponent<NPCDialogueManager>());
+        LeanTween.moveLocalY(deathScreenCanvas, Screen.height, 1.5f).setEaseInExpo().setDelay(1);
+        _animator.SetTrigger("Respawn");
+        _variableStorage.UpdatePlayerDeathStatus(false);
+        IsDead = false;
     }
 
     public void SpawnHitEffect(Vector3 point){
@@ -41,5 +70,11 @@ public class PlayerHealthSystem : MonoBehaviour
         _audio.clip = onHitSound;
         _audio.Play();
         Destroy(hitVFX, 2f);
+    }
+
+    [YarnCommand]
+    public void Heal(){
+        _currentHealth = maxHealth;
+        healthBar.UpdateHealthbar(maxHealth, _currentHealth);
     }
 }

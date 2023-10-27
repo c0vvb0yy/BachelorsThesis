@@ -39,4 +39,11 @@ public class DialogueVariableManager : MonoBehaviour
     public void UpdateDragonStatus(bool state){
         variableStorage.SetValue("$dragonAsleep", state);
     }
+    public void UpdatePlayerDeathStatus(bool died){
+        variableStorage.SetValue("$PlayerIsDead", died);
+    }
+
+    public void UpdatePlayerHealth(int amount){
+        variableStorage.SetValue("$PlayerCurrentHealth", amount);
+    }
 }
