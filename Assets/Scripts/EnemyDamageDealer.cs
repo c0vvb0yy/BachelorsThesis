@@ -6,7 +6,8 @@ public class EnemyDamageDealer : MonoBehaviour
 {
     public bool canDealDamage;
     public bool hasDealtDamage;
-    public float attackRange, attackDamage;
+    public float attackRange;
+    public int attackDamage;
     public float attackheight;
     private Vector3 _attackOrigin;
     // Start is called before the first frame update
@@ -30,7 +31,7 @@ public class EnemyDamageDealer : MonoBehaviour
                 Debug.Log("attack");
                 if(hit.transform.TryGetComponent(out PlayerHealthSystem playerHealth)){
                     Debug.Log("attack hit");
-                    playerHealth.TakeDamage(attackDamage);
+                    playerHealth.TakeDamage(this.gameObject, attackDamage);
                     playerHealth.SpawnHitEffect(hit.point);
                     hasDealtDamage = true;
                 }

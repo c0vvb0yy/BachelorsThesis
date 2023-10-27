@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
+using Unity.Services.Analytics;
 using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
@@ -35,22 +36,26 @@ public class PlayerHealthSystem : MonoBehaviour
         LeanTween.moveLocalY(deathScreenCanvas, Screen.height, 1.5f).setEaseInExpo();
     }
 
-    public void TakeDamage(float damageAmount){
-        _currentHealth -= (int)damageAmount;
+    public void TakeDamage(GameObject enemy, int amount){
+        _currentHealth -= amount;
         healthBar.UpdateHealthbar(maxHealth, _currentHealth);
         _variableStorage.UpdatePlayerHealth(_currentHealth);
         _animator.SetTrigger("TakeDamage");
         
         if(_currentHealth <= 0){
-            Die();
+            Die(enemy);
         }
     }
 
-    void Die(){
+    void Die(GameObject enemy){
         IsDead = true;
         _animator.SetTrigger("Death");
         LeanTween.moveLocalY(deathScreenCanvas, 0, 1.5f).setEaseInExpo().setDelay(3.5f).setOnComplete(Respawn);
+        var eventData = new Dictionary<string, object>{
+            {"KilledBy", enemy.name},
+        }; 
         _variableStorage.UpdatePlayerDeathStatus(true);
+        AnalyticsService.Instance.CustomData("PlayerDeath", eventData);
     }
 
     void Respawn(){
@@ -74,6 +79,12 @@ public class PlayerHealthSystem : MonoBehaviour
 
     [YarnCommand]
     public void Heal(){
+        var eventData = new Dictionary<string, object>{
+            {"CurrentHitpoints", _currentHealth},
+            {"HitpointPercentage", (_currentHealth/maxHealth)*100},
+            {"Difference", maxHealth - _currentHealth}
+        };
+        AnalyticsService.Instance.CustomData("PlayerHeal", eventData);
         _currentHealth = maxHealth;
         healthBar.UpdateHealthbar(maxHealth, _currentHealth);
     }
