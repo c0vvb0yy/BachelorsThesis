@@ -46315,7 +46315,17 @@ PrefabInstance:
     - target: {fileID: 4416926081852918493, guid: 64dce48905ffd9b4293e595fa6941544,
         type: 3}
       propertyPath: m_DefaultActionMap
-      value: 99606318-896a-40e6-949a-a93a4272a4c6
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918493, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: KeyboardMouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918493, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7933603722019672155, guid: 64dce48905ffd9b4293e595fa6941544,
         type: 3}
@@ -66323,11 +66333,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1036460237, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: 
+      value: Camera
       objectReference: {fileID: 0}
     - target: {fileID: 1036460237, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1865130790, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_CameraDistance

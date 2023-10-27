@@ -429,7 +429,7 @@ namespace StarterAssets
             {
                 if (FootstepAudioClips.Length > 0)
                 {
-                    if(!_audioSource.isPlaying){
+                    if(!_audioSource.isPlaying || playsFootstepSound()){
                         var index = Random.Range(0, FootstepAudioClips.Length);
                         _audioSource.clip = FootstepAudioClips[index];
                         _audioSource.Play();
@@ -437,6 +437,17 @@ namespace StarterAssets
                     //AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
                 }
             }
+        }
+
+        bool playsFootstepSound(){
+            var track = _audioSource.clip;
+            foreach (var clip in FootstepAudioClips)
+            {
+                if(clip == track){
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void OnLand(AnimationEvent animationEvent)
