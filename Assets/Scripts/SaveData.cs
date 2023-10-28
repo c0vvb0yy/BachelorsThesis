@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SaveData{
     public Vector3 playerPosition;
+    public int playerHealth;
     public List<string> collectedPOIs;
     public List<string> activeObelisks;
     public bool farmQuest_done;

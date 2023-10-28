@@ -4,6 +4,7 @@ tags:
 The Witch: Yes! It lives!!!
 <<set $toldAboutFarm = false>>
 <<set $toldAboutMushroom = false>>
+<<set $PlayerCurrentHealth = 25>>
 The Witch: YOU live!
 The Witch: I've been working so long on you, my robot.
 The Witch: I... I forgot what I made you for.

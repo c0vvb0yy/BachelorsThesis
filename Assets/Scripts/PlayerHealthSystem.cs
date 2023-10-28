@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
 using Unity.Services.Analytics;
@@ -23,6 +22,13 @@ public class PlayerHealthSystem : MonoBehaviour
     DialogueVariableManager _variableStorage;
 
     public bool IsDead;
+
+    void OnEnable(){
+        DataManager.OnLoad += Deserialize;
+    }
+    void OnDisable() {
+        DataManager.OnLoad -= Deserialize;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +47,7 @@ public class PlayerHealthSystem : MonoBehaviour
         healthBar.UpdateHealthbar(maxHealth, _currentHealth);
         _variableStorage.UpdatePlayerHealth(_currentHealth);
         _animator.SetTrigger("TakeDamage");
-        
+
         if(_currentHealth <= 0){
             Die(enemy);
         }
@@ -50,6 +56,7 @@ public class PlayerHealthSystem : MonoBehaviour
     void Die(GameObject enemy){
         IsDead = true;
         _animator.SetTrigger("Death");
+        _player.RestrainMovement();
         LeanTween.moveLocalY(deathScreenCanvas, 0, 1.5f).setEaseInExpo().setDelay(3.5f).setOnComplete(Respawn);
         var eventData = new Dictionary<string, object>{
             {"KilledBy", enemy.name},
@@ -87,5 +94,14 @@ public class PlayerHealthSystem : MonoBehaviour
         AnalyticsService.Instance.CustomData("PlayerHeal", eventData);
         _currentHealth = maxHealth;
         healthBar.UpdateHealthbar(maxHealth, _currentHealth);
+    }
+
+    private void Deserialize(SaveData data){
+        _currentHealth = data.playerHealth;
+        healthBar.UpdateHealthbar(maxHealth, _currentHealth);
+    }
+
+    public int getHealth(){
+        return _currentHealth;
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
+using Unity.Services.Analytics;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour{
@@ -41,6 +42,7 @@ public class DataManager : MonoBehaviour{
         }
         SaveData saveData = new(){
             playerPosition = Player.transform.position,
+            playerHealth = Player.GetComponent<PlayerHealthSystem>().getHealth(),
             collectedPOIs = POILogger.collectedPoints,
             activeObelisks = Dragon.activatedObelisks,
             farmQuest_done = FarmQuestManager.questFulfilled,
@@ -52,6 +54,10 @@ public class DataManager : MonoBehaviour{
         };
         string json = JsonUtility.ToJson(saveData);
         SaveSystem.Save(json);
+        var eventData = new Dictionary<string, object>{
+            {"Data", json}
+        };
+        AnalyticsService.Instance.CustomData("PlayerSave", eventData);
         Debug.Log("SAVE");
     }
 
@@ -59,6 +65,7 @@ public class DataManager : MonoBehaviour{
         SaveData saveData = SaveSystem.Load();
         if(saveData != null){
             OnLoad.Invoke(saveData);
+            AnalyticsService.Instance.CustomData("PlayerLoad");
         }else{
             Debug.LogWarning("no save data");
         }
@@ -69,4 +76,5 @@ public class DataManager : MonoBehaviour{
         Save();
         Application.Quit();
     }
+
 }

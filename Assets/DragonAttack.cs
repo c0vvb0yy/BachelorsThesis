@@ -6,19 +6,21 @@ using UnityEngine;
 public class DragonAttack : MonoBehaviour
 {
     public float attackForce;
+    public int attackDamage;
     public Transform tailTip;
     ThirdPersonController _player;
+    PlayerHealthSystem _playerHealth;
     public bool isActive = true;
     // Start is called before the first frame update
     void Start(){
-        _player = GameObject.FindWithTag("Player").GetComponent<ThirdPersonController>();
+        var playerObject = GameObject.FindWithTag("Player");
+        _player = playerObject.GetComponent<ThirdPersonController>();
+        _playerHealth = playerObject.GetComponent<PlayerHealthSystem>();
     }
 
     public void Attack(){
-        Debug.Log("knockback");
-        
         _player.KnockBack(tailTip.position, attackForce);
-        
+        _playerHealth.TakeDamage(this.gameObject, attackDamage);  
     }
 
     private void OnTriggerEnter(Collider other) {
