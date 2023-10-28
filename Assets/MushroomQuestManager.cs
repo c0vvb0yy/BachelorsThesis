@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Analytics;
 using UnityEngine;
+using UnityEngine.Analytics;
 using Yarn.Unity;
 
 public class MushroomQuestManager : MonoBehaviour
@@ -35,6 +37,7 @@ public class MushroomQuestManager : MonoBehaviour
     public void FinishQuest(){
         _fulfilled = true;
         variableStorage.UpdateMushroomQuest(true);
+        AnalyticsService.Instance.CustomData("MushroomQuestDone");
         ui.SendOff();
     }
 

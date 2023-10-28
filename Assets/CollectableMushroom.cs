@@ -19,7 +19,6 @@ public class CollectableMushroom : CollectableItem
         questManager = FindQuestManager();
     }
 
-    // Update is called once per frame
     protected override void OnTriggerEnter(Collider other) {
         base.OnTriggerEnter(other);
         questManager.CollectMushroom();
