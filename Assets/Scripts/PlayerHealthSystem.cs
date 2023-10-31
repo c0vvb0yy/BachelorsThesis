@@ -47,7 +47,6 @@ public class PlayerHealthSystem : MonoBehaviour
         healthBar.UpdateHealthbar(maxHealth, _currentHealth);
         _variableStorage.UpdatePlayerHealth(_currentHealth);
         _animator.SetTrigger("TakeDamage");
-
         if(_currentHealth <= 0){
             Die(enemy);
         }

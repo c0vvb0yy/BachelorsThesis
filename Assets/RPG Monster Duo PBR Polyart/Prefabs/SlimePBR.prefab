@@ -398,6 +398,7 @@ GameObject:
   - component: {fileID: 477992524}
   - component: {fileID: 7261722035684665719}
   - component: {fileID: 6380338560383208233}
+  - component: {fileID: 8449719460412701485}
   m_Layer: 7
   m_Name: SlimePBR
   m_TagString: Enemy
@@ -478,8 +479,7 @@ MonoBehaviour:
   combatSpeed: 4
   onHitEffect: {fileID: 2757420994342177254, guid: d29eba6eca53aba46ab8dd590f3f11d7,
     type: 3}
-  damageNumber: {fileID: 5496797598997669450, guid: 147f2ecdb27f4e04ca9131c47da8b27a,
-    type: 3}
+  dragon: 0
 --- !u!195 &477992524
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -616,6 +616,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8449719460412701485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919012471076396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63be73e81366784681ab2e7d6ee885a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageNumberPrefab: {fileID: 5496797598997669450, guid: 147f2ecdb27f4e04ca9131c47da8b27a,
+    type: 3}
 --- !u!1 &1989916952965676
 GameObject:
   m_ObjectHideFlags: 0

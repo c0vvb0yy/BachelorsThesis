@@ -10,6 +10,7 @@ using UnityEngine.Analytics;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(FloatingDamageNumber))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float maxHealth = 3f;
@@ -31,7 +32,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float aggroRange = 4f;
     [SerializeField] float combatSpeed;
     [SerializeField] GameObject onHitEffect;
-    [SerializeField] GameObject damageNumber;
+    private FloatingDamageNumber _damageNumber;
 
     GameObject _player;
     Animator _animator;
@@ -54,6 +55,7 @@ public class Enemy : MonoBehaviour
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         _audio = GetComponent<AudioSource>();
+        _damageNumber = GetComponent<FloatingDamageNumber>();
         _home = transform.position;
         _currentHealth = maxHealth;
         _healthbar = GetComponentInChildren<Healthbar>();
@@ -138,7 +140,7 @@ public class Enemy : MonoBehaviour
         _healthbar.UpdateHealthbar(maxHealth, _currentHealth);
         _animator.SetTrigger("TakeDamage");
         SpawnHitEffect(point);
-        ShowDamageNumber(damageAmount);
+        _damageNumber.ShowDamageNumber(damageAmount);
         if(_currentHealth <= 0){
             Die();
         }
@@ -192,16 +194,5 @@ public class Enemy : MonoBehaviour
         hitVFX.transform.position = point;
         _audio.Play();
         Destroy(hitVFX, 5f);
-    }
-
-    void ShowDamageNumber(float damageAmount){
-        var number = Instantiate(damageNumber, transform.position, Quaternion.identity, transform);
-        var pos = number.transform.position;
-        pos = new Vector3(pos.x, pos.y, pos.z+1f);
-        number.transform.position = pos;
-        number.GetComponent<TextMeshPro>().text = damageAmount.ToString();
-        number.LeanMoveLocalX(UnityEngine.Random.Range(-1.5f, 1.5f), 1f);
-        number.LeanScale(Vector3.one, 1f).setEaseOutBounce();
-        number.LeanScale(Vector3.zero, 1f).setEaseInBounce().setDelay(3f);
     }
 }

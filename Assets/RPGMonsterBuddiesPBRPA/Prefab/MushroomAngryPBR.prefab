@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 701123259}
   - component: {fileID: 701123261}
   - component: {fileID: 701123264}
+  - component: {fileID: 3965211321430129907}
   m_Layer: 7
   m_Name: MushroomAngryPBR
   m_TagString: Enemy
@@ -256,8 +257,6 @@ MonoBehaviour:
   combatSpeed: 7
   onHitEffect: {fileID: 2757420994342177254, guid: d29eba6eca53aba46ab8dd590f3f11d7,
     type: 3}
-  damageNumber: {fileID: 5496797598997669450, guid: 147f2ecdb27f4e04ca9131c47da8b27a,
-    type: 3}
   dragon: 0
 --- !u!195 &701123261
 NavMeshAgent:
@@ -298,6 +297,20 @@ MonoBehaviour:
   attackRange: 2.5
   attackDamage: 2
   attackheight: 1.2
+--- !u!114 &3965211321430129907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875073071404757921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63be73e81366784681ab2e7d6ee885a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageNumberPrefab: {fileID: 5496797598997669450, guid: 147f2ecdb27f4e04ca9131c47da8b27a,
+    type: 3}
 --- !u!1 &1326775223490303571
 GameObject:
   m_ObjectHideFlags: 0
