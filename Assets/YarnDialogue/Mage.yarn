@@ -33,9 +33,9 @@ tags:
 <<endif>>
 <<if $obelisks > 0>>
 Mage: You made it! You got them to activate! Ok here's what i know: 
-<<set $knowledgeObelisk = false>>
+<<set $knowledgeObelisk = true>>
 Mage: Legend tells that if the dragon wakes it can be put back to peaceful slumber if all three obelisks are activated. I don't know how or why but it seems you are capable of doing just that.
-Mage: That way the dragon doesn't come to harm and the viallagers mustn't worry needlessly
+Mage: That way the dragon doesn't come to harm and the villagers mustn't worry needlessly
 Mage: I can tell you more about the Obelisks if you wish.
 <<else>>
 Mage: You haven't activated any obelisks yet. Maybe hit them with your sword?
@@ -56,7 +56,7 @@ Mage: Let's see which ones you're missing...
 Mage: There's an obelisk on the southern island, downward from the river. 
 <<endif>>
 <<if $Obelisk_forestActivated == false>>
-Mage: You're missing the one that's in the forest behing the village...
+Mage: You're missing the one that's in the forest behind the village...
 <<endif>>
 <<if $Obelisk_mountainActivated == false>>
 Mage: On the other side of the river here. That's where I already tried to activate the Obelisk and found out about the legend.
