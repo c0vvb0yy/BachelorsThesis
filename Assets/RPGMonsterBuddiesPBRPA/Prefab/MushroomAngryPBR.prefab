@@ -267,7 +267,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 875073071404757921}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.21
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDealDamage: 0
   hasDealtDamage: 0
-  attackRange: 2.5
+  attackRange: 2.59
   attackDamage: 2
   attackheight: 1.2
 --- !u!114 &3965211321430129907

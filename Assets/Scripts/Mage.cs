@@ -22,12 +22,6 @@ public class Mage : MonoBehaviour
         Dragon.DragonDeath -= DragonDeath;
     }
 
-    private void Awake() {
-        GameObject.FindWithTag("Runner").GetComponent<DialogueRunner>().AddCommandHandler(
-            "AddObeliskTalk",
-            AddObeliskTalk
-        );
-    }
     // Start is called before the first frame update
     void Start(){
         _animator = GetComponent<Animator>();
@@ -73,9 +67,4 @@ public class Mage : MonoBehaviour
         _dialogue.StarterNodes.Add("End");
     }
 
-    [YarnCommand("AddObeliskTalk")]
-    void AddObeliskTalk(){
-        _dialogue.StarterNodes.Add("ObeliskTalk");
-        _dialogue.index += 1;//_dialogue.StarterNodes.Count;
-    }
 }

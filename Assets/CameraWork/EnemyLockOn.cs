@@ -11,7 +11,7 @@ public class EnemyLockOn : MonoBehaviour
     Transform _closestEnemy;
     Animator _animator;
 
-    CameraInput _input;
+    StarterAssetsInputs _input;
 
     [SerializeField] LayerMask targetLayers;
     [SerializeField] Transform enemyTargetLocator;
@@ -43,12 +43,13 @@ public class EnemyLockOn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        var playerObj = GameObject.FindWithTag("Player");
         _animator = GetComponent<Animator>();
         _camera = Camera.main.transform;
-        _input = GetComponent<CameraInput>();
+        _input = playerObj.GetComponent<StarterAssetsInputs>();
         lockOnCanvas.gameObject.SetActive(false);
         _activeZone = noticeZone;
-        _player = GameObject.FindWithTag("Player").GetComponent<ThirdPersonController>();
+        _player = playerObj.GetComponent<ThirdPersonController>();
         _pos = transform.position;
     }
 
@@ -60,6 +61,7 @@ public class EnemyLockOn : MonoBehaviour
             ResetTarget();
         }
         //cameraFollow.lockedTarget = _enemyLocked;
+        
         if(_input.lockOn){
             _input.lockOn = false;
             if(_enemyLocked){
@@ -78,9 +80,6 @@ public class EnemyLockOn : MonoBehaviour
             if(!TargetOnRange()){
                 ResetTarget();
             }
-            if(_input.changeEnemy != 0){
-                ChangeTarget();
-            }
             LookAtTarget();
         }
         else if(_closestEnemy != null) {
@@ -98,21 +97,6 @@ public class EnemyLockOn : MonoBehaviour
         _enemyLocked = false;
         _animator.Play("FollowState");
         onEnemyLockOn.Invoke(_enemyLocked, null);
-    }
-
-    void ChangeTarget(){
-        //we cannot change targets if there'S only 1 or less target available
-        if(_nearbyTargets.Length <= 1) return;
-        if(_input.changeEnemy > 0){
-            _enemyIndex += 1;
-            if(_enemyIndex >= _nearbyTargets.Length) _enemyIndex = 0;
-            _currentTarget = _nearbyTargets[_enemyIndex].transform;
-        }
-        else{
-            _enemyIndex -=1;
-            if(_enemyIndex <= 0) _enemyIndex = _nearbyTargets.Length-1;
-            _currentTarget = _nearbyTargets[_enemyIndex].transform;
-        }
     }
 
     void ScanNearBy(){

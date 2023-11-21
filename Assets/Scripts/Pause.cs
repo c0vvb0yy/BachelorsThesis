@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
@@ -10,7 +11,14 @@ public class Pause : MonoBehaviour
     public GameObject PauseCanvas;
     public TextMeshProUGUI stats;
     public DisplayPOIInformation stats_POI;
-    // Start is called before the first frame update
+    private int _creditsIndex = 0;
+    public TextMeshProUGUI credits_text;
+    private String[] _credits = {
+        "Animations provided by Mixamo\nBackground Music by Jenny Walter\nPick up sfx by Kenny.nl\nsword slash sfx by 666HeroHero from Pixabay\nsword sheath Sound Effect by Ryan Lewis",
+        "World Assets by BOKI\nPalm Trees by DinV_Studio\nHouses and furniture by Gigel\nFarm assets by JustCreate\n Witch's House by Bizulka",
+        "Enemies/Wizard model and animations by Dungeon Mason\nGoats and Sheep by UrsaAnimations\nMage Tower by Matt Art\nSwords by PurePoly\nFire by Indian Ocean Assets",
+        "Skybox by Render Knight\nObelisk Model by JUHWAN\nNPCs by Distant Lands\nBlackSmith house by Bitcraft\n& You For Playing <3"
+    };
     void Start(){
         _input = GetComponent<StarterAssetsInputs>();
     }
@@ -50,7 +58,7 @@ public class Pause : MonoBehaviour
         else
             secondLine += "The dragon is still at large.\n";
         
-        string thirdLine = "\nDon't forget to check out the survey! <3";
+        string thirdLine = "Don't forget to check out the survey! <3";
 
         stats.text = firstLine+secondLine+thirdLine;
     }
@@ -62,6 +70,14 @@ public class Pause : MonoBehaviour
     }
 
     public void SurveyLink(){
-        Application.OpenURL("https://docs.google.com/document/d/1HA2--5m_sEPBo6rqw2E4NoINKd0AQA2dmTqzZJNvYGk/edit#heading=h.mu8yjtpnxvqv");
+        Application.OpenURL("https://forms.gle/topd2EgsnYYgYz7h7");
     }
+
+    public void ShowCredits(){
+        if(_creditsIndex >= _credits.Length) _creditsIndex = 0;
+        stats.text = _credits[_creditsIndex];
+        _creditsIndex++;
+        credits_text.text = ""+_creditsIndex+"/"+_credits.Length;
+    }
+
 }

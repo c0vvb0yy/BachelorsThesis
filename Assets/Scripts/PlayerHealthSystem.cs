@@ -46,7 +46,7 @@ public class PlayerHealthSystem : MonoBehaviour
         _currentHealth -= amount;
         healthBar.UpdateHealthbar(maxHealth, _currentHealth);
         _variableStorage.UpdatePlayerHealth(_currentHealth);
-        _animator.SetTrigger("TakeDamage");
+        _animator.SetTrigger("TakeDamage"); 
         if(_currentHealth <= 0){
             Die(enemy);
         }
@@ -92,6 +92,7 @@ public class PlayerHealthSystem : MonoBehaviour
         };
         AnalyticsService.Instance.CustomData("PlayerHeal", eventData);
         _currentHealth = maxHealth;
+        _variableStorage.UpdatePlayerHealth(maxHealth);
         healthBar.UpdateHealthbar(maxHealth, _currentHealth);
     }
 

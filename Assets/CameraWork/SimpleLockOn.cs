@@ -17,9 +17,7 @@ public class SimpleLockOn : MonoBehaviour
             if(mirror) _dir = 2 * transform.position - target.position;
             else _dir = target.position - transform.position;
             
-            var name = this.gameObject.name;
             transform.rotation = Quaternion.LookRotation(_dir);
-            
             yield return null;
         }
     }

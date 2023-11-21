@@ -23,6 +23,7 @@ namespace StarterAssets
 		public bool interact;
 
 		public bool pause;
+		public bool lockOn;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -96,6 +97,9 @@ namespace StarterAssets
 		public void OnPause(InputValue value){
 			Pause(value.isPressed);
 		}
+		public void OnLockOn(InputValue value){
+            LockOn(value.isPressed);
+        }
 
 #endif
 
@@ -175,6 +179,9 @@ namespace StarterAssets
 		private void GetSword(){
 			this.gameObject.GetComponent<EquipmentSystem>().getRustySword();
 		}
+		public void LockOn(bool newLockOnState){
+            lockOn = newLockOnState;
+        }
 
 		private void FinishFarmQuest(bool finish){
 			var questManager = GetQuestManager<EnemyQuestManager>();
